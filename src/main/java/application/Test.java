@@ -57,11 +57,9 @@ public class Test {
         List<Serial> listSe = null;
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session ss = sf.openSession();
-        Query createQuery = ss.createSQLQuery("select top (?) imei from Serial where TrangThai = 0 and IdCTSp = :idctsp");
-        createQuery.setParameter("idctsp", "laptop01");
-        createQuery.setInteger(0, 2);
-    
-        System.out.println(createQuery.list());
+        Query createQuery = ss.createQuery("from HoaDon");
+        System.out.println(createQuery.list().get(0).toString());;
+ 
        
     
 

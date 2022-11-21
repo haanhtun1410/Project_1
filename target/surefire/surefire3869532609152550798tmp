@@ -1,5 +1,5 @@
 #surefire
-#Sun Nov 20 20:45:42 ICT 2022
+#Mon Nov 21 19:34:54 ICT 2022
 testClassesDirectory=C\:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\target\\test-classes
 classPathUrl.4=C\:\\Users\\longv\\.m2\\repository\\org\\jboss\\logging\\jboss-logging-annotations\\1.2.0.Beta1\\jboss-logging-annotations-1.2.0.Beta1.jar
 forkMode=once
@@ -17,6 +17,7 @@ runOrder=filesystem
 useSystemClassLoader=true
 excludes0=**/*$*
 isTrimStackTrace=true
+classPathUrl.15=C\:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\src\\main\\resources\\syntheticaMauveMetallic.jar
 includes2=**/*TestCase.java
 enableAssertions=true
 classPathUrl.14=C\:\\Users\\longv\\.m2\\repository\\unknown\\binary\\sqljdbc42\\SNAPSHOT\\sqljdbc42-SNAPSHOT.jar
