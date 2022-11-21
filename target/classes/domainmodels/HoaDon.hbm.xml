@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2022 2:49:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="domainmodels.HoaDon" table="HoaDon" schema="dbo" catalog="ProjectOne" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="Id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="khachHang" class="domainmodels.KhachHang" fetch="select">
+            <column name="IdKH" length="10" />
+        </many-to-one>
+        <many-to-one name="user" class="domainmodels.User" fetch="select">
+            <column name="IdNV" length="10" />
+        </many-to-one>
+        <many-to-one name="voucherHd" class="domainmodels.VoucherHd" fetch="select">
+            <column name="idVoucher" length="10" />
+        </many-to-one>
+        <property name="ngayTao" type="date">
+            <column name="NgayTao" length="10" />
+        </property>
+        <property name="ngayThanhToan" type="date">
+            <column name="NgayThanhToan" length="10" />
+        </property>
+        <property name="ngayShip" type="date">
+            <column name="NgayShip" length="10" />
+        </property>
+        <property name="ngayNhan" type="date">
+            <column name="NgayNhan" length="10" />
+        </property>
+        <property name="tinhTrang" type="int">
+            <column name="TinhTrang" />
+        </property>
+        <property name="tenNguoiNhan" type="string">
+            <column name="TenNguoiNhan" />
+        </property>
+        <property name="diaChi" type="string">
+            <column name="DiaChi" />
+        </property>
+        <property name="sdt" type="string">
+            <column name="Sdt" length="30" />
+        </property>
+        <set name="cthds" table="CTHD" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdHD" length="10" />
+            </key>
+            <one-to-many class="domainmodels.Cthd" />
+        </set>
+    </class>
+</hibernate-mapping>

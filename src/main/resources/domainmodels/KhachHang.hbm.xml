@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2022 2:49:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="domainmodels.KhachHang" table="KhachHang" schema="dbo" catalog="ProjectOne" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="Id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="loaiKh" class="domainmodels.LoaiKh" fetch="select">
+            <column name="idloaiKH" length="10" />
+        </many-to-one>
+        <property name="ten" type="string">
+            <column name="Ten" />
+        </property>
+        <property name="ngaySinh" type="date">
+            <column name="NgaySinh" length="10" />
+        </property>
+        <property name="sdt" type="string">
+            <column name="Sdt" length="30" />
+        </property>
+        <property name="diaChi" type="string">
+            <column name="DiaChi" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" />
+        </property>
+        <property name="tinhTrang" type="int">
+            <column name="TinhTrang" />
+        </property>
+        <set name="hoaDons" table="HoaDon" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdKH" length="10" />
+            </key>
+            <one-to-many class="domainmodels.HoaDon" />
+        </set>
+        <set name="phieuBaoHanhs" table="PhieuBaoHanh" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDKH" length="10" />
+            </key>
+            <one-to-many class="domainmodels.PhieuBaoHanh" />
+        </set>
+    </class>
+</hibernate-mapping>

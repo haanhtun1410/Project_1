@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2022 2:49:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="domainmodels.VoucherLaptop" table="VoucherLaptop" schema="dbo" catalog="ProjectOne" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="Id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="moTa" type="string">
+            <column name="MoTa" />
+        </property>
+        <property name="tienGiam" type="double">
+            <column name="TienGiam" scale="4" />
+        </property>
+        <property name="phanTramGiam" type="int">
+            <column name="phanTramGiam" />
+        </property>
+        <property name="ngayApDung" type="date">
+            <column name="NgayApDung" length="10" />
+        </property>
+        <property name="ngayKetThuc" type="date">
+            <column name="NgayKetThuc" length="10" />
+        </property>
+        <set name="chiTietSps" table="ChiTietSP" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdVoucherSP" length="10" />
+            </key>
+            <one-to-many class="domainmodels.ChiTietSp" />
+        </set>
+    </class>
+</hibernate-mapping>

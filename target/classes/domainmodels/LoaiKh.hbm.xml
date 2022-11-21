@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2022 2:49:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="domainmodels.LoaiKh" table="LoaiKH" schema="dbo" catalog="ProjectOne" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="Id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="ten" type="string">
+            <column name="Ten" unique="true" />
+        </property>
+        <property name="moTa" type="string">
+            <column name="MoTa" />
+        </property>
+        <set name="khachHangs" table="KhachHang" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idloaiKH" length="10" />
+            </key>
+            <one-to-many class="domainmodels.KhachHang" />
+        </set>
+    </class>
+</hibernate-mapping>

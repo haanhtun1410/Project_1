@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2022 2:49:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="domainmodels.ChiTietSp" table="ChiTietSP" schema="dbo" catalog="ProjectOne" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="Id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="dongSp" class="domainmodels.DongSp" fetch="select">
+            <column name="IdDongSP" length="10" />
+        </many-to-one>
+        <many-to-one name="nsx" class="domainmodels.Nsx" fetch="select">
+            <column name="IdNsx" length="10" />
+        </many-to-one>
+        <many-to-one name="voucherLaptop" class="domainmodels.VoucherLaptop" fetch="select">
+            <column name="IdVoucherSP" length="10" />
+        </many-to-one>
+        <property name="tenSp" type="string">
+            <column name="tenSP" />
+        </property>
+        <property name="namSx" type="int">
+            <column name="NamSX" />
+        </property>
+        <property name="namBh" type="int">
+            <column name="NamBH" />
+        </property>
+        <property name="moTa" type="string">
+            <column name="MoTa" />
+        </property>
+        <property name="soLuongTon" type="int">
+            <column name="SoLuongTon" />
+        </property>
+        <property name="giaBan" type="double">
+            <column name="GiaBan" scale="4" />
+        </property>
+        <set name="serials" table="serial" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdCTSP" length="10" />
+            </key>
+            <one-to-many class="domainmodels.Serial" />
+        </set>
+        <set name="cthds" table="CTHD" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdCTSP" length="10" />
+            </key>
+            <one-to-many class="domainmodels.Cthd" />
+        </set>
+        <set name="anhLaptops" table="AnhLaptop" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCTSP" length="10" />
+            </key>
+            <one-to-many class="domainmodels.AnhLaptop" />
+        </set>
+    </class>
+</hibernate-mapping>

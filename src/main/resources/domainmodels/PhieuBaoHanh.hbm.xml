@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2022 2:49:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="domainmodels.PhieuBaoHanh" table="PhieuBaoHanh" schema="dbo" catalog="ProjectOne" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="Id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="cthd" class="domainmodels.Cthd" fetch="select">
+            <column name="IdHDCT" length="10" />
+        </many-to-one>
+        <many-to-one name="khachHang" class="domainmodels.KhachHang" fetch="select">
+            <column name="IDKH" length="10" />
+        </many-to-one>
+        <property name="ngayTao" type="date">
+            <column name="NgayTao" length="10" />
+        </property>
+        <property name="ngayhetHan" type="date">
+            <column name="NgayhetHan" length="10" />
+        </property>
+        <property name="trangThai" type="int">
+            <column name="TrangThai" />
+        </property>
+    </class>
+</hibernate-mapping>
