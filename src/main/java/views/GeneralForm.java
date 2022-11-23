@@ -156,6 +156,13 @@ public class GeneralForm extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tbl_hoaDon);
+        if (tbl_hoaDon.getColumnModel().getColumnCount() > 0) {
+            tbl_hoaDon.getColumnModel().getColumn(0).setHeaderValue("STT");
+            tbl_hoaDon.getColumnModel().getColumn(1).setHeaderValue("Mã HD");
+            tbl_hoaDon.getColumnModel().getColumn(2).setHeaderValue("Ngày Tạo");
+            tbl_hoaDon.getColumnModel().getColumn(3).setHeaderValue("Tên NV");
+            tbl_hoaDon.getColumnModel().getColumn(4).setHeaderValue("Tình Trạng");
+        }
 
         jLabel1.setText("Mã HD");
 
