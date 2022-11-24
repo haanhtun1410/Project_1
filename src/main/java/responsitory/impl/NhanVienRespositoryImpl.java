@@ -10,6 +10,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -100,6 +101,23 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
         }
         return true;
     }
-*/
-}
+     */
+    @Override
+    public boolean UserLogin(String idNV, String mk) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session ss = factory.openSession();
+        int result;
+        try {
+            String sql = "select count(*) from [User] where id = :id and matkhau = :mk";
+            SQLQuery createSQLQuery = ss.createSQLQuery(sql);
+            createSQLQuery.setParameter("id", idNV);
+            createSQLQuery.setParameter("mk", mk);
+            result = (int) createSQLQuery.uniqueResult();
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
 
+        return result == 1 ? true : false;
+    }
+}

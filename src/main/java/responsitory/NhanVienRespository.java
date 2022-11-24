@@ -15,5 +15,6 @@ import java.util.List;
  */
 public interface NhanVienRespository {
     List<User> getAll();
-
+    
+    boolean UserLogin(String idNV,String mk);
 }
