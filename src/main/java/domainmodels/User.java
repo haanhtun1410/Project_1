@@ -59,6 +59,18 @@ public class User  implements java.io.Serializable {
        this.anhNvs = anhNvs;
        this.hoaDons = hoaDons;
     }
+
+    public User(String id, ChucVu chucVu, String ten, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, int trangThai) {
+        this.id = id;
+        this.chucVu = chucVu;
+        this.ten = ten;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.matKhau = matKhau;
+        this.trangThai = trangThai;
+    }
    
      @Id 
 

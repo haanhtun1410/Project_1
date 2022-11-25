@@ -17,4 +17,11 @@ public interface NhanVienRespository {
     List<User> getAll();
     
     boolean UserLogin(String idNV,String mk);
+    List<User> getAll1();
+    
+    User getById(String id);
+    Boolean add(User kh);
+    Boolean update(User kh);
+    Boolean delete(String id);
+    List<User> getByTen(String ten);
 }
