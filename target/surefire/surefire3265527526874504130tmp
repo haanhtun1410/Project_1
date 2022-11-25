@@ -1,5 +1,5 @@
 #surefire
-#Fri Nov 25 11:36:27 ICT 2022
+#Fri Nov 25 12:42:27 ICT 2022
 enableAssertions=true
 testSuiteDefinitionTestSourceDirectory=C\:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\src\\test\\java
 surefireClassPathUrl.1=C\:\\Users\\longv\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-api\\2.10\\surefire-api-2.10.jar
