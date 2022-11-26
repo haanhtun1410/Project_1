@@ -10,6 +10,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -100,6 +101,134 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
         }
         return true;
     }
-*/
-}
+     */
+    @Override
+    public boolean UserLogin(String idNV, String mk) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session ss = factory.openSession();
+        int result;
+        try {
+            String sql = "select count(*) from [User] where id = :id and matkhau = :mk";
+            SQLQuery createSQLQuery = ss.createSQLQuery(sql);
+            createSQLQuery.setParameter("id", idNV);
+            createSQLQuery.setParameter("mk", mk);
+            result = (int) createSQLQuery.uniqueResult();
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
 
+        return result == 1 ? true : false;
+    }
+    private Session session = HibernateUtil.getSessionFactory().openSession();
+
+    @Override
+    public List<User> getAll1() {
+        List<User> list = null;
+        try {
+            Criteria criteria = session.createCriteria(User.class);
+            list = criteria.list();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        if (list.size() > 0) {
+            return list;
+        } else {
+            System.out.println("lỗi");
+        }
+
+        return null;
+    }
+
+    @Override
+    public User getById(String id) {
+        try {
+
+            String hql = "from User where id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            List<User> list = query.list();
+
+            return list.size() > 0 ? list.get(0) : null;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return null;
+    }
+
+
+    @Override
+    public Boolean add(User kh) {
+        if (kh != null) {
+            System.out.println("Da co du lieu");
+        } else {
+            System.out.println("Chua co du lieu");
+        }
+
+        try {
+            session.getTransaction().begin();
+            session.save(kh);
+            session.getTransaction().commit();
+
+        } catch (Exception e) {
+            System.out.println(e);
+
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean update(User kh) {
+        try {
+            session.getTransaction().begin();
+            
+            //session.saveOrUpdate(kh); khhoonf dung đc vì có khả nang trùng
+            session.merge(kh);
+            session.getTransaction().commit();
+
+        } catch (Exception e) {
+            System.out.println(e);
+            session.getTransaction().rollback();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean delete(String id) {
+        try {
+            session.getTransaction().begin();
+            User us = (User) session.get(User.class, id);
+
+            session.delete(us);
+            session.getTransaction().commit();
+
+        } catch (Exception e) {
+            System.out.println(e);
+            session.getTransaction().rollback();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public List<User> getByTen(String ten) {
+        List<User> list = null;
+        try {
+            session.getTransaction().begin();
+            String hql = "from User p where p.Ten like :ten1";
+            Query query = session.createQuery(hql);
+            query.setParameter("ten1", "%" + ten + "%");
+            list = query.list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            session.getTransaction().rollback();
+            return null;
+        }
+        return list;
+    }
+}
