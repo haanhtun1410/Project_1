@@ -2,6 +2,7 @@ package domainmodels;
 // Generated Nov 19, 2022 2:49:48 PM by Hibernate Tools 4.3.1
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,25 +22,47 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "HoaDon",
-         schema = "dbo",
-         catalog = "ProjectOne"
+        schema = "dbo",
+        catalog = "ProjectOne"
 )
 public class HoaDon implements java.io.Serializable {
 
+    @Column(name = "Id", unique = true, nullable = false, length = 10)
     @Id
 
     private String id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdKH")
     private KhachHang khachHang;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdNV")
     private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idVoucher")
     private VoucherHd voucherHd;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "NgayTao", length = 10)
     private Date ngayTao;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "NgayThanhToan", length = 10)
     private Date ngayThanhToan;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "NgayShip", length = 10)
     private Date ngayShip;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "NgayNhan", length = 10)
     private Date ngayNhan;
+    @Column(name = "TinhTrang")
     private int tinhTrang;
+    @Column(name = "TenNguoiNhan")
     private String tenNguoiNhan;
+    @Column(name = "DiaChi")
     private String diaChi;
+    @Column(name = "Sdt", length = 30)
     private String sdt;
+    @Column(name = "ThanhTien", scale = 4)
+    private BigDecimal tongTien;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hoaDon")
     private Set<Cthd> cthds = new HashSet<Cthd>(0);
 
     public HoaDon() {
@@ -70,7 +93,6 @@ public class HoaDon implements java.io.Serializable {
         this.cthds = cthds;
     }
 
-    @Column(name = "Id", unique = true, nullable = false, length = 10)
     public String getId() {
         return this.id;
     }
@@ -79,8 +101,14 @@ public class HoaDon implements java.io.Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdKH")
+    public BigDecimal getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(BigDecimal tongTien) {
+        this.tongTien = tongTien;
+    }
+
     public KhachHang getKhachHang() {
         return this.khachHang;
     }
@@ -89,8 +117,6 @@ public class HoaDon implements java.io.Serializable {
         this.khachHang = khachHang;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdNV")
     public User getUser() {
         return this.user;
     }
@@ -99,8 +125,6 @@ public class HoaDon implements java.io.Serializable {
         this.user = user;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idVoucher")
     public VoucherHd getVoucherHd() {
         return this.voucherHd;
     }
@@ -109,8 +133,6 @@ public class HoaDon implements java.io.Serializable {
         this.voucherHd = voucherHd;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "NgayTao", length = 10)
     public Date getNgayTao() {
         return this.ngayTao;
     }
@@ -119,8 +141,6 @@ public class HoaDon implements java.io.Serializable {
         this.ngayTao = ngayTao;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "NgayThanhToan", length = 10)
     public Date getNgayThanhToan() {
         return this.ngayThanhToan;
     }
@@ -129,8 +149,6 @@ public class HoaDon implements java.io.Serializable {
         this.ngayThanhToan = ngayThanhToan;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "NgayShip", length = 10)
     public Date getNgayShip() {
         return this.ngayShip;
     }
@@ -139,8 +157,6 @@ public class HoaDon implements java.io.Serializable {
         this.ngayShip = ngayShip;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "NgayNhan", length = 10)
     public Date getNgayNhan() {
         return this.ngayNhan;
     }
@@ -149,7 +165,6 @@ public class HoaDon implements java.io.Serializable {
         this.ngayNhan = ngayNhan;
     }
 
-    @Column(name = "TinhTrang")
     public int getTinhTrang() {
         return this.tinhTrang;
     }
@@ -158,7 +173,6 @@ public class HoaDon implements java.io.Serializable {
         this.tinhTrang = tinhTrang;
     }
 
-    @Column(name = "TenNguoiNhan")
     public String getTenNguoiNhan() {
         return this.tenNguoiNhan;
     }
@@ -167,7 +181,6 @@ public class HoaDon implements java.io.Serializable {
         this.tenNguoiNhan = tenNguoiNhan;
     }
 
-    @Column(name = "DiaChi")
     public String getDiaChi() {
         return this.diaChi;
     }
@@ -176,7 +189,6 @@ public class HoaDon implements java.io.Serializable {
         this.diaChi = diaChi;
     }
 
-    @Column(name = "Sdt", length = 30)
     public String getSdt() {
         return this.sdt;
     }
@@ -185,7 +197,6 @@ public class HoaDon implements java.io.Serializable {
         this.sdt = sdt;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hoaDon")
     public Set<Cthd> getCthds() {
         return this.cthds;
     }

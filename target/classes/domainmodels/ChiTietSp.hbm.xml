@@ -32,7 +32,7 @@
         <property name="soLuongTon" type="int">
             <column name="SoLuongTon" />
         </property>
-        <property name="giaBan" type="double">
+        <property name="giaBan" type="big_decimal">
             <column name="GiaBan" scale="4" />
         </property>
         <set name="serials" table="serial" inverse="true" lazy="true" fetch="select">

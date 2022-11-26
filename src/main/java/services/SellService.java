@@ -20,6 +20,8 @@ import java.util.List;
 public interface SellService {
 
     List<ChiTietSp> getAllSP();
+    
+    List<HoaDon> getAllHDC();
 
     List<Cthd> getAllHDCT();
 
@@ -29,7 +31,7 @@ public interface SellService {
     
     List<KhachHang> getAllKH();
 
-    boolean addHD(HoaDon hoaDon);
+    boolean addHD();
 
     boolean updateHD(HoaDon hoaDon);
     
