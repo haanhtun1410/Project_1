@@ -10,6 +10,7 @@ import domainmodels.Cthd;
 import domainmodels.HoaDon;
 import domainmodels.KhachHang;
 import domainmodels.User;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class GeneralForm extends javax.swing.JFrame {
     private final SerialsResponsitory serialsResponsitory = new SerialsResponsitoryImpl();
     SellService sv = new SellServiceImpl(chiTietSPRespository, chiTietHDRespository, HDRespository, nhanVienRespository, khachHangResponsitory, serialsResponsitory);
     static int rollnumber = 1;
-    static double thanhTien = 0;
+    static double thanhTien = 0.0;
     List<HoaDon> listHD = sv.getAllHD();
     private List<User> listNV = sv.getAllNV();
     private List<KhachHang> listKH = sv.getAllKH();
@@ -310,7 +311,15 @@ public class GeneralForm extends javax.swing.JFrame {
             new String [] {
                 "STT", "Mã SP", "Tên SP", "Năm Sản Xuất", "Mô Tả", "Năm BH", "SL SP", "Giá Bán"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tbl_chiTietSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_chiTietSPMouseClicked(evt);
@@ -346,7 +355,15 @@ public class GeneralForm extends javax.swing.JFrame {
             new String [] {
                 "STT", "Mã SP", "Tên SP", "Số Lượng", "Đơn Giá", "Thành Tiền"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(tbl_ChiTietHD);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -423,7 +440,7 @@ public class GeneralForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_taohdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_taohdActionPerformed
-        if (sv.addHD(createTempHD())) {
+        if (sv.addHD()) {
             JOptionPane.showMessageDialog(this, "Thành công");
             this.fillHD();
             clearForm();
@@ -500,9 +517,9 @@ public class GeneralForm extends javax.swing.JFrame {
 
         for (int i = 0; i < listSelectedSp.size(); i++) {
             ChiTietSp sp = listSelectedSp.get(i);
-            String idCTHD = hoaDonn.getId() + String.valueOf(i + 1);
+            String idCTHD = hoaDonn.getId() + "-" + String.valueOf(i + 1);
             System.out.println(idCTHD);
-            Cthd hdct = new Cthd(idCTHD, sp, hoaDonn, (int) tbl_ChiTietHD.getValueAt(i, 3), sp.getGiaBan(), (double) tbl_ChiTietHD.getValueAt(i, 5));
+            Cthd hdct = new Cthd(idCTHD, sp, hoaDonn, Integer.valueOf(tbl_ChiTietHD.getValueAt(i, 3).toString()), sp.getGiaBan(), BigDecimal.valueOf(Double.valueOf(tbl_ChiTietHD.getValueAt(i, 5).toString())));
             if (sv.addHDCT(hdct)) {
                 System.out.println("added : " + hdct.toString());
             }
@@ -668,12 +685,8 @@ public class GeneralForm extends javax.swing.JFrame {
         return tbl_chiTietSP.getSelectedRow();
     }
 
-    private HoaDon createTempHD() {
-        return new HoaDon(txt_mahd.getText(), new Date(System.currentTimeMillis()));
-    }
-
     void fillSPtoHDCT() {
-        int tong = 0;
+        double tong = 0;
         int selectedRow = getSelectedSPRow();
         if (selectedRow < 0) {
             return;
@@ -689,23 +702,24 @@ public class GeneralForm extends javax.swing.JFrame {
             System.out.println(listSelectedSp.size());
         } else {
             for (int i = 0; i < dtm.getRowCount(); i++) {
-                int soluong = Integer.valueOf(dtm.getValueAt(i, 3).toString()) + 1;
+                Double soluong = Double.valueOf(dtm.getValueAt(i, 3).toString()) + 1;
 
                 if (chiTietSp.getId().equalsIgnoreCase(dtm.getValueAt(i, 1).toString())) {
-                    if (soluong > chiTietSp.getSoLuongTon()) {
+                    if (soluong.intValue() > chiTietSp.getSoLuongTon()) {
                         JOptionPane.showMessageDialog(this, "vuot qua so hang");
                         return;
                     }
-                    dtm.setValueAt(soluong, i, 3);
-                    dtm.setValueAt(Double.valueOf(dtm.getValueAt(i, 3).toString()) * chiTietSp.getGiaBan(), i, 5);
+                    dtm.setValueAt(soluong.intValue(), i, 3);
+                    dtm.setValueAt(chiTietSp.getGiaBan().doubleValue() * soluong.intValue(), i, 5);
                     break;
                 }
             }
         }
         for (int i = 0; i < dtm.getRowCount(); i++) {
-            tong += Integer.valueOf(dtm.getValueAt(i, 3).toString()) * Double.valueOf(dtm.getValueAt(i, 4).toString());
+            tong += Double.parseDouble(dtm.getValueAt(i, 3).toString()) * Double.parseDouble(dtm.getValueAt(i, 4).toString());
         }
-        txt_tongtien.setText(String.valueOf(tong));
+        String t = Double.toString(tong);
+        txt_tongtien.setText(t);
     }
 
     private void fillTextField() {
@@ -719,11 +733,10 @@ public class GeneralForm extends javax.swing.JFrame {
             fillHDCT();
         }
         txt_mahd.setText(hd.getId());
-        txt_ngaytao.setText(hd.getNgayTao().toString());
         cbo_nv.setSelectedItem(hd.getUser());
         cbo_kh.setSelectedItem(hd.getKhachHang());
 
-        sv.getHDCTofHD(hd).forEach(e -> thanhTien += e.getThanhTien());
+        sv.getHDCTofHD(hd).forEach(e -> thanhTien += e.getThanhTien().doubleValue());
         txt_tongtien.setText("" + thanhTien);
 
     }
@@ -762,7 +775,7 @@ public class GeneralForm extends javax.swing.JFrame {
         txt_tongtien.setText("");
         DefaultTableModel dtm = (DefaultTableModel) tbl_ChiTietHD.getModel();
         dtm.setRowCount(0);
-        thanhTien = 0;
+        thanhTien = 0.0;
         listSelectedSp.removeAll(listSelectedSp);
         setEditable();
 

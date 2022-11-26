@@ -17,13 +17,13 @@
         <property name="soLuong" type="int">
             <column name="soLuong" />
         </property>
-        <property name="donGia" type="double">
+        <property name="donGia" type="big_decimal">
             <column name="donGia" scale="4" />
         </property>
-        <property name="donGiaKhiGiam" type="double">
+        <property name="donGiaKhiGiam" type="big_decimal">
             <column name="donGiaKhiGiam" scale="4" />
         </property>
-        <property name="thanhTien" type="double">
+        <property name="thanhTien" type="big_decimal">
             <column name="ThanhTien" scale="4" />
         </property>
         <set name="serials" table="serial" inverse="true" lazy="true" fetch="select">

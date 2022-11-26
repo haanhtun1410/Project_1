@@ -5,15 +5,16 @@
  */
 package responsitory.impl;
 
-
 import domainmodels.HoaDon;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import responsitory.HDRespository;
 import untilities.HibernateUtil;
 
@@ -35,10 +36,26 @@ public class HDRespositoryImpl implements HDRespository {
     }
 
     @Override
-    public boolean addTempHD(HoaDon hoaDon) {
+    public boolean addTempHD() {
         Session ss = HibernateUtil.getSessionFactory().openSession();
         try {
+            String sql = "SELECT top 1 id FROM HoaDon ORDER BY id DESC ";
+            SQLQuery createSQLQuery = ss.createSQLQuery(sql);
+            String id = (String) createSQLQuery.uniqueResult();
+            if (id == null) {
+                id = "HD1";
+            } else {
+                int co = id.length();
+                String txt = id.substring(0, 2);
+                String num = id.substring(2, co);
+                int n = Integer.parseInt(num);
+                n++;
+                String snum = Integer.toString(n);
+                id = txt + snum;
+            }
+            System.out.println(id);
             ss.beginTransaction();
+            HoaDon hoaDon = new HoaDon(id);
             ss.save(hoaDon);
             ss.getTransaction().commit();
         } catch (Exception e) {
@@ -47,6 +64,11 @@ public class HDRespositoryImpl implements HDRespository {
             return false;
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        HDRespository h = new HDRespositoryImpl();
+        h.addTempHD();
     }
 
     @Override
@@ -60,7 +82,7 @@ public class HDRespositoryImpl implements HDRespository {
             Query createQuery = ss.createQuery(qry);
             createQuery.setParameter("id", hoaDon.getId());
             createQuery.setParameter("IdNV", hoaDon.getUser().getId());
-            createQuery.setParameter("IdKH",hoaDon.getKhachHang().getId());
+            createQuery.setParameter("IdKH", hoaDon.getKhachHang().getId());
             createQuery.setParameter("TinhTrang", hoaDon.getTinhTrang());
             createQuery.executeUpdate();
             transaction.commit();
@@ -69,6 +91,21 @@ public class HDRespositoryImpl implements HDRespository {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List<HoaDon> getAllHDC() {
+        List<HoaDon> listHD = null;
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session ss = sf.openSession();
+        try {
+            Criteria cr = ss.createCriteria(HoaDon.class);
+            cr.add(Restrictions.eq("TinhTrang", 1));
+            listHD = cr.list();
+        } catch (HibernateException e) {
+            System.out.println(e);
+        }
+        return listHD;
     }
 
 }

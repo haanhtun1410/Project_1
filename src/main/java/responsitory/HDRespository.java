@@ -16,8 +16,12 @@ import java.util.List;
 public interface HDRespository {
 
     List<HoaDon> getAll();
+    
+    List<HoaDon> getAllHDC();
 
-    boolean addTempHD(HoaDon hoaDon);
+    boolean addTempHD();
 
     boolean updateHD(HoaDon hoaDon);
+    
+    
 }
