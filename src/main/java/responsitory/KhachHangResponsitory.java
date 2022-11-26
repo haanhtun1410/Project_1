@@ -14,4 +14,10 @@ import java.util.List;
  */
 public interface KhachHangResponsitory {
        List<KhachHang> getAll();
+       List<KhachHang> getAll1();
+    KhachHang getById(String id);
+    Boolean add(KhachHang kh);
+    Boolean update(KhachHang kh);
+    Boolean delete(String id);
+    List<KhachHang> getByTen(String ten);
 }
