@@ -1,11 +1,10 @@
 package com.raven.form;
 
-public class Form extends javax.swing.JPanel {
+public class FormHome extends javax.swing.JPanel {
 
-    public Form(int index) {
+    public FormHome() {
         initComponents();
         setOpaque(false);
-        jLabel1.setText("Form " + index);
     }
 
     @SuppressWarnings("unchecked")
@@ -17,7 +16,7 @@ public class Form extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(137, 137, 137));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Form");
+        jLabel1.setText("WELCOME TO POLYTECHLAP");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -25,7 +24,7 @@ public class Form extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

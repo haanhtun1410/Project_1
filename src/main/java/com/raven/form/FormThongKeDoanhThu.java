@@ -3,9 +3,9 @@ package com.raven.form;
 import com.raven.chart.ModelChart;
 import java.awt.Color;
 
-public class Form_1 extends javax.swing.JPanel {
+public class FormThongKeDoanhThu extends javax.swing.JPanel {
 
-    public Form_1() {
+    public FormThongKeDoanhThu() {
         initComponents();
         setOpaque(false);
         init();
