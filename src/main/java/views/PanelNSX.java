@@ -5,18 +5,30 @@
  */
 package views;
 
+<<<<<<< Updated upstream
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import services.impl.NSXserviceImpl;
 import domainmodels.Nsx;
 import services.NSXservice;
+=======
+import domainmodels.Nsx;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import services.impl.NSXServicesImpl;
+import services.NSXServices;
+>>>>>>> Stashed changes
 
 /**
  *
  * @author DELL
  */
 public class PanelNSX extends javax.swing.JPanel {
+<<<<<<< Updated upstream
     NSXservice SV = new NSXserviceImpl();
+=======
+    NSXServices SV = new NSXServicesImpl();
+>>>>>>> Stashed changes
     DefaultTableModel bang = new DefaultTableModel();
     /**
      * Creates new form NewJPanel
