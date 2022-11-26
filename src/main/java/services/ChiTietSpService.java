@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package responsitory;
+package services;
 
 import domainmodels.ChiTietSp;
 import domainmodels.Nsx;
@@ -11,18 +11,13 @@ import java.util.List;
 
 /**
  *
- * @author longv
+ * @author ASUS
  */
-public interface ChiTietSPRespository {
-
-    List<ChiTietSp> getAll();
-
-    boolean updateSLSP(String idString);
-
-    boolean add(ChiTietSp chiTietSp);
-
+public interface ChiTietSpService {
+    List<ChiTietSp> getAllCT();
+    ChiTietSp getByMa(String ma);
     List<Nsx> getAllNSX();
-
-    boolean delete(String id);
-
+    String add(ChiTietSp chiTietSp);
+    String update(String id, ChiTietSp chiTietSp);
+    String delete(String id);
 }

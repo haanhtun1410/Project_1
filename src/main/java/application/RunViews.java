@@ -6,6 +6,7 @@
 package application;
 
 import javax.swing.UIManager;
+import views.GeneralForm;
 
 /**
  *
@@ -13,6 +14,6 @@ import javax.swing.UIManager;
  */
 public class RunViews {
     public static void main(String[] args) {
-     
+     new GeneralForm().setVisible(true);
     }
 }
