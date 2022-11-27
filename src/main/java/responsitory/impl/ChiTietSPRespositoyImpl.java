@@ -7,6 +7,7 @@ package responsitory.impl;
 
 
 import domainmodels.ChiTietSp;
+import domainmodels.DongSp;
 import domainmodels.Nsx;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -111,6 +112,61 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
         return listNSX;
         
         }
+
+    @Override
+    public List<DongSp> getALLDongSP() {
+       List<DongSp> listdongsp = null;
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session ss = sf.openSession();
+        try {
+            Criteria cr = ss.createCriteria(DongSp.class);
+            listdongsp = cr.list();
+
+        } catch (HibernateException e) {
+            System.out.println(e);
+        }
+        return listdongsp;
+         
+    }
+
+    @Override
+    public Nsx nsxGetbyten(String id) {
+        Nsx nsx = null;
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+       Session ss = sf.openSession();
+        try {
+          ss.beginTransaction();
+          String sql = "From NSX p where p.ten = :id";
+          Query query  = ss.createQuery(sql);
+          query.setParameter("id", id);
+          nsx = (Nsx) query.uniqueResult();
+          ss.getTransaction().commit();
+          return nsx;
+          
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return nsx;
+    }
+
+    @Override
+    public DongSp GetByTen(String id) {
+        DongSp dongSp = null;
+        SessionFactory sr = HibernateUtil.getSessionFactory();
+        Session ss = sr.openSession();
+        try {
+            ss.beginTransaction();
+            String sql = "From DongSp p where p.ten = :id";
+            Query query = ss.createQuery(sql);
+            query.setParameter("id", id);
+            dongSp = (DongSp) query.uniqueResult();
+            ss.getTransaction().commit();
+            return dongSp;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return dongSp;
+    }
 
     
 }

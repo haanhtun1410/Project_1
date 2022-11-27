@@ -6,6 +6,7 @@
 package responsitory;
 
 import domainmodels.ChiTietSp;
+import domainmodels.DongSp;
 import domainmodels.Nsx;
 import java.util.List;
 
@@ -22,7 +23,12 @@ public interface ChiTietSPRespository {
     boolean add(ChiTietSp chiTietSp);
 
     List<Nsx> getAllNSX();
+    
+    List<DongSp> getALLDongSP();
 
     boolean delete(String id);
 
+    Nsx nsxGetbyten(String id);
+    
+    DongSp GetByTen(String id);
 }

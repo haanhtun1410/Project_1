@@ -116,7 +116,7 @@ public class panelKhachHang extends javax.swing.JPanel {
             tt = 1;
         }else{
             tt=0;
-        }
+         }
         if(id.isEmpty()||ten.isEmpty()||ngaySinh.isEmpty()||sdt.isEmpty()||diaChi.isEmpty()||email.isEmpty()){
             MsgBox.alert(this, "Vui lòng nhập đầy đủ thông tin ");
             return null;
