@@ -5,24 +5,16 @@
  */
 package responsitory;
 
-import domainmodels.ChiTietSp;
-import domainmodels.Nsx;
+import domainmodels.DongSp;
 import java.util.List;
 
 /**
  *
- * @author longv
+ * @author ASUS
  */
-public interface ChiTietSPRespository {
-
-    List<ChiTietSp> getAll();
-
-    boolean updateSLSP(String idString);
-
-    boolean add(ChiTietSp chiTietSp);
-
-    List<Nsx> getAllNSX();
-
+public interface DongSPRepository {
+    List<DongSp> getAll();
+    boolean updateDong(String id );
+    boolean add(DongSp dongSp);
     boolean delete(String id);
-
 }

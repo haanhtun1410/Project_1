@@ -5,78 +5,66 @@
  */
 package responsitory.impl;
 
-
-import domainmodels.ChiTietSp;
-import domainmodels.Nsx;
+import domainmodels.DongSp;
 import java.util.List;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import responsitory.ChiTietSPRespository;
+import responsitory.DongSPRepository;
 import untilities.HibernateUtil;
 
 /**
  *
- * @author longv
+ * @author ASUS
  */
-public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
+public class DongspRepositoryImpl implements DongSPRepository {
 
     @Override
-    public List<ChiTietSp> getAll() {
-        List<ChiTietSp> listSP = null;
+    public List<DongSp> getAll() {
+        List<DongSp> list = null;
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session ss = sf.openSession();
         try {
-            Criteria cr = ss.createCriteria(ChiTietSp.class);
-            listSP = cr.list();
+            Criteria cr = ss.createCriteria(DongSp.class);
+            list = cr.list();
 
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
-        return listSP;
+        return list;
     }
-    
+
     @Override
-    public boolean updateSLSP( String idCTSP) {
+    public boolean updateDong(String id) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session ss = factory.openSession();
         try {
-            
             ss.beginTransaction();
-            ChiTietSp oldCT = (ChiTietSp) ss.get(ChiTietSp.class, idCTSP);
-             SQLQuery createSQLQuery = ss.createSQLQuery("select count(Imei) from serial where Trangthai = 0 and IDCTSP = :id");
-            createSQLQuery.setParameter("id", idCTSP);
-            int slton = (int) createSQLQuery.uniqueResult();
-            System.out.println(slton);
-            oldCT.setSoLuongTon(slton);
-            ss.update(oldCT);
-            ss.getTransaction().commit();
+            DongSp dong = (DongSp) ss.get(DongSp.class, id);
+            SQLQuery creSQLQuery = ss.createSQLQuery("Update Dongsp set Ten = ? where id = ?");
         } catch (Exception e) {
-            System.out.println(e);
-            return false;
         }
         return true;
     }
 
     @Override
-    public boolean add(ChiTietSp chiTietSp) {
+    public boolean add(DongSp dongSp) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session ss = factory.openSession();
         try {
             ss.beginTransaction();
-            ss.save(chiTietSp);
+            ss.save(dongSp);
             ss.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e);
             return false;
+
         }
         return true;
     }
-
-    
 
     @Override
     public boolean delete(String id) {
@@ -84,33 +72,19 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
         Session ss = factory.openSession();
         try {
             ss.beginTransaction();
-            String sql = "delete ChiTietSp where Id = :Id";
+            String sql = "delete DongSp where id = ?";
             Query createQuery = ss.createQuery(sql);
-            createQuery.setParameter("Id", id);
+            createQuery.setParameter("id", id);
             createQuery.executeUpdate();
             ss.getTransaction().commit();
+
         } catch (Exception e) {
             System.out.println(e);
             return false;
+
         }
         return true;
+
     }
 
-    @Override
-    public List<Nsx> getAllNSX() {
-        List<Nsx> listNSX = null;
-        SessionFactory sf = HibernateUtil.getSessionFactory();
-        Session ss = sf.openSession();
-        try {
-            Criteria cr = ss.createCriteria(Nsx.class);
-            listNSX = cr.list();
-
-        } catch (HibernateException e) {
-            System.out.println(e);
-        }
-        return listNSX;
-        
-        }
-
-    
 }

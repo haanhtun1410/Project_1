@@ -21,7 +21,9 @@ public interface HDRespository {
 
     boolean addTempHD();
 
-    boolean updateHD(HoaDon hoaDon);
+    boolean updateHDTT(HoaDon hoaDon);
+
+    public boolean updateHDSave(HoaDon hoaDon);
     
     
 }
