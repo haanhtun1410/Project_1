@@ -13,30 +13,36 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
 
     private void init() {
         chart.addLegend("Income", new Color(12, 84, 175), new Color(0, 108, 247));
-        chart.addLegend("Expense", new Color(54, 4, 143), new Color(104, 49, 200));
-        chart.addLegend("Profit", new Color(5, 125, 0), new Color(95, 209, 69));
-        chart.addLegend("Cost", new Color(186, 37, 37), new Color(241, 100, 120));
-        chart.addData(new ModelChart("January", new double[]{500, 200, 80, 89}));
-        chart.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
-        chart.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
-        chart.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
-        chart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
-        chart.addData(new ModelChart("June", new double[]{190, 280, 81, 200}));
+        chart.addData(new ModelChart("January", new double[]{500}));
+        chart.addData(new ModelChart("February", new double[]{600}));
+        chart.addData(new ModelChart("March", new double[]{200}));
+        chart.addData(new ModelChart("April", new double[]{480}));
+        chart.addData(new ModelChart("May", new double[]{350}));
+        chart.addData(new ModelChart("June", new double[]{190}));
+        chart.addData(new ModelChart("July", new double[]{20000000}));
+        chart.addData(new ModelChart("August", new double[]{190}));
+        chart.addData(new ModelChart("September", new double[]{190}));
+        chart.addData(new ModelChart("October", new double[]{190}));
+        chart.addData(new ModelChart("November", new double[]{190}));
+        chart.addData(new ModelChart("December", new double[]{190}));
         chart.start();
-        lineChart.addLegend("Income", new Color(12, 84, 175), new Color(0, 108, 247));
-        lineChart.addLegend("Expense", new Color(54, 4, 143), new Color(104, 49, 200));
-        lineChart.addLegend("Profit", new Color(5, 125, 0), new Color(95, 209, 69));
         lineChart.addLegend("Cost", new Color(186, 37, 37), new Color(241, 100, 120));
-        lineChart.addData(new ModelChart("January", new double[]{500, 200, 80, 89}));
-        lineChart.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
-        lineChart.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
-        lineChart.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
-        lineChart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
-        lineChart.addData(new ModelChart("June", new double[]{190, 280, 81, 200}));
+        lineChart.addData(new ModelChart("January", new double[]{89}));
+        lineChart.addData(new ModelChart("February", new double[]{150}));
+        lineChart.addData(new ModelChart("March", new double[]{900}));
+        lineChart.addData(new ModelChart("April", new double[]{700}));
+        lineChart.addData(new ModelChart("May", new double[]{150}));
+        lineChart.addData(new ModelChart("June", new double[]{263}));
+        lineChart.addData(new ModelChart("July", new double[]{223}));
+        lineChart.addData(new ModelChart("August", new double[]{188}));
+        lineChart.addData(new ModelChart("September", new double[]{50}));
+        lineChart.addData(new ModelChart("October", new double[]{220}));
+        lineChart.addData(new ModelChart("November", new double[]{120}));
+        lineChart.addData(new ModelChart("December", new double[]{240}));
         lineChart.start();
         progress1.start();
-        progress2.start();
-        progress3.start();
+//        progress2.start();
+//        progress3.start();
     }
 
     @SuppressWarnings("unchecked")
