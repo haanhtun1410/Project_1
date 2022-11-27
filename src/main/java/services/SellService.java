@@ -5,7 +5,6 @@
  */
 package services;
 
-
 import domainmodels.ChiTietSp;
 import domainmodels.Cthd;
 import domainmodels.HoaDon;
@@ -20,7 +19,7 @@ import java.util.List;
 public interface SellService {
 
     List<ChiTietSp> getAllSP();
-    
+
     List<HoaDon> getAllHDC();
 
     List<Cthd> getAllHDCT();
@@ -28,19 +27,21 @@ public interface SellService {
     List<HoaDon> getAllHD();
 
     List<User> getAllNV();
-    
+
     List<KhachHang> getAllKH();
 
     boolean addHD();
 
-    boolean updateHD(HoaDon hoaDon);
-    
+    boolean updateHDTT(HoaDon hoaDon);
+
+    boolean updateHDSave(HoaDon hoaDon);
+
     boolean addHDCT(Cthd hdct);
-    
+
     public List<Cthd> getHDCTofHD(HoaDon hd);
-    
+
     boolean updateSerials(Cthd cthd);
-    
+
     boolean updateSLSP(String IdCTSP);
 
 }

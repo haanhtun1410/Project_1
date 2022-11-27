@@ -362,7 +362,7 @@ private final ChiTietSpService chiTietSpService = new ChiTietSpServiceImpl();
         chiTietSp.setNamBh(Integer.parseInt(txtNamBH.getText()));
         chiTietSp.setMoTa(txtMoTa.getText());
         chiTietSp.setSoLuongTon(Integer.parseInt(txtSlTon.getText()));
-        chiTietSp.setGiaBan(Integer.parseInt(txtGiaban.getText()));
+      
          chiTietSpService.update(txtId.getText(), chiTietSp);
          chiTietSpService.add(chiTietSp);
          loadModel(chiTietSpService.getAllCT());
