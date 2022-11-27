@@ -89,13 +89,13 @@ public class SellServiceImpl implements services.SellService {
     }
 
     @Override
-    public boolean addHD(HoaDon hoaDon) {
-        return hDRespository.addTempHD(hoaDon);
+    public boolean addHD() {
+        return hDRespository.addTempHD();
     }
 
     @Override
-    public boolean updateHD(HoaDon hoaDon) {
-        return hDRespository.updateHD(hoaDon);
+    public boolean updateHDTT(HoaDon hoaDon) {
+        return hDRespository.updateHDTT(hoaDon);
     }
 
     @Override
@@ -121,6 +121,16 @@ public class SellServiceImpl implements services.SellService {
     @Override
     public boolean updateSLSP(String IdCTSP) {
        return chiTietSPRespository.updateSLSP(IdCTSP);
+    }
+
+    @Override
+    public List<HoaDon> getAllHDC() {
+        return hDRespository.getAllHDC();
+    }
+
+    @Override
+    public boolean updateHDSave(HoaDon hoaDon) {
+       return hDRespository.updateHDSave(hoaDon);
     }
 
  

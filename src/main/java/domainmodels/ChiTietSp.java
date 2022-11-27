@@ -2,6 +2,7 @@ package domainmodels;
 // Generated Nov 19, 2022 2:49:48 PM by Hibernate Tools 4.3.1
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -46,7 +47,7 @@ public class ChiTietSp implements java.io.Serializable {
     @Column(name = "SoLuongTon")
     private int soLuongTon;
     @Column(name = "GiaBan", scale = 4)
-    private double giaBan;
+    private BigDecimal giaBan;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "chiTietSp")
     private Set<Serial> serials = new HashSet<Serial>(0);
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "chiTietSp")
@@ -61,7 +62,7 @@ public class ChiTietSp implements java.io.Serializable {
         this.id = id;
     }
 
-    public ChiTietSp(String id, DongSp dongSp, Nsx nsx, VoucherLaptop voucherLaptop, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, double giaBan, Set<Serial> serials, Set<Cthd> cthds, Set<AnhLaptop> anhLaptops) {
+    public ChiTietSp(String id, DongSp dongSp, Nsx nsx, VoucherLaptop voucherLaptop, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, BigDecimal giaBan, Set<Serial> serials, Set<Cthd> cthds, Set<AnhLaptop> anhLaptops) {
         this.id = id;
         this.dongSp = dongSp;
         this.nsx = nsx;
@@ -149,11 +150,11 @@ public class ChiTietSp implements java.io.Serializable {
         this.soLuongTon = soLuongTon;
     }
 
-    public double getGiaBan() {
+    public BigDecimal getGiaBan() {
         return this.giaBan;
     }
 
-    public void setGiaBan(double giaBan) {
+    public void setGiaBan(BigDecimal giaBan) {
         this.giaBan = giaBan;
     }
 

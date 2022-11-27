@@ -11,7 +11,7 @@
         <property name="moTa" type="string">
             <column name="MoTa" />
         </property>
-        <property name="tienGiam" type="double">
+        <property name="tienGiam" type="big_decimal">
             <column name="TienGiam" scale="4" />
         </property>
         <property name="phanTramGiam" type="int">

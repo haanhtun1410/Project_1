@@ -7,6 +7,7 @@ package responsitory.impl;
 
 
 import domainmodels.ChiTietSp;
+import domainmodels.Nsx;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -39,7 +40,7 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
     }
     
     @Override
-    public boolean updateSLSP(String idCTSP) {
+    public boolean updateSLSP( String idCTSP) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session ss = factory.openSession();
         try {
@@ -59,7 +60,7 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
         }
         return true;
     }
-/*
+
     @Override
     public boolean add(ChiTietSp chiTietSp) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -93,5 +94,23 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
             return false;
         }
         return true;
-    }*/
+    }
+
+    @Override
+    public List<Nsx> getAllNSX() {
+        List<Nsx> listNSX = null;
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session ss = sf.openSession();
+        try {
+            Criteria cr = ss.createCriteria(Nsx.class);
+            listNSX = cr.list();
+
+        } catch (HibernateException e) {
+            System.out.println(e);
+        }
+        return listNSX;
+        
+        }
+
+    
 }
