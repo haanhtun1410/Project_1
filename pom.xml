@@ -38,7 +38,12 @@
             <artifactId>miglayout-swing</artifactId>
             <version>4.2</version>
         </dependency>
-<dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.3.18</version>
+        </dependency>
+        <dependency>
             <groupId>net.java.timingframework</groupId>
             <artifactId>timingframework-core</artifactId>
             <version>7.3.1</version>
@@ -62,6 +67,11 @@
             <artifactId>hamcrest-core</artifactId>
             <version>1.3</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.2.2</version>
         </dependency>
     </dependencies>
     <properties>
