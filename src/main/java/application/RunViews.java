@@ -5,14 +5,7 @@
  */
 package application;
 
-import javax.swing.UIManager;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import services.LoginServices;
-import services.impl.LoginServicesImpl;
-import untilities.HibernateUtil;
-
+import com.raven.main.login;
 /**
  *
  * @author longv
@@ -20,8 +13,6 @@ import untilities.HibernateUtil;
 public class RunViews {
 
     public static void main(String[] args) {
-        LoginServices loginServices = new LoginServicesImpl();
-        String result = loginServices.loginCheck("nv01", "longvip") ? "ok" : "ko ok";
-        System.out.println(result);
+        new login().setVisible(true);
     }
 }

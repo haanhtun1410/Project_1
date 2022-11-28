@@ -180,10 +180,6 @@ public class login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_usenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usenameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_usenameActionPerformed
-
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         String mk = txt_password.getText();
         System.out.println(mk);
@@ -209,6 +205,10 @@ public class login extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_usenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usenameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_usenameActionPerformed
 
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
         // TODO add your handling code here:
