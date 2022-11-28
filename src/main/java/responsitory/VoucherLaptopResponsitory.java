@@ -5,10 +5,16 @@
  */
 package responsitory;
 
+import domainmodels.VoucherLaptop;
+import java.util.List;
+
 /**
  *
  * @author huyki
  */
 public interface VoucherLaptopResponsitory {
-    
+    List<VoucherLaptop> getAll();
+    boolean add(VoucherLaptop voucherLaptop);
+    boolean update(VoucherLaptop voucherLaptop);
+    boolean delete(String id);
 }

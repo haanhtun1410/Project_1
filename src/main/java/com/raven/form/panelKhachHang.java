@@ -33,21 +33,21 @@ public class panelKhachHang extends javax.swing.JPanel {
     /**
      * Creates new form panelKhachHang
      */
-     private  LoaiKHService loaiKHService;
-    private  KhachHangService khachHangServices;
+    private LoaiKHService loaiKHService;
+    private KhachHangService khachHangServices;
     int index = 0;
+
     public panelKhachHang() {
         initComponents();
-         setOpaque(false);
+        setOpaque(false);
         loaiKHService = new LoaiKHServiceImpl();
         khachHangServices = new KhachHangServiceImpl();
         DrawTable(tblKhachHang);
         fillComboBoxLoaiKH();
         fillTable();
-        
+
     }
 
-    
     void DrawTable(JTable tblGridView) {
         tblGridView.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 12));
         tblGridView.getTableHeader().setForeground(Color.blue);
@@ -64,42 +64,46 @@ public class panelKhachHang extends javax.swing.JPanel {
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         tblGridView.setDefaultRenderer(Object.class, centerRenderer);
     }
-     
-    void fillTable(){
+
+    void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblKhachHang.getModel();
         model.setRowCount(0);
         List<KhachHang> list = khachHangServices.getAll1();
-        for(KhachHang x : list){
-            model.addRow(new Object[]{x.getId(),x.getLoaiKh().getTen(),x.getTen(),x.getSdt(),x.getEmail(),x.getNgaySinh(),x.getDiaChi(),x.getTinhTrang()});
+        for (KhachHang x : list) {
+            model.addRow(new Object[]{x.getId(), x.getLoaiKh().getTen(), x.getTen(), x.getSdt(), x.getEmail(), x.getNgaySinh(), x.getDiaChi(), x.getTinhTrang()});
         }
     }
-    
-    void load(){
+
+    void load() {
         DefaultTableModel model = (DefaultTableModel) tblKhachHang.getModel();
         model.setRowCount(0);
         try {
             String key = txtTimKiem.getText().trim();
+            System.out.println("ok");
             System.out.println(key);
             List<KhachHang> list = khachHangServices.getByTen(key);
-            for(KhachHang x : list){
-            model.addRow(new Object[]{x.getId(),x.getLoaiKh().getTen(),x.getTen(),x.getSdt(),x.getEmail(),x.getNgaySinh(),x.getDiaChi(),x.getTinhTrang()});
+            System.out.println("ok");
+            for (KhachHang x : list) {
+                System.out.println("ok");
+                model.addRow(new Object[]{x.getId(), x.getLoaiKh().getTen(), x.getTen(), x.getSdt(), x.getEmail(), x.getNgaySinh(), x.getDiaChi(), x.getTinhTrang()});
             }
+            System.out.println("ok");
         } catch (Exception e) {
             MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
         }
-        
-        
+
     }
-    
-    void fillComboBoxLoaiKH(){
+
+    void fillComboBoxLoaiKH() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoaiKH.getModel();
         model.removeAllElements();
         List<LoaiKh> list = loaiKHService.getAll();
-        for(LoaiKh x : list){
+        for (LoaiKh x : list) {
             model.addElement(x.getTen());
         }
     }
-    KhachHang getModel(){
+
+    KhachHang getModel() {
         String id = txtId.getText();
         String ten = txtTen.getText();
         String ngaySinh = txtNgaySinh.getText();
@@ -110,17 +114,21 @@ public class panelKhachHang extends javax.swing.JPanel {
         LoaiKh loaiKh = loaiKHService.getByTen(tenloaiKH);
         boolean check = true;
         int tt = 1;
-        
+
         Date t = null;
-        if(rboOn.isSelected()){
+        if (rboOn.isSelected()) {
             tt = 1;
         }else{
             tt=0;
          }
         if(id.isEmpty()||ten.isEmpty()||ngaySinh.isEmpty()||sdt.isEmpty()||diaChi.isEmpty()||email.isEmpty()){
+        } else {
+            tt = 0;
+        }
+        if (id.isEmpty() || ten.isEmpty() || ngaySinh.isEmpty() || sdt.isEmpty() || diaChi.isEmpty() || email.isEmpty()) {
             MsgBox.alert(this, "Vui lòng nhập đầy đủ thông tin ");
             return null;
-        }else{
+        } else {
             try {
                 SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
                 t = f.parse(ngaySinh);
@@ -135,13 +143,14 @@ public class panelKhachHang extends javax.swing.JPanel {
                 MsgBox.alert(this, "Bạn nhập sai sdt");
             }
         }
-        if(check){
+        if (check) {
             return new KhachHang(id, loaiKh, ten, t, sdt, diaChi, email, tt);
         }
-      return null;
-      
+        return null;
+
     }
-    void setModel(KhachHang kh){
+
+    void setModel(KhachHang kh) {
         txtId.setText(kh.getId());
         txtDiaChi.setText(kh.getDiaChi());
         txtTen.setText(kh.getTen());
@@ -150,41 +159,45 @@ public class panelKhachHang extends javax.swing.JPanel {
         txtNgaySinh.setText(Xdate.toString(kh.getNgaySinh()));
         txtSdt.setText(kh.getSdt());
         int tt = kh.getTinhTrang();
-        if(tt==1){
+        if (tt == 1) {
             rboOn.setSelected(true);
-        }else{
+        } else {
             rboOff.setSelected(true);
         }
-       // cboLoaiKH.setSelectedItem(kh.getLoaiKh().getTen());
+        // cboLoaiKH.setSelectedItem(kh.getLoaiKh().getTen());
     }
-    void clear(){
+
+    void clear() {
         setModel(new KhachHang());
         cboLoaiKH.setSelectedIndex(0);
     }
-    void insert(){
+
+    void insert() {
         KhachHang kh = getModel();
-        if(kh!=null){
+        if (kh != null) {
             khachHangServices.add(kh);
             fillTable();
             clear();
             MsgBox.alert(this, "Thêm thành công!");
-        }else {
+        } else {
             MsgBox.alert(this, "Thêm thât bại!");
         }
     }
-    void update(){
+
+    void update() {
         KhachHang kh = getModel();
-        
-        if(kh!=null){
+
+        if (kh != null) {
             khachHangServices.update(kh);
             fillTable();
             clear();
             MsgBox.alert(this, "Sửa thành công!");
-        }else {
+        } else {
             MsgBox.alert(this, "Sửa thât bại!");
         }
     }
-    void delete(){
+
+    void delete() {
         String id = txtId.getText();
         try {
             khachHangServices.delete(id);
@@ -195,11 +208,12 @@ public class panelKhachHang extends javax.swing.JPanel {
             MsgBox.alert(this, "Xóa thât bại!");
         }
     }
-    void fillToFrom(){
+
+    void fillToFrom() {
         try {
             String id = (String) tblKhachHang.getValueAt(index, 0);
             KhachHang kh = khachHangServices.getById(id);
-            if(kh != null){
+            if (kh != null) {
                 setModel(kh);
                 cboLoaiKH.setSelectedItem(kh.getLoaiKh().getTen());
             }
@@ -207,6 +221,7 @@ public class panelKhachHang extends javax.swing.JPanel {
             MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -672,7 +687,7 @@ public class panelKhachHang extends javax.swing.JPanel {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        index = tblKhachHang.getRowCount() -1;
+        index = tblKhachHang.getRowCount() - 1;
         fillToFrom();
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -683,11 +698,11 @@ public class panelKhachHang extends javax.swing.JPanel {
 
     private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount() == 2 ){
+        if (evt.getClickCount() == 2) {
             index = tblKhachHang.rowAtPoint(evt.getPoint());
-            if(index>=0){
+            if (index >= 0) {
                 fillToFrom();
-               
+
             }
         }
     }//GEN-LAST:event_tblKhachHangMouseClicked
