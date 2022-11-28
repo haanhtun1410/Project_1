@@ -1,5 +1,5 @@
 #surefire
-#Mon Nov 28 08:06:24 ICT 2022
+#Mon Nov 28 09:01:54 ICT 2022
 enableAssertions=true
 testSuiteDefinitionTestSourceDirectory=C\:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\src\\test\\java
 surefireClassPathUrl.1=C\:\\Users\\longv\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-api\\2.10\\surefire-api-2.10.jar
@@ -17,20 +17,25 @@ classPathUrl.0=C\:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\targ
 runOrder=filesystem
 childDelegation=false
 isTrimStackTrace=true
+classPathUrl.28=C\:\\Users\\longv\\.m2\\repository\\com\\toedter\\jcalendar\\1.2.2\\jcalendar-1.2.2.jar
+classPathUrl.27=C\:\\Users\\longv\\.m2\\repository\\org\\hamcrest\\hamcrest-core\\1.3\\hamcrest-core-1.3.jar
+classPathUrl.26=C\:\\Users\\longv\\.m2\\repository\\junit\\junit\\4.12\\junit-4.12.jar
+classPathUrl.25=C\:\\Users\\longv\\.m2\\repository\\net\\java\\dev\\timingframework\\timingframework\\1.0\\timingframework-1.0.jar
+classPathUrl.24=C\:\\Users\\longv\\.m2\\repository\\com\\surelogic\\promises\\4.4.0\\promises-4.4.0.jar
 reportsDirectory=C\:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\target\\surefire-reports
-classPathUrl.23=C\:\\Users\\longv\\.m2\\repository\\com\\toedter\\jcalendar\\1.2.2\\jcalendar-1.2.2.jar
-classPathUrl.22=C\:\\Users\\longv\\.m2\\repository\\org\\hamcrest\\hamcrest-core\\1.3\\hamcrest-core-1.3.jar
-classPathUrl.21=C\:\\Users\\longv\\.m2\\repository\\junit\\junit\\4.12\\junit-4.12.jar
+classPathUrl.23=C\:\\Users\\longv\\.m2\\repository\\net\\java\\timingframework\\timingframework-core\\7.3.1\\timingframework-core-7.3.1.jar
+classPathUrl.22=C\:\\Users\\longv\\.m2\\repository\\org\\springframework\\spring-tx\\5.3.18\\spring-tx-5.3.18.jar
+classPathUrl.21=C\:\\Users\\longv\\.m2\\repository\\org\\springframework\\spring-jcl\\5.3.18\\spring-jcl-5.3.18.jar
 includes2=**/*TestCase.java
-classPathUrl.20=C\:\\Users\\longv\\.m2\\repository\\net\\java\\dev\\timingframework\\timingframework\\1.0\\timingframework-1.0.jar
+classPathUrl.20=C\:\\Users\\longv\\.m2\\repository\\org\\springframework\\spring-core\\5.3.18\\spring-core-5.3.18.jar
 includes1=**/*Test.java
 includes0=**/Test*.java
-failIfNoTests=false
 excludes0=**/*$*
+failIfNoTests=false
 useManifestOnlyJar=true
 testClassesDirectory=C\:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\target\\test-classes
-classPathUrl.19=C\:\\Users\\longv\\.m2\\repository\\com\\surelogic\\promises\\4.4.0\\promises-4.4.0.jar
-classPathUrl.18=C\:\\Users\\longv\\.m2\\repository\\net\\java\\timingframework\\timingframework-core\\7.3.1\\timingframework-core-7.3.1.jar
+classPathUrl.19=C\:\\Users\\longv\\.m2\\repository\\org\\springframework\\spring-beans\\5.3.18\\spring-beans-5.3.18.jar
+classPathUrl.18=C\:\\Users\\longv\\.m2\\repository\\org\\springframework\\spring-jdbc\\5.3.18\\spring-jdbc-5.3.18.jar
 classPathUrl.17=C\:\\Users\\longv\\.m2\\repository\\com\\miglayout\\miglayout-core\\4.2\\miglayout-core-4.2.jar
 forkMode=once
 classPathUrl.16=C\:\\Users\\longv\\.m2\\repository\\com\\miglayout\\miglayout-swing\\4.2\\miglayout-swing-4.2.jar
