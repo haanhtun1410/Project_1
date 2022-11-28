@@ -118,10 +118,17 @@ public class panelKhachHang extends javax.swing.JPanel {
         Date t = null;
         if (rboOn.isSelected()) {
             tt = 1;
+<<<<<<< HEAD
+        }else{
+            tt=0;
+         }
+        if(id.isEmpty()||ten.isEmpty()||ngaySinh.isEmpty()||sdt.isEmpty()||diaChi.isEmpty()||email.isEmpty()){
+=======
         } else {
             tt = 0;
         }
         if (id.isEmpty() || ten.isEmpty() || ngaySinh.isEmpty() || sdt.isEmpty() || diaChi.isEmpty() || email.isEmpty()) {
+>>>>>>> quanghuy
             MsgBox.alert(this, "Vui lòng nhập đầy đủ thông tin ");
             return null;
         } else {

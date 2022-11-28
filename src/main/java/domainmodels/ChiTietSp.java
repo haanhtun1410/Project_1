@@ -19,8 +19,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ChiTietSP",
-         schema = "dbo",
-         catalog = "ProjectOne"
+        schema = "dbo",
+        catalog = "ProjectOne"
 )
 public class ChiTietSp implements java.io.Serializable {
 
@@ -61,6 +61,17 @@ public class ChiTietSp implements java.io.Serializable {
     public ChiTietSp(String id) {
         this.id = id;
     }
+
+    public ChiTietSp(String id, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, BigDecimal giaBan) {
+        this.id = id;
+        this.tenSp = tenSp;
+        this.namSx = namSx;
+        this.namBh = namBh;
+        this.moTa = moTa;
+        this.soLuongTon = soLuongTon;
+        this.giaBan = giaBan;
+    }
+    
 
     public ChiTietSp(String id, DongSp dongSp, Nsx nsx, VoucherLaptop voucherLaptop, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, BigDecimal giaBan, Set<Serial> serials, Set<Cthd> cthds, Set<AnhLaptop> anhLaptops) {
         this.id = id;

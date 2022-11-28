@@ -71,6 +71,11 @@ public class DongSp  implements java.io.Serializable {
         this.chiTietSps = chiTietSps;
     }
 
+    @Override
+    public String toString() {
+        return  ten ;
+    }
+
 
 
 
