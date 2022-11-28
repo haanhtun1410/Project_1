@@ -16,12 +16,11 @@ import org.hibernate.SessionFactory;
 import responsitory.KhachHangResponsitory;
 import untilities.HibernateUtil;
 
-
 public class KhachHangResponsitoryImpl implements KhachHangResponsitory {
 
     @Override
     public List<KhachHang> getAll() {
-           List<KhachHang> listKH = null;
+        List<KhachHang> listKH = null;
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session ss = sf.openSession();
         try {
@@ -66,7 +65,7 @@ public class KhachHangResponsitoryImpl implements KhachHangResponsitory {
 
     @Override
     public Boolean update(KhachHang kh) {
-        
+
         try {
             session.getTransaction().begin();
             session.merge(kh);
@@ -106,23 +105,25 @@ public class KhachHangResponsitoryImpl implements KhachHangResponsitory {
     @Override
     public List<KhachHang> getByTen(String ten) {
         try {
-            session.getTransaction().begin();
+            SessionFactory sf = HibernateUtil.getSessionFactory();
+            Session ss = sf.openSession();
             //p.ten là ten trong model
             String hql = "from KhachHang p where p.ten like :Ten1";
-            Query query = session.createQuery(hql);
-                    query.setParameter("Ten1", "%" + ten + "%");
-            session.getTransaction().commit();
+            Query query = ss.createQuery(hql);
+            query.setParameter("Ten1", "%" + ten + "%");
             return query.list();
         } catch (Exception e) {
-            session.getTransaction().rollback();
+
             e.printStackTrace();
             return null;
-        } finally {
-            session.flush();
-            session.close();
+
         }
-
     }
-}
-    
 
+//    public static void main(String[] args) {
+//        List<KhachHang> list = new KhachHangResponsitoryImpl().getByTen("h");
+//        for (KhachHang x : list) {
+//            System.out.println(x.getTTKhachHang());
+//        }
+//    }
+}
