@@ -1,7 +1,0 @@
-#surefire
-#Mon Nov 28 08:06:24 ICT 2022
-maven.ext.class.path=C\:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
-user.dir=C\:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab
-file.encoding=UTF-8
-localRepository=C\:\\Users\\longv\\.m2\\repository
-basedir=C\:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab
