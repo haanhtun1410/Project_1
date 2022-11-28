@@ -399,6 +399,27 @@ public class ChiTietSPForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         //insert();
 
+        ChiTietSp chiTietSp = new ChiTietSp();
+        chiTietSp.setId(txtId.getText());
+        chiTietSp.setTenSp(txtTen.getText());        
+        String dongsp =  null;
+        if (cbxDongSp.getSelectedItem().equals("Văn Phòng")) {
+           dongsp  = "Văn Phòng";
+        } else if (cbxDongSp.getSelectedItem().equals("Gaming")) {
+            dongsp = "Gaming";
+        } else {
+            dongsp = "Lenovo";  
+        }
+        chiTietSp.setNamSx(Integer.parseInt(txtNamSX.getText()));
+        chiTietSp.setNamBh(Integer.parseInt(txtNamBH.getText()));
+        chiTietSp.setMoTa(txtMoTa.getText());
+        chiTietSp.setSoLuongTon(Integer.parseInt(txtSlTon.getText()));
+      
+         chiTietSpService.update(txtId.getText(), chiTietSp);
+         chiTietSpService.add(chiTietSp);
+         loadModel(chiTietSpService.getAllCT());
+ 
+
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void cbxNsxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNsxActionPerformed

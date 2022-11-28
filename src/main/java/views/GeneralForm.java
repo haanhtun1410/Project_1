@@ -528,7 +528,7 @@ public class GeneralForm extends javax.swing.JFrame {
             fillSP();
         }
         hoaDonn.setTinhTrang(1);
-        if (sv.updateHD(hoaDonn)) {
+        if (sv.updateHDTT(hoaDonn)) {
             JOptionPane.showMessageDialog(this, "Thanh Cong");
             fillHD();
         } else {
