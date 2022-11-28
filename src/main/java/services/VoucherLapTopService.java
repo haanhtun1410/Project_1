@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package responsitory;
+package services;
 
 import domainmodels.VoucherLaptop;
 import java.util.List;
@@ -12,8 +12,8 @@ import java.util.List;
  *
  * @author huyki
  */
-public interface VoucherLaptopResponsitory {
-    List<VoucherLaptop> getAll();
+public interface VoucherLapTopService {
+     List<VoucherLaptop> getAll();
     boolean add(VoucherLaptop voucherLaptop);
     boolean update(VoucherLaptop voucherLaptop);
     boolean delete(String id);
