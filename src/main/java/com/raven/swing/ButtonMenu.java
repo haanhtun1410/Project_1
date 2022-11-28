@@ -37,7 +37,7 @@ public class ButtonMenu extends JButton {
 
     public ButtonMenu() {
         setContentAreaFilled(false);
-        setBorder(new EmptyBorder(8, 10, 8, 10));
+        setBorder(new EmptyBorder(30, 10, 30, 10));
         setHorizontalAlignment(JButton.LEFT);
         setBackground(new Color(43, 44, 75));
         setForeground(new Color(250, 250, 250));

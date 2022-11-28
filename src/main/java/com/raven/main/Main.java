@@ -1,8 +1,8 @@
 package com.raven.main;
 
 import com.raven.event.EventMenu;
-import com.raven.form.Form;
-import com.raven.form.Form_1;
+import com.raven.form.FormHome;
+import com.raven.form.FormThongKeDoanhThu;
 
 import com.raven.form.panelBanHang;
 import com.raven.form.panelHoaDon;
@@ -24,7 +24,7 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                    showForm(new Form_1());
+                    showForm(new FormHome());
                 } else if (index == 1) {
                     showForm(new panelBanHang());
                     System.out.println(index);
@@ -44,18 +44,18 @@ public class Main extends javax.swing.JFrame {
                     showForm(new panelKhachHang());
                     System.out.println(index);
                 } else if (index == 7) {
-                    showForm(new Form_1());
+                    showForm(new FormThongKeDoanhThu());
                     System.out.println(index);
                 } else if (index == 8) {
-                    System.out.println("Logout");
                     closeMain();
+                    new login().setVisible(true);
                 } else {
-                    showForm(new Form(index));
+                    showForm(new FormHome());
                 }
             }
         };
         menu1.initMenu(event);
-        showForm(new Form_1());
+        showForm(new FormHome());
     }
 
     private void showForm(Component com) {
