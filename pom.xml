@@ -38,12 +38,22 @@
             <artifactId>miglayout-swing</artifactId>
             <version>4.2</version>
         </dependency>
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+<dependency>
+=======
+>>>>>>> quanghuy
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>5.3.18</version>
         </dependency>
         <dependency>
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> quanghuy
             <groupId>net.java.timingframework</groupId>
             <artifactId>timingframework-core</artifactId>
             <version>7.3.1</version>
@@ -70,7 +80,11 @@
         </dependency>
         <dependency>
             <groupId>com.toedter</groupId>
+<<<<<<< HEAD
             <artifactId>jcalendar</artifactId>
+=======
+<artifactId>jcalendar</artifactId>
+>>>>>>> quanghuy
             <version>1.2.2</version>
         </dependency>
     </dependencies>
