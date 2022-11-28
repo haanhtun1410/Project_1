@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package application;
+package services;
 
-import com.raven.main.login;
 /**
  *
- * @author longv
+ * @author nhanp
  */
-public class RunViews {
-
-    public static void main(String[] args) {
-        new login().setVisible(true);
-    }
+public interface DoanhThuService {
+    Double DoanhThuThang(int thang, int nam);
+    Double SLLaptopBan(int thang, int nam);
 }
