@@ -5,8 +5,6 @@
  */
 package com.raven.main;
 
-import com.sun.awt.AWTUtilities;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.geom.RoundRectangle2D;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;

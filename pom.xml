@@ -38,11 +38,17 @@
             <artifactId>miglayout-swing</artifactId>
             <version>4.2</version>
         </dependency>
-
+<dependency>
+            <groupId>net.java.timingframework</groupId>
+            <artifactId>timingframework-core</artifactId>
+            <version>7.3.1</version>
+            <type>jar</type>
+        </dependency>
         <dependency>
             <groupId>net.java.dev.timingframework</groupId>
             <artifactId>timingframework</artifactId>
-            <version>0.55</version>
+            <version>1.0</version>
+            <type>jar</type>
         </dependency>
         <!-- Thanks for using https://jar-download.com -->
         <dependency>
