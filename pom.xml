@@ -40,12 +40,18 @@
         </dependency>
         <dependency>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>5.3.18</version>
         </dependency>
         <dependency>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             <groupId>net.java.timingframework</groupId>
             <artifactId>timingframework-core</artifactId>
@@ -74,9 +80,13 @@
         <dependency>
             <groupId>com.toedter</groupId>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
             <artifactId>jcalendar</artifactId>
 
+=======
+<artifactId>jcalendar</artifactId>
+>>>>>>> Stashed changes
 =======
 <artifactId>jcalendar</artifactId>
 >>>>>>> Stashed changes
