@@ -28,11 +28,6 @@ public class ChiTietSpServiceImpl implements ChiTietSpService {
     }
 
     @Override
-    public ChiTietSp getByMa(String ma) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public String add(ChiTietSp chiTietSp) {
         boolean addChiTietSP = chiTietSPRespository.add(chiTietSp);
         if (addChiTietSP) {
@@ -77,7 +72,13 @@ public class ChiTietSpServiceImpl implements ChiTietSpService {
 
     @Override
     public DongSp DongSpgetByTen(String id) {
-        return chiTietSPRespository.GetByTen(id);
+        return chiTietSPRespository.DongSPGetByTen(id);
     }
 
+    @Override
+    public List<ChiTietSp> getByten(String ten) {
+       return chiTietSPRespository.GetByTen(ten);
+    }
+
+    
 }

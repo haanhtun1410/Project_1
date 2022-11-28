@@ -30,5 +30,7 @@ public interface ChiTietSPRespository {
 
     Nsx nsxGetbyten(String id);
     
-    DongSp GetByTen(String id);
+    DongSp DongSPGetByTen(String id);
+    
+    List<ChiTietSp> GetByTen(String ten);
 }

@@ -5,12 +5,12 @@
  */
 package responsitory.impl;
 
-
 import domainmodels.ChiTietSp;
 import domainmodels.DongSp;
 import domainmodels.Nsx;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -39,16 +39,16 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
         }
         return listSP;
     }
-    
+
     @Override
-    public boolean updateSLSP( String idCTSP) {
+    public boolean updateSLSP(String idCTSP) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session ss = factory.openSession();
         try {
-            
+
             ss.beginTransaction();
             ChiTietSp oldCT = (ChiTietSp) ss.get(ChiTietSp.class, idCTSP);
-             SQLQuery createSQLQuery = ss.createSQLQuery("select count(Imei) from serial where Trangthai = 0 and IDCTSP = :id");
+            SQLQuery createSQLQuery = ss.createSQLQuery("select count(Imei) from serial where Trangthai = 0 and IDCTSP = :id");
             createSQLQuery.setParameter("id", idCTSP);
             int slton = (int) createSQLQuery.uniqueResult();
             System.out.println(slton);
@@ -76,8 +76,6 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
         }
         return true;
     }
-
-    
 
     @Override
     public boolean delete(String id) {
@@ -110,12 +108,12 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
             System.out.println(e);
         }
         return listNSX;
-        
-        }
+
+    }
 
     @Override
     public List<DongSp> getALLDongSP() {
-       List<DongSp> listdongsp = null;
+        List<DongSp> listdongsp = null;
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session ss = sf.openSession();
         try {
@@ -126,23 +124,23 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
             System.out.println(e);
         }
         return listdongsp;
-         
+
     }
 
     @Override
     public Nsx nsxGetbyten(String id) {
         Nsx nsx = null;
         SessionFactory sf = HibernateUtil.getSessionFactory();
-       Session ss = sf.openSession();
+        Session ss = sf.openSession();
         try {
-          ss.beginTransaction();
-          String sql = "From NSX p where p.ten = :id";
-          Query query  = ss.createQuery(sql);
-          query.setParameter("id", id);
-          nsx = (Nsx) query.uniqueResult();
-          ss.getTransaction().commit();
-          return nsx;
-          
+            ss.beginTransaction();
+            String sql = "From NSX p where p.ten = :id";
+            Query query = ss.createQuery(sql);
+            query.setParameter("id", id);
+            nsx = (Nsx) query.uniqueResult();
+            ss.getTransaction().commit();
+            return nsx;
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -150,7 +148,7 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
     }
 
     @Override
-    public DongSp GetByTen(String id) {
+    public DongSp DongSPGetByTen(String id) {
         DongSp dongSp = null;
         SessionFactory sr = HibernateUtil.getSessionFactory();
         Session ss = sr.openSession();
@@ -167,6 +165,28 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
         }
         return dongSp;
     }
+    private SessionFactory sf = HibernateUtil.getSessionFactory();
+    Session session = sf.openSession();
 
-    
+    @Override
+    public List<ChiTietSp> GetByTen(String ten) {
+        try {
+
+            session.getTransaction().begin();
+            //p.ten là ten trong model
+            String hql = "from ChiTietSP p where p.ten like :Ten1";
+            Query query = session.createQuery(hql);
+            query.setParameter("Ten1", "%" + ten + "%");
+            session.getTransaction().commit();
+            return query.list();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.flush();
+            session.close();
+        }
+    }
+
 }
