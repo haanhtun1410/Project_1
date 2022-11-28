@@ -175,6 +175,9 @@ public class KhachHang  implements java.io.Serializable {
         return ten;
     }
    
+    public String getTTKhachHang(){
+         return "KhachHang{" + "id=" + id + ", loaiKh=" + loaiKh + ", ten=" + ten + ", ngaySinh=" + ngaySinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", email=" + email + ", tinhTrang=" + tinhTrang + '}';
+    }
     
     
 
