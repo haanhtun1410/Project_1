@@ -5,6 +5,7 @@
  */
 package responsitory;
 
+import customModels.ImeiCustom;
 import domainmodels.Cthd;
 import domainmodels.Serial;
 import java.util.List;
@@ -16,4 +17,7 @@ import java.util.List;
 public interface SerialsResponsitory {
     
     boolean updateSerials(Cthd cthd);
+    
+    List<Serial> getImei(String idCTDHD);
+    
 }

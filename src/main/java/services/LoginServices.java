@@ -5,10 +5,12 @@
  */
 package services;
 
+import domainmodels.User;
+
 /**
  *
  * @author longv
  */
 public interface LoginServices {
-    boolean loginCheck(String idNV,String mk);
+    User loginCheck(String idNV,String mk);
 }

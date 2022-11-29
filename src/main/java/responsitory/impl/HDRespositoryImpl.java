@@ -30,7 +30,6 @@ public class HDRespositoryImpl implements HDRespository {
         try {
             Criteria cr = ss.createCriteria(HoaDon.class);
             listHD = cr.list();
-
         } catch (HibernateException e) {
             System.out.println(e);
         }
@@ -41,19 +40,27 @@ public class HDRespositoryImpl implements HDRespository {
     public boolean addTempHD() {
         Session ss = HibernateUtil.getSessionFactory().openSession();
         try {
-            String sql = "SELECT top 1 id FROM HoaDon ORDER BY id DESC ";
+            String numberSQL = "select COUNT(id) from hoadon where NgayTao = (SELECT CAST( GETDATE() AS Date))";
+            SQLQuery createNUmber = ss.createSQLQuery(numberSQL);
+            int number = (int) createNUmber.uniqueResult() + 1;
+            System.out.println(number);
+            String sql = "select top 1 a.Id from (SELECT top (:n) id FROM HoaDon ORDER BY  NgayTao desc) a";
             SQLQuery createSQLQuery = ss.createSQLQuery(sql);
+            createSQLQuery.setParameter("n", number);
             String id = (String) createSQLQuery.uniqueResult();
+            System.out.println(id);
             if (id == null) {
                 id = "HD1";
             } else {
                 int co = id.length();
                 String txt = id.substring(0, 2);
                 String num = id.substring(2, co);
-                int n = Integer.parseInt(num);
+                int n = Integer.valueOf(num);
                 n++;
-                String snum = Integer.toString(n);
+                String snum = String.valueOf(n);
+                System.out.println("");
                 id = txt + snum;
+                System.out.println(id);
             }
             System.out.println(id);
             ss.beginTransaction();
@@ -66,11 +73,6 @@ public class HDRespositoryImpl implements HDRespository {
             return false;
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-        HDRespository h = new HDRespositoryImpl();
-        h.addTempHD();
     }
 
     @Override
@@ -134,5 +136,4 @@ public class HDRespositoryImpl implements HDRespository {
         }
         return true;
     }
-
 }
