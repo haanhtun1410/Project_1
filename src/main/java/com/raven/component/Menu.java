@@ -3,6 +3,7 @@ package com.raven.component;
 import com.raven.event.EventMenu;
 import com.raven.swing.ButtonMenu;
 import com.raven.swing.scrollbar.ScrollBarCustom;
+import domainmodels.User;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -60,9 +61,13 @@ public class Menu extends javax.swing.JPanel {
         });
     }
 
-    private void setAvartar(String urlImg) {
-        ImageIcon imageIcon = new ImageIcon(urlImg);
+    public void setAvartar(User user) {
+        String url = "C:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\src\\Image\\Images NhanVien\\";
+        url += user.getAnh();
+        ImageIcon imageIcon = new ImageIcon(url);
         imageAvatar1.setIcon(imageIcon);
+        txtCV.setText(user.getChucVu().getTen());
+        txtNV.setText(user.getTen());
     }
 
     public void setSelected(ButtonMenu menu) {

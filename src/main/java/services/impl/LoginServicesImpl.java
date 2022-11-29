@@ -5,6 +5,7 @@
  */
 package services.impl;
 
+import domainmodels.User;
 import responsitory.NhanVienRespository;
 import responsitory.impl.NhanVienRespositoryImpl;
 import services.LoginServices;
@@ -15,7 +16,7 @@ public class LoginServicesImpl implements LoginServices {
     NhanVienRespository nhanVienRespository = new NhanVienRespositoryImpl();
     
     @Override
-    public boolean loginCheck(String idNV,String mk) {
+    public User loginCheck(String idNV,String mk) {
        return nhanVienRespository.UserLogin(idNV, mk);
     }
     

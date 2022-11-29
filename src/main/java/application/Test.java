@@ -5,6 +5,7 @@
  */
 package application;
 
+import com.raven.component.Menu;
 import com.raven.main.Main;
 
 /**
@@ -14,9 +15,9 @@ import com.raven.main.Main;
 public class Test {
 
     public static void main(String[] args) {
-        Main main = new Main();
+        Main main = new Main(null);
         main.setVisible(true);
-        main.showHD();
+        new Menu().setAvartar("C:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\src\\Image\\Images NhanVien\\NV2 - NhanVienBanHang.png");
         
         
     }

@@ -10,13 +10,19 @@ import com.raven.form.panelKhachHang;
 import com.raven.form.panelKhuyenMai;
 import com.raven.form.panelNhanVien;
 import com.raven.form.panelSanPham;
+import domainmodels.User;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JOptionPane;
+import services.NhanVienServices;
+import services.impl.NhanVienServicesImpl;
 
 public class Main extends javax.swing.JFrame {
 
-    public Main() {
+    static User nhanVien = null;
+
+    public Main(User user) {
+        nhanVien = user;
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setBackground(new Color(0, 0, 0, 0));
@@ -57,7 +63,9 @@ public class Main extends javax.swing.JFrame {
         };
         menu1.initMenu(event);
         showForm(new FormHome());
-        
+
+        menu1.setAvartar(nhanVien);
+
     }
 
     public void showHD() {
@@ -157,8 +165,8 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
-                
+                new Main(nhanVien).setVisible(true);
+
             }
         });
     }
