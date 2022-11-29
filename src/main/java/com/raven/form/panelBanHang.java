@@ -210,7 +210,6 @@ public class panelBanHang extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("sansserif", 1, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(220, 220, 220));
-        jLabel6.setText("Sản Phẩm");
         jLabel6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
 
         tbl_chiTietSP.setModel(new javax.swing.table.DefaultTableModel(
@@ -342,7 +341,10 @@ public class panelBanHang extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("+");
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/customer.png"))); // NOI18N
+        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton2.setLabel("");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -496,6 +498,11 @@ public class panelBanHang extends javax.swing.JPanel {
         roundPanel3Layout.setHorizontalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_hd))
+            .addGroup(roundPanel3Layout.createSequentialGroup()
                 .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel3Layout.createSequentialGroup()
                         .addContainerGap()
@@ -524,8 +531,8 @@ public class panelBanHang extends javax.swing.JPanel {
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cbo_kh, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
                             .addGroup(roundPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -545,7 +552,7 @@ public class panelBanHang extends javax.swing.JPanel {
                                     .addComponent(jLabel11)
                                     .addGap(18, 18, 18)
                                     .addComponent(txt_phiShip, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel3Layout.createSequentialGroup()
                         .addComponent(btn_thanhtoan)
@@ -553,23 +560,18 @@ public class panelBanHang extends javax.swing.JPanel {
                         .addComponent(jButton5)
                         .addGap(53, 53, 53)
                         .addComponent(jButton4)
-                        .addGap(118, 118, 118)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(roundPanel3Layout.createSequentialGroup()
-                .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addComponent(lbl_tongtien)
+                        .addGap(118, 118, 118))
                     .addGroup(roundPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_tong))
-                    .addComponent(txt_trangthai))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(roundPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_hd))
+                        .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(lbl_tongtien)
+                            .addGroup(roundPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_tong))
+                            .addComponent(txt_trangthai))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         roundPanel3Layout.setVerticalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -587,7 +589,7 @@ public class panelBanHang extends javax.swing.JPanel {
                         .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(cbo_kh, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -648,7 +650,7 @@ public class panelBanHang extends javax.swing.JPanel {
                     .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1052, Short.MAX_VALUE)
                     .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1052, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 511, Short.MAX_VALUE))
+                .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -854,7 +856,7 @@ public class panelBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_ChiTietHDMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
+        mainWindow.showKH();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -1009,6 +1011,7 @@ public class panelBanHang extends javax.swing.JPanel {
     }
 
     private void clearForm() {
+        rollnumber = 1;
         DefaultTableModel dtm = (DefaultTableModel) tbl_ChiTietHD.getModel();
         dtm.setRowCount(0);
         thanhTien = 0.0;
