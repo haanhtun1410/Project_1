@@ -5,6 +5,7 @@
  */
 package com.raven.main;
 
+import domainmodels.User;
 import java.awt.geom.RoundRectangle2D;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ import services.impl.LoginServicesImpl;
 public class login extends javax.swing.JFrame {
 
     LoginServices loginServices = new LoginServicesImpl();
+    User user;
 
     /**
      * Creates new form login
@@ -28,8 +30,6 @@ public class login extends javax.swing.JFrame {
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
         setLocationRelativeTo(null);
     }
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -182,15 +182,15 @@ public class login extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         String mk = txt_password.getText();
-        System.out.println(mk);
         String id = txt_usename.getText();
-        if (loginServices.loginCheck(id, mk)) {
+        user = loginServices.loginCheck(id, mk);
+        if (loginServices.loginCheck(id, mk) != null) {
             roundPanel3.show();
             roundPanel2.hide();
             new java.util.Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    new Main().setVisible(true);
+                    new Main(user).setVisible(true);
                     dispose();
                 }
             }, 1000 * 2);

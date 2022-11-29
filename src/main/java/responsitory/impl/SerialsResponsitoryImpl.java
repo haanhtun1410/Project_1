@@ -5,18 +5,16 @@
  */
 package responsitory.impl;
 
-import domainmodels.ChiTietSp;
+import customModels.ImeiCustom;
 import domainmodels.Cthd;
 import domainmodels.Serial;
 import java.util.List;
-import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import responsitory.SerialsResponsitory;
 import untilities.HibernateUtil;
@@ -54,4 +52,22 @@ public class SerialsResponsitoryImpl implements SerialsResponsitory {
         return true;
     }
 
+    @Override
+    public List<Serial> getImei(String idCTDHD) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session ss = factory.openSession();
+        List<Serial> imeis = null;
+        try {
+            String sql = "select e from Serial e inner join e.cthd p where p.id = :id";
+            Query createQuery = ss.createQuery(sql);
+            createQuery.setParameter("id", idCTDHD);
+            imeis = createQuery.list();
+            System.out.println("độ dài :" + imeis.size());
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return imeis;
+    }
+  
 }

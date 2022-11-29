@@ -13,6 +13,7 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import responsitory.NhanVienRespository;
 import untilities.HibernateUtil;
@@ -103,22 +104,20 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
     }
      */
     @Override
-    public boolean UserLogin(String idNV, String mk) {
+    public User UserLogin(String idNV, String mk) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session ss = factory.openSession();
-        int result;
+        User result;
         try {
-            String sql = "select count(*) from [User] where id = :id and matkhau = :mk";
-            SQLQuery createSQLQuery = ss.createSQLQuery(sql);
-            createSQLQuery.setParameter("id", idNV);
-            createSQLQuery.setParameter("mk", mk);
-            result = (int) createSQLQuery.uniqueResult();
+            Criteria criteria = ss.createCriteria(User.class);
+            criteria.add(Restrictions.and(Restrictions.eq("matKhau", mk), Restrictions.eq("id", idNV)));
+            result = (User) criteria.uniqueResult();
         } catch (Exception e) {
             System.out.println(e);
-            return false;
+            return null;
         }
 
-        return result == 1 ? true : false;
+        return result == null ? null : result;
     }
     private Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -158,7 +157,6 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
         return null;
     }
 
-
     @Override
     public Boolean add(User kh) {
         if (kh != null) {
@@ -184,7 +182,7 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
     public Boolean update(User kh) {
         try {
             session.getTransaction().begin();
-            
+
             //session.saveOrUpdate(kh); khhoonf dung đc vì có khả nang trùng
             session.merge(kh);
             session.getTransaction().commit();
