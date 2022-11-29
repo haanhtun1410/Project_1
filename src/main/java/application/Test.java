@@ -17,7 +17,7 @@ public class Test {
     public static void main(String[] args) {
         Main main = new Main(null);
         main.setVisible(true);
-        new Menu().setAvartar("C:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\src\\Image\\Images NhanVien\\NV2 - NhanVienBanHang.png");
+       
         
         
     }
