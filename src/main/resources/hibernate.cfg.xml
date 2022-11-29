@@ -44,7 +44,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
     <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=ProjectOne</property>
     <property name="hibernate.connection.username">sa</property>
-    <property name="hibernate.connection.password">songlong</property>
+    <property name="hibernate.connection.password">123456</property>
     <property name="hibernate.dialect">org.hibernate.dialect.DB2Dialect</property>
     <property name="hibernate.show_sql">true</property>
     <mapping resource="domainmodels/ChiTietSp.hbm.xml"/>
