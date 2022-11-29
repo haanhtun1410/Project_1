@@ -27,7 +27,7 @@ public class Main extends javax.swing.JFrame {
                 if (index == 0) {
                     showForm(new FormHome());
                 } else if (index == 1) {
-                    showForm(new panelBanHang());
+                    showForm(new panelBanHang(Main.this));
                     System.out.println(index);
                 } else if (index == 2) {
                     showForm(new panelSanPham());
@@ -48,8 +48,8 @@ public class Main extends javax.swing.JFrame {
                     showForm(new FormThongKeDoanhThu());
                     System.out.println(index);
                 } else if (index == 8) {
-                    closeMain();
                     new login().setVisible(true);
+                    closeMain();
                 } else {
                     showForm(new FormHome());
                 }
@@ -57,9 +57,14 @@ public class Main extends javax.swing.JFrame {
         };
         menu1.initMenu(event);
         showForm(new FormHome());
+        
     }
 
-    private void showForm(Component com) {
+    public void showHD() {
+        showForm(new panelHoaDon());
+    }
+
+    public void showForm(Component com) {
         body.removeAll();
         body.add(com);
         body.revalidate();
@@ -153,12 +158,13 @@ public class Main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel body;
+    public static javax.swing.JPanel body;
     private com.raven.component.Header header2;
     private com.raven.component.Menu menu1;
     private com.raven.swing.RoundPanel roundPanel1;

@@ -32,12 +32,10 @@
         <property name="trangThai" type="int">
             <column name="TrangThai" />
         </property>
-        <set name="anhNvs" table="AnhNV" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idUser" length="10" />
-            </key>
-            <one-to-many class="domainmodels.AnhNv" />
-        </set>
+        <property name="anh" type="string">
+            <column name="Anh" />
+        </property>
+        
         <set name="hoaDons" table="HoaDon" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="IdNV" length="10" />

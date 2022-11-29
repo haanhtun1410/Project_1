@@ -65,7 +65,7 @@ public class Menu extends javax.swing.JPanel {
         imageAvatar1.setIcon(imageIcon);
     }
 
-    private void setSelected(ButtonMenu menu) {
+    public void setSelected(ButtonMenu menu) {
         for (Component com : panelMenu.getComponents()) {
             if (com instanceof ButtonMenu) {
                 ButtonMenu b = (ButtonMenu) com;
