@@ -42,6 +42,7 @@ import services.impl.SellServiceImpl;
  * @author longv
  */
 public class panelBanHang extends javax.swing.JPanel {
+
     private final Main mainWindow;
     private final ChiTietSPRespository chiTietSPRespository = new ChiTietSPRespositoyImpl();
     private final HDCTRespository chiTietHDRespository = new HDCTRespositoryImpl();
@@ -54,7 +55,7 @@ public class panelBanHang extends javax.swing.JPanel {
     static double thanhTien = 0;
     static long t = 0;
     List<HoaDon> listHDC = sv.getAllHDC();
-    private List<User> listNV = sv.getAllNV();
+    User user;
     private List<KhachHang> listKH = sv.getAllKH();
     List<ChiTietSp> listSP = sv.getAllSP();
     static List<ChiTietSp> listSelectedSp = new ArrayList<>();
@@ -64,18 +65,17 @@ public class panelBanHang extends javax.swing.JPanel {
      * Creates new form panelBanHang
      */
     public panelBanHang(Main frame) {
-        
         initComponents();
         mainWindow = frame;
         setOpaque(false);
-        
+        user = frame.User();
         panelBanHang.rollnumber = 1;
 //        loadModel();
         listSP.forEach(e -> sv.updateSLSP(e.getId()));
         loadKH();
         fillSP();
         fillHDC();
-        
+
     }
 
     /**
@@ -138,6 +138,7 @@ public class panelBanHang extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
 
         setName(""); // NOI18N
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1550, 925));
 
         roundPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -341,7 +342,12 @@ public class panelBanHang extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("TAOKH");
+        jButton2.setText("+");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(220, 220, 220));
@@ -401,6 +407,7 @@ public class panelBanHang extends javax.swing.JPanel {
         txt_diachi.setText("tại cửa hàng");
         jScrollPane5.setViewportView(txt_diachi);
 
+        txt_phiShip.setEnabled(false);
         txt_phiShip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_phiShipActionPerformed(evt);
@@ -661,8 +668,8 @@ public class panelBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_cbo_khActionPerformed
 
     private void btn_hdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hdActionPerformed
-        
-     mainWindow.showHD();
+
+        mainWindow.showHD();
     }//GEN-LAST:event_btn_hdActionPerformed
 
     private void rdo_storeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdo_storeActionPerformed
@@ -682,7 +689,7 @@ public class panelBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void tbl_chiTietSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_chiTietSPMouseClicked
-        
+
         if (getSelectedHDCRow() < 0) {
             return;
         }
@@ -706,7 +713,7 @@ public class panelBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tbl_hdcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_hdcMouseClicked
-        
+
         if (getSelectedHDCRow() < 0) {
             return;
         }
@@ -716,7 +723,7 @@ public class panelBanHang extends javax.swing.JPanel {
             fillTextField();
             fillHDCT(HDCnow);
         }
-        
+
 
     }//GEN-LAST:event_tbl_hdcMouseClicked
 
@@ -728,7 +735,7 @@ public class panelBanHang extends javax.swing.JPanel {
         HoaDon hoaDonn = getSelectedHDC();
         t = Long.valueOf(txt_tong.getText());
         if (Double.valueOf(txt_khachTra.getText()) >= Double.valueOf(txt_tong.getText())) {
-            hoaDonn.setUser((listNV.get(1))); //temp
+            hoaDonn.setUser(user); //nhan vien dang su dung
             hoaDonn.setKhachHang((KhachHang) cbo_kh.getSelectedItem());
             hoaDonn.setDiaChi(txt_diachi.getText());
             for (int i = 0; i < listSelectedSp.size(); i++) {
@@ -747,7 +754,7 @@ public class panelBanHang extends javax.swing.JPanel {
             System.out.println(BigDecimal.valueOf(t));
             hoaDonn.setTinhTrang(1);
             hoaDonn.setNgayThanhToan(new java.sql.Date(System.currentTimeMillis()));
-            
+
         } else {
             hoaDonn.setTinhTrang(0);
             JOptionPane.showMessageDialog(this, "Không đủ tiền");
@@ -786,7 +793,7 @@ public class panelBanHang extends javax.swing.JPanel {
             return;
         }
         HoaDon hoaDonn = getSelectedHDC();
-        hoaDonn.setUser((listNV.get(1))); //temp
+        hoaDonn.setUser(user); //temp
         hoaDonn.setKhachHang((KhachHang) cbo_kh.getSelectedItem());
         hoaDonn.setDiaChi(txt_diachi.getText());
         for (int i = 0; i < listSelectedSp.size(); i++) {
@@ -813,7 +820,7 @@ public class panelBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void tbl_ChiTietHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ChiTietHDMouseClicked
-        
+
         int selectedRow = getSelectedCTHDRow();
         double tong = 0;
         if (selectedRow <= -1) {
@@ -845,6 +852,10 @@ public class panelBanHang extends javax.swing.JPanel {
         txt_tong.setText(String.valueOf(t));
 
     }//GEN-LAST:event_tbl_ChiTietHDMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -911,22 +922,22 @@ public class panelBanHang extends javax.swing.JPanel {
             dtm.addRow(data);
         }
     }
-    
+
     private void loadKH() {
         cbo_kh.removeAllItems();
         DefaultComboBoxModel dcm = (DefaultComboBoxModel) cbo_kh.getModel();
         listKH = sv.getAllKH();
         listKH.forEach(e -> dcm.addElement(e));
     }
-    
+
     private int getSelectedSPRow() {
         return tbl_chiTietSP.getSelectedRow();
     }
-    
+
     private int getSelectedCTHDRow() {
         return tbl_ChiTietHD.getSelectedRow();
     }
-    
+
     void fillSPtoHDCT() {
         double tong = 0;
         int selectedRow = getSelectedSPRow();
@@ -967,7 +978,7 @@ public class panelBanHang extends javax.swing.JPanel {
         lbl_tongtien.setText("Tổng tiền hàng : " + String.valueOf(t));
         txt_tong.setText(String.valueOf(t));
     }
-    
+
     private boolean isExist(int selectedRow) {
         DefaultTableModel dtm = (DefaultTableModel) tbl_ChiTietHD.getModel();
         ChiTietSp chiTietSp = listSP.get(selectedRow);
@@ -979,7 +990,7 @@ public class panelBanHang extends javax.swing.JPanel {
         }
         return false;
     }
-    
+
     private void fillHDC() {
         DefaultTableModel dtm = (DefaultTableModel) tbl_hdc.getModel();
         dtm.setRowCount(0);
@@ -992,11 +1003,11 @@ public class panelBanHang extends javax.swing.JPanel {
             dtm.addRow(data);
         }
     }
-    
+
     private HoaDon getSelectedHDC() {
         return listHDC.get(tbl_hdc.getSelectedRow());
     }
-    
+
     private void clearForm() {
         DefaultTableModel dtm = (DefaultTableModel) tbl_ChiTietHD.getModel();
         dtm.setRowCount(0);
@@ -1006,17 +1017,17 @@ public class panelBanHang extends javax.swing.JPanel {
         txt_khachTra.setText("");
         lbl_tongtien.setText("Tổng tiền hàng : ");
         txt_tong.setText("");
-        
+
     }
-    
+
     private void WriteForm() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     private int getSelectedHDCRow() {
         return tbl_hdc.getSelectedRow();
     }
-    
+
     private void fillTextField() {
         HoaDon hd = getSelectedHDC();
         txt_diachi.setText(hd.getDiaChi());
@@ -1029,9 +1040,9 @@ public class panelBanHang extends javax.swing.JPanel {
         sv.getHDCTofHD(hd).forEach(e -> t += e.getThanhTien().doubleValue());
         lbl_tongtien.setText("Tổng tiền hàng : " + String.valueOf(t));
         txt_tong.setText(String.valueOf(t));
-        
+
     }
-    
+
     private void fillHDCT(HoaDon hd) {
         DefaultTableModel dtm = (DefaultTableModel) tbl_ChiTietHD.getModel();
         int i = 1;

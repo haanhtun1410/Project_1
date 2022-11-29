@@ -19,7 +19,7 @@ import services.impl.NhanVienServicesImpl;
 
 public class Main extends javax.swing.JFrame {
 
-    static User nhanVien = null;
+    static public User nhanVien = null;
 
     public Main(User user) {
         nhanVien = user;
@@ -77,6 +77,10 @@ public class Main extends javax.swing.JFrame {
         body.add(com);
         body.revalidate();
         body.repaint();
+    }
+
+    public User User() {
+        return nhanVien;
     }
 
     public void closeMain() {
