@@ -41,7 +41,6 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="ProjectOne" match-schema="dbo"/>
-  <table-filter match-name="AnhLaptop"/>
   <table-filter match-name="ChucVu"/>
   <table-filter match-name="LoaiKH"/>
   <table-filter match-name="serial"/>
@@ -54,7 +53,6 @@ Contributor(s):
   <table-filter match-name="KhachHang"/>
   <table-filter match-name="DongSP"/>
   <table-filter match-name="sysdiagrams"/>
-  <table-filter match-name="AnhNV"/>
   <table-filter match-name="VoucherHD"/>
   <table-filter match-name="NSX"/>
 </hibernate-reverse-engineering>

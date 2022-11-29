@@ -48,12 +48,13 @@ public class ChiTietSp implements java.io.Serializable {
     private int soLuongTon;
     @Column(name = "GiaBan", scale = 4)
     private BigDecimal giaBan;
+    @Column(name = "Anh")
+    private String anh;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "chiTietSp")
     private Set<Serial> serials = new HashSet<Serial>(0);
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "chiTietSp")
     private Set<Cthd> cthds = new HashSet<Cthd>(0);
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "chiTietSp")
-    private Set<AnhLaptop> anhLaptops = new HashSet<AnhLaptop>(0);
+  
 
     public ChiTietSp() {
     }
@@ -71,9 +72,8 @@ public class ChiTietSp implements java.io.Serializable {
         this.soLuongTon = soLuongTon;
         this.giaBan = giaBan;
     }
-    
 
-    public ChiTietSp(String id, DongSp dongSp, Nsx nsx, VoucherLaptop voucherLaptop, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, BigDecimal giaBan, Set<Serial> serials, Set<Cthd> cthds, Set<AnhLaptop> anhLaptops) {
+    public ChiTietSp(String id, DongSp dongSp, Nsx nsx, VoucherLaptop voucherLaptop, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, BigDecimal giaBan, String anh) {
         this.id = id;
         this.dongSp = dongSp;
         this.nsx = nsx;
@@ -84,11 +84,9 @@ public class ChiTietSp implements java.io.Serializable {
         this.moTa = moTa;
         this.soLuongTon = soLuongTon;
         this.giaBan = giaBan;
-        this.serials = serials;
-        this.cthds = cthds;
-        this.anhLaptops = anhLaptops;
+        this.anh = anh;
     }
-
+    
     public String getId() {
         return this.id;
     }
@@ -185,12 +183,14 @@ public class ChiTietSp implements java.io.Serializable {
         this.cthds = cthds;
     }
 
-    public Set<AnhLaptop> getAnhLaptops() {
-        return this.anhLaptops;
+    public String getAnh() {
+        return anh;
     }
 
-    public void setAnhLaptops(Set<AnhLaptop> anhLaptops) {
-        this.anhLaptops = anhLaptops;
+    public void setAnh(String anh) {
+        this.anh = anh;
     }
+
+   
 
 }
