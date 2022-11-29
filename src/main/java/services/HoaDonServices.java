@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package responsitory;
+package services;
 
 import customModels.ImeiCustom;
 import domainmodels.Cthd;
+import domainmodels.HoaDon;
 import domainmodels.Serial;
 import java.util.List;
 
@@ -14,10 +15,18 @@ import java.util.List;
  *
  * @author longv
  */
-public interface SerialsResponsitory {
+public interface HoaDonServices {
+
+    List<HoaDon> getAllHDC();
+
+    List<Cthd> getAllHDCT();
+
+    List<HoaDon> getAllHD();
+
+    List<Cthd> getHDCTofHD(HoaDon hd);
     
-    boolean updateSerials(Cthd cthd);
+    List<Serial> getImeis(String idCTHD);
     
-    List<Serial> getImei(String idCTDHD);
     
+
 }

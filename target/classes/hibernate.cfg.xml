@@ -50,10 +50,8 @@ Contributor(s):
     <property name="hibernate.current_session_context_class">thread</property>
     <mapping resource="domainmodels/ChiTietSp.hbm.xml"/>
     <mapping resource="domainmodels/Serial.hbm.xml"/>
-    <mapping resource="domainmodels/AnhNv.hbm.xml"/>
     <mapping resource="domainmodels/DongSp.hbm.xml"/>
     <mapping resource="domainmodels/VoucherHd.hbm.xml"/>
-    <mapping resource="domainmodels/AnhLaptop.hbm.xml"/>
     <mapping resource="domainmodels/ChucVu.hbm.xml"/>
     <mapping resource="domainmodels/User.hbm.xml"/>
     <mapping resource="domainmodels/VoucherLaptop.hbm.xml"/>

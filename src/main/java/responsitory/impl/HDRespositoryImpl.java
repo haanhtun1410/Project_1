@@ -30,7 +30,6 @@ public class HDRespositoryImpl implements HDRespository {
         try {
             Criteria cr = ss.createCriteria(HoaDon.class);
             listHD = cr.list();
-
         } catch (HibernateException e) {
             System.out.println(e);
         }
@@ -66,11 +65,6 @@ public class HDRespositoryImpl implements HDRespository {
             return false;
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-        HDRespository h = new HDRespositoryImpl();
-        h.addTempHD();
     }
 
     @Override
@@ -134,5 +128,4 @@ public class HDRespositoryImpl implements HDRespository {
         }
         return true;
     }
-
 }
