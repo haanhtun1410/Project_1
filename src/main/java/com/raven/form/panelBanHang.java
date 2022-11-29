@@ -5,6 +5,9 @@
  */
 package com.raven.form;
 
+import com.raven.component.Menu;
+import com.raven.event.EventMenu;
+import com.raven.main.Main;
 import domainmodels.ChiTietSp;
 import domainmodels.Cthd;
 import domainmodels.HoaDon;
@@ -40,6 +43,7 @@ import services.impl.SellServiceImpl;
  */
 public class panelBanHang extends javax.swing.JPanel {
 
+    private final Main mainWindow;
     private final ChiTietSPRespository chiTietSPRespository = new ChiTietSPRespositoyImpl();
     private final HDCTRespository chiTietHDRespository = new HDCTRespositoryImpl();
     private final HDRespository HDRespository = new HDRespositoryImpl();
@@ -51,7 +55,7 @@ public class panelBanHang extends javax.swing.JPanel {
     static double thanhTien = 0;
     static long t = 0;
     List<HoaDon> listHDC = sv.getAllHDC();
-    private List<User> listNV = sv.getAllNV();
+    User user;
     private List<KhachHang> listKH = sv.getAllKH();
     List<ChiTietSp> listSP = sv.getAllSP();
     static List<ChiTietSp> listSelectedSp = new ArrayList<>();
@@ -60,16 +64,18 @@ public class panelBanHang extends javax.swing.JPanel {
     /**
      * Creates new form panelBanHang
      */
-    public panelBanHang() {
+    public panelBanHang(Main frame) {
         initComponents();
-
+        mainWindow = frame;
         setOpaque(false);
+        user = frame.User();
         panelBanHang.rollnumber = 1;
 //        loadModel();
         listSP.forEach(e -> sv.updateSLSP(e.getId()));
         loadKH();
         fillSP();
         fillHDC();
+
     }
 
     /**
@@ -99,7 +105,7 @@ public class panelBanHang extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_hdc = new javax.swing.JTable();
-        txt_panelHD = new javax.swing.JButton();
+        btn_hd = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         cbo_kh = new javax.swing.JComboBox<>();
@@ -132,6 +138,7 @@ public class panelBanHang extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
 
         setName(""); // NOI18N
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1550, 925));
 
         roundPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -309,10 +316,10 @@ public class panelBanHang extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tbl_hdc);
 
-        txt_panelHD.setText("Danh Sách Hóa Đơn");
-        txt_panelHD.addActionListener(new java.awt.event.ActionListener() {
+        btn_hd.setText("Danh Sách Hóa Đơn");
+        btn_hd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_panelHDActionPerformed(evt);
+                btn_hdActionPerformed(evt);
             }
         });
 
@@ -335,7 +342,12 @@ public class panelBanHang extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("TAOKH");
+        jButton2.setText("+");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(220, 220, 220));
@@ -395,6 +407,7 @@ public class panelBanHang extends javax.swing.JPanel {
         txt_diachi.setText("tại cửa hàng");
         jScrollPane5.setViewportView(txt_diachi);
 
+        txt_phiShip.setEnabled(false);
         txt_phiShip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_phiShipActionPerformed(evt);
@@ -556,7 +569,7 @@ public class panelBanHang extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txt_panelHD))
+                .addComponent(btn_hd))
         );
         roundPanel3Layout.setVerticalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -565,7 +578,7 @@ public class panelBanHang extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(16, 16, 16)
                 .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_panelHD)
+                    .addComponent(btn_hd)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -640,12 +653,12 @@ public class panelBanHang extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(roundPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 925, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 925, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -654,9 +667,10 @@ public class panelBanHang extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbo_khActionPerformed
 
-    private void txt_panelHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_panelHDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_panelHDActionPerformed
+    private void btn_hdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hdActionPerformed
+
+        mainWindow.showHD();
+    }//GEN-LAST:event_btn_hdActionPerformed
 
     private void rdo_storeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdo_storeActionPerformed
         // TODO add your handling code here:
@@ -721,7 +735,7 @@ public class panelBanHang extends javax.swing.JPanel {
         HoaDon hoaDonn = getSelectedHDC();
         t = Long.valueOf(txt_tong.getText());
         if (Double.valueOf(txt_khachTra.getText()) >= Double.valueOf(txt_tong.getText())) {
-            hoaDonn.setUser((listNV.get(1))); //temp
+            hoaDonn.setUser(user); //nhan vien dang su dung
             hoaDonn.setKhachHang((KhachHang) cbo_kh.getSelectedItem());
             hoaDonn.setDiaChi(txt_diachi.getText());
             for (int i = 0; i < listSelectedSp.size(); i++) {
@@ -779,7 +793,7 @@ public class panelBanHang extends javax.swing.JPanel {
             return;
         }
         HoaDon hoaDonn = getSelectedHDC();
-        hoaDonn.setUser((listNV.get(1))); //temp
+        hoaDonn.setUser(user); //temp
         hoaDonn.setKhachHang((KhachHang) cbo_kh.getSelectedItem());
         hoaDonn.setDiaChi(txt_diachi.getText());
         for (int i = 0; i < listSelectedSp.size(); i++) {
@@ -839,8 +853,13 @@ public class panelBanHang extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tbl_ChiTietHDMouseClicked
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_hd;
     private javax.swing.JButton btn_thanhtoan;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbo_kh;
@@ -886,7 +905,6 @@ public class panelBanHang extends javax.swing.JPanel {
     private javax.swing.JTextField txt_ngaygiao;
     private javax.swing.JTextField txt_nguoiNhan;
     private javax.swing.JLabel txt_nhanVien;
-    private javax.swing.JButton txt_panelHD;
     private javax.swing.JTextField txt_phiShip;
     private javax.swing.JLabel txt_tong;
     private javax.swing.JLabel txt_trangthai;
@@ -1036,5 +1054,4 @@ public class panelBanHang extends javax.swing.JPanel {
             dtm.addRow(data);
         }
     }
-
 }
