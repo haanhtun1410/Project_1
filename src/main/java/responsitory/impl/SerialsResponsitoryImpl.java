@@ -62,7 +62,6 @@ public class SerialsResponsitoryImpl implements SerialsResponsitory {
             Query createQuery = ss.createQuery(sql);
             createQuery.setParameter("id", idCTDHD);
             imeis = createQuery.list();
-            System.out.println("độ dài :" + imeis.size());
 
         } catch (Exception e) {
             System.out.println(e);
