@@ -80,7 +80,7 @@ public class doiMatKhau extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\duAnNhom\\Project_1\\src\\main\\resources\\imgsHuy\\Secure.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgsHuy/Secure.png"))); // NOI18N
 
         btnClear.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgsHuy/icons8-broom-30.png"))); // NOI18N
