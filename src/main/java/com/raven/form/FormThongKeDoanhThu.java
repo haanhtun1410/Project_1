@@ -90,6 +90,7 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         chart = new com.raven.chart.Chart();
         chart4 = new com.raven.chart.Chart();
+        jPanel1 = new javax.swing.JPanel();
         roundPanel3 = new com.raven.swing.RoundPanel();
         lineChart = new com.raven.chart.LineChart();
 
@@ -155,6 +156,19 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
         });
         jTabbedPane1.addTab("Thống kê doanh thu", chart);
         jTabbedPane1.addTab("Thống kê NSX", chart4);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1147, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Thống kê top Laptop bán chạy", jPanel1);
 
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
@@ -243,6 +257,7 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private com.raven.chart.LineChart lineChart;
     private com.raven.swing.RoundPanel roundPanel1;
