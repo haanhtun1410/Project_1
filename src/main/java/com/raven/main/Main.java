@@ -63,13 +63,7 @@ public class Main extends javax.swing.JFrame {
         };
         menu1.initMenu(event);
         showForm(new FormHome());
-<<<<<<< HEAD
-
-        
-=======
         menu1.setAvartar(nhanVien);
->>>>>>> master
-
     }
 
     public void showHD() {
