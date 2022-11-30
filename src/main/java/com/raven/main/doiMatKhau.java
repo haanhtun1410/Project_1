@@ -233,7 +233,8 @@ public class doiMatKhau extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int choice = JOptionPane.showConfirmDialog(this, "Hoàn tất đổi mật khẩu ?");
         if (choice == 0) {
-            dispose();
+            this.dispose();
+            new login().setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
