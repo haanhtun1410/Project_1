@@ -5,23 +5,18 @@
  */
 package com.raven.form;
 
-import com.raven.component.Menu;
-import com.raven.event.EventMenu;
 import com.raven.main.Main;
 import domainmodels.ChiTietSp;
 import domainmodels.Cthd;
 import domainmodels.HoaDon;
 import domainmodels.KhachHang;
 import domainmodels.User;
-import java.awt.Color;
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import responsitory.ChiTietSPRespository;
 import responsitory.HDCTRespository;
 import responsitory.HDRespository;
@@ -153,6 +148,7 @@ public class panelBanHang extends javax.swing.JPanel {
         jLabel7.setText("Giỏ Hàng");
         jLabel7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
 
+        tbl_ChiTietHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tbl_ChiTietHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -164,9 +160,16 @@ public class panelBanHang extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true, true, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tbl_ChiTietHD.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -210,9 +213,9 @@ public class panelBanHang extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("sansserif", 1, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(220, 220, 220));
-        jLabel6.setText("Sản Phẩm");
         jLabel6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
 
+        tbl_chiTietSP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tbl_chiTietSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -224,11 +227,19 @@ public class panelBanHang extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false, false, true, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
+        tbl_chiTietSP.setRowHeight(32);
         tbl_chiTietSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_chiTietSPMouseClicked(evt);
@@ -299,6 +310,7 @@ public class panelBanHang extends javax.swing.JPanel {
         jLabel3.setText("Hóa Đơn");
         jLabel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
 
+        tbl_hdc.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tbl_hdc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -309,9 +321,19 @@ public class panelBanHang extends javax.swing.JPanel {
         ));
         tbl_hdc.setOpaque(false);
         tbl_hdc.setRowHeight(80);
+        tbl_hdc.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                tbl_hdcMouseWheelMoved(evt);
+            }
+        });
         tbl_hdc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_hdcMouseClicked(evt);
+            }
+        });
+        tbl_hdc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tbl_hdcKeyTyped(evt);
             }
         });
         jScrollPane2.setViewportView(tbl_hdc);
@@ -342,7 +364,9 @@ public class panelBanHang extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("+");
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/customer.png"))); // NOI18N
+        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -496,10 +520,12 @@ public class panelBanHang extends javax.swing.JPanel {
         roundPanel3Layout.setHorizontalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_hd))
+            .addGroup(roundPanel3Layout.createSequentialGroup()
                 .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(roundPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3))
                     .addGroup(roundPanel3Layout.createSequentialGroup()
                         .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -524,8 +550,8 @@ public class panelBanHang extends javax.swing.JPanel {
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cbo_kh, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                             .addGroup(roundPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -545,7 +571,7 @@ public class panelBanHang extends javax.swing.JPanel {
                                     .addComponent(jLabel11)
                                     .addGap(18, 18, 18)
                                     .addComponent(txt_phiShip, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel3Layout.createSequentialGroup()
                         .addComponent(btn_thanhtoan)
@@ -553,23 +579,21 @@ public class panelBanHang extends javax.swing.JPanel {
                         .addComponent(jButton5)
                         .addGap(53, 53, 53)
                         .addComponent(jButton4)
-                        .addGap(118, 118, 118)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(roundPanel3Layout.createSequentialGroup()
-                .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addComponent(lbl_tongtien)
+                        .addGap(118, 118, 118))
                     .addGroup(roundPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_tong))
-                    .addComponent(txt_trangthai))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(roundPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_hd))
+                        .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(roundPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3))
+                            .addComponent(jLabel15)
+                            .addComponent(lbl_tongtien)
+                            .addGroup(roundPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_tong))
+                            .addComponent(txt_trangthai))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         roundPanel3Layout.setVerticalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -584,10 +608,11 @@ public class panelBanHang extends javax.swing.JPanel {
                 .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(roundPanel3Layout.createSequentialGroup()
-                        .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(cbo_kh, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
+                        .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(cbo_kh, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -648,7 +673,7 @@ public class panelBanHang extends javax.swing.JPanel {
                     .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1052, Short.MAX_VALUE)
                     .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1052, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 511, Short.MAX_VALUE))
+                .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -789,9 +814,7 @@ public class panelBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_rdo_shipMouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (txt_khachTra.getText().isEmpty()) {
-            return;
-        }
+
         HoaDon hoaDonn = getSelectedHDC();
         hoaDonn.setUser(user); //temp
         hoaDonn.setKhachHang((KhachHang) cbo_kh.getSelectedItem());
@@ -822,6 +845,7 @@ public class panelBanHang extends javax.swing.JPanel {
     private void tbl_ChiTietHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ChiTietHDMouseClicked
 
         int selectedRow = getSelectedCTHDRow();
+
         double tong = 0;
         if (selectedRow <= -1) {
             return;
@@ -838,12 +862,17 @@ public class panelBanHang extends javax.swing.JPanel {
                 if (soluong.intValue() == 0) {
                     listSelectedSp.remove(chiTietSp);
                     dtm.removeRow(selectedRow);
+                    for (int i = selectedRow; i < dtm.getRowCount(); i++) {
+                        dtm.setValueAt((int) dtm.getValueAt(i, 0) - 1, i, 0);
+                    }
                 } else {
                     dtm.setValueAt(soluong.intValue(), selectedRow, 3);
                     dtm.setValueAt(chiTietSp.getGiaBan().doubleValue() * soluong.intValue(), selectedRow, 5);
                 }
             }
+
         }
+
         for (int i = 0; i < dtm.getRowCount(); i++) {
             tong += Double.parseDouble(dtm.getValueAt(i, 3).toString()) * Double.parseDouble(dtm.getValueAt(i, 4).toString());
         }
@@ -854,8 +883,15 @@ public class panelBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_ChiTietHDMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
+        mainWindow.showKH();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tbl_hdcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbl_hdcKeyTyped
+    }//GEN-LAST:event_tbl_hdcKeyTyped
+
+    private void tbl_hdcMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_tbl_hdcMouseWheelMoved
+
+    }//GEN-LAST:event_tbl_hdcMouseWheelMoved
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -952,7 +988,7 @@ public class panelBanHang extends javax.swing.JPanel {
         }
         if (dtm.getRowCount() == 0 || !isExist(selectedRow)) {
             Object[] data = new Object[]{
-                rollnumber++, chiTietSp.getId(), chiTietSp.getTenSp(), 1, chiTietSp.getGiaBan(), chiTietSp.getGiaBan()};
+                dtm.getRowCount() + 1, chiTietSp.getId(), chiTietSp.getTenSp(), 1, chiTietSp.getGiaBan(), chiTietSp.getGiaBan()};
             dtm.addRow(data);
             listSelectedSp.add(chiTietSp);
             System.out.println("addded");
@@ -1009,8 +1045,11 @@ public class panelBanHang extends javax.swing.JPanel {
     }
 
     private void clearForm() {
+        rollnumber = 1;
         DefaultTableModel dtm = (DefaultTableModel) tbl_ChiTietHD.getModel();
         dtm.setRowCount(0);
+        tbl_ChiTietHD.getSelectionModel().clearSelection();
+        tbl_chiTietSP.getSelectionModel().clearSelection();
         thanhTien = 0.0;
         t = 0;
         listSelectedSp.removeAll(listSelectedSp);
