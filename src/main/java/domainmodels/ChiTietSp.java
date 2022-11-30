@@ -2,6 +2,7 @@ package domainmodels;
 // Generated Nov 19, 2022 2:49:48 PM by Hibernate Tools 4.3.1
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -18,8 +19,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ChiTietSP",
-         schema = "dbo",
-         catalog = "ProjectOne"
+        schema = "dbo",
+        catalog = "ProjectOne"
 )
 public class ChiTietSp implements java.io.Serializable {
 
@@ -46,13 +47,14 @@ public class ChiTietSp implements java.io.Serializable {
     @Column(name = "SoLuongTon")
     private int soLuongTon;
     @Column(name = "GiaBan", scale = 4)
-    private double giaBan;
+    private BigDecimal giaBan;
+    @Column(name = "Anh")
+    private String anh;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "chiTietSp")
     private Set<Serial> serials = new HashSet<Serial>(0);
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "chiTietSp")
     private Set<Cthd> cthds = new HashSet<Cthd>(0);
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "chiTietSp")
-    private Set<AnhLaptop> anhLaptops = new HashSet<AnhLaptop>(0);
+  
 
     public ChiTietSp() {
     }
@@ -61,7 +63,19 @@ public class ChiTietSp implements java.io.Serializable {
         this.id = id;
     }
 
-    public ChiTietSp(String id, DongSp dongSp, Nsx nsx, VoucherLaptop voucherLaptop, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, double giaBan, Set<Serial> serials, Set<Cthd> cthds, Set<AnhLaptop> anhLaptops) {
+    public ChiTietSp(String id, DongSp dongSp, Nsx nsx, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, BigDecimal giaBan) {
+        this.id = id;
+        this.dongSp = dongSp;
+        this.nsx = nsx;
+        this.tenSp = tenSp;
+        this.namSx = namSx;
+        this.namBh = namBh;
+        this.moTa = moTa;
+        this.soLuongTon = soLuongTon;
+        this.giaBan = giaBan;
+    }
+
+    public ChiTietSp(String id, DongSp dongSp, Nsx nsx, VoucherLaptop voucherLaptop, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, BigDecimal giaBan) {
         this.id = id;
         this.dongSp = dongSp;
         this.nsx = nsx;
@@ -72,11 +86,32 @@ public class ChiTietSp implements java.io.Serializable {
         this.moTa = moTa;
         this.soLuongTon = soLuongTon;
         this.giaBan = giaBan;
-        this.serials = serials;
-        this.cthds = cthds;
-        this.anhLaptops = anhLaptops;
+    }
+    
+     public ChiTietSp(String id, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, BigDecimal giaBan) {
+        this.id = id;
+        this.tenSp = tenSp;
+        this.namSx = namSx;
+        this.namBh = namBh;
+        this.moTa = moTa;
+        this.soLuongTon = soLuongTon;
+        this.giaBan = giaBan;
     }
 
+    public ChiTietSp(String id, DongSp dongSp, Nsx nsx, VoucherLaptop voucherLaptop, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, BigDecimal giaBan, String anh) {
+        this.id = id;
+        this.dongSp = dongSp;
+        this.nsx = nsx;
+        this.voucherLaptop = voucherLaptop;
+        this.tenSp = tenSp;
+        this.namSx = namSx;
+        this.namBh = namBh;
+        this.moTa = moTa;
+        this.soLuongTon = soLuongTon;
+        this.giaBan = giaBan;
+        this.anh = anh;
+    }
+    
     public String getId() {
         return this.id;
     }
@@ -149,11 +184,11 @@ public class ChiTietSp implements java.io.Serializable {
         this.soLuongTon = soLuongTon;
     }
 
-    public double getGiaBan() {
+    public BigDecimal getGiaBan() {
         return this.giaBan;
     }
 
-    public void setGiaBan(double giaBan) {
+    public void setGiaBan(BigDecimal giaBan) {
         this.giaBan = giaBan;
     }
 
@@ -173,12 +208,14 @@ public class ChiTietSp implements java.io.Serializable {
         this.cthds = cthds;
     }
 
-    public Set<AnhLaptop> getAnhLaptops() {
-        return this.anhLaptops;
+    public String getAnh() {
+        return anh;
     }
 
-    public void setAnhLaptops(Set<AnhLaptop> anhLaptops) {
-        this.anhLaptops = anhLaptops;
+    public void setAnh(String anh) {
+        this.anh = anh;
     }
+
+   
 
 }

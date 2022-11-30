@@ -1,8 +1,8 @@
 package com.raven.main;
 
 import com.raven.event.EventMenu;
-import com.raven.form.Form;
-import com.raven.form.Form_1;
+import com.raven.form.FormHome;
+import com.raven.form.FormThongKeDoanhThu;
 
 import com.raven.form.panelBanHang;
 import com.raven.form.panelHoaDon;
@@ -10,12 +10,19 @@ import com.raven.form.panelKhachHang;
 import com.raven.form.panelKhuyenMai;
 import com.raven.form.panelNhanVien;
 import com.raven.form.panelSanPham;
+import domainmodels.User;
 import java.awt.Color;
 import java.awt.Component;
+import javax.swing.JOptionPane;
+import services.NhanVienServices;
+import services.impl.NhanVienServicesImpl;
 
 public class Main extends javax.swing.JFrame {
 
-    public Main() {
+    static public User nhanVien = null;
+
+    public Main(User user) {
+        nhanVien = user;
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setBackground(new Color(0, 0, 0, 0));
@@ -24,9 +31,9 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                    showForm(new Form_1());
+                    showForm(new FormHome());
                 } else if (index == 1) {
-                    showForm(new panelBanHang());
+                    showForm(new panelBanHang(Main.this));
                     System.out.println(index);
                 } else if (index == 2) {
                     showForm(new panelSanPham());
@@ -44,25 +51,38 @@ public class Main extends javax.swing.JFrame {
                     showForm(new panelKhachHang());
                     System.out.println(index);
                 } else if (index == 7) {
-                    showForm(new Form_1());
+                    showForm(new FormThongKeDoanhThu());
                     System.out.println(index);
                 } else if (index == 8) {
-                    System.out.println("Logout");
+                    new login().setVisible(true);
                     closeMain();
                 } else {
-                    showForm(new Form(index));
+                    showForm(new FormHome());
                 }
             }
         };
         menu1.initMenu(event);
-        showForm(new Form_1());
+        showForm(new FormHome());
+        menu1.setAvartar(nhanVien);
     }
 
-    private void showForm(Component com) {
+    public void showHD() {
+        showForm(new panelHoaDon());
+    }
+    
+     public void showKH() {
+        showForm(new panelKhachHang());
+    }
+
+    public void showForm(Component com) {
         body.removeAll();
         body.add(com);
         body.revalidate();
         body.repaint();
+    }
+
+    public User User() {
+        return nhanVien;
     }
 
     public void closeMain() {
@@ -90,7 +110,7 @@ public class Main extends javax.swing.JFrame {
         roundPanel1.setLayout(roundPanel1Layout);
         roundPanel1Layout.setHorizontalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, 1806, Short.MAX_VALUE)
+            .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, 1909, Short.MAX_VALUE)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,7 +124,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                    .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
                     .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
@@ -151,13 +171,14 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new Main(nhanVien).setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel body;
+    public static javax.swing.JPanel body;
     private com.raven.component.Header header2;
     private com.raven.component.Menu menu1;
     private com.raven.swing.RoundPanel roundPanel1;

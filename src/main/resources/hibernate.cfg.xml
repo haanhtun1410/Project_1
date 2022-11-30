@@ -47,12 +47,11 @@ Contributor(s):
     <property name="hibernate.connection.password">123456</property>
     <property name="hibernate.dialect">org.hibernate.dialect.DB2Dialect</property>
     <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
     <mapping resource="domainmodels/ChiTietSp.hbm.xml"/>
     <mapping resource="domainmodels/Serial.hbm.xml"/>
-    <mapping resource="domainmodels/AnhNv.hbm.xml"/>
     <mapping resource="domainmodels/DongSp.hbm.xml"/>
     <mapping resource="domainmodels/VoucherHd.hbm.xml"/>
-    <mapping resource="domainmodels/AnhLaptop.hbm.xml"/>
     <mapping resource="domainmodels/ChucVu.hbm.xml"/>
     <mapping resource="domainmodels/User.hbm.xml"/>
     <mapping resource="domainmodels/VoucherLaptop.hbm.xml"/>

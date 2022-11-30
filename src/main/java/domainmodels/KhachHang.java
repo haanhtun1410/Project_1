@@ -58,6 +58,17 @@ public class KhachHang  implements java.io.Serializable {
        this.hoaDons = hoaDons;
        this.phieuBaoHanhs = phieuBaoHanhs;
     }
+
+    public KhachHang(String id, LoaiKh loaiKh, String ten, Date ngaySinh, String sdt, String diaChi, String email, int tinhTrang) {
+        this.id = id;
+        this.loaiKh = loaiKh;
+        this.ten = ten;
+        this.ngaySinh = ngaySinh;
+        this.sdt = sdt;
+        this.diaChi = diaChi;
+        this.email = email;
+        this.tinhTrang = tinhTrang;
+    }
    
      @Id 
 
@@ -164,6 +175,9 @@ public class KhachHang  implements java.io.Serializable {
         return ten;
     }
    
+    public String getTTKhachHang(){
+         return "KhachHang{" + "id=" + id + ", loaiKh=" + loaiKh + ", ten=" + ten + ", ngaySinh=" + ngaySinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", email=" + email + ", tinhTrang=" + tinhTrang + '}';
+    }
     
     
 
