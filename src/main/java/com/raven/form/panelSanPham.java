@@ -209,7 +209,7 @@ void filltoForm(){
 
         setPreferredSize(new java.awt.Dimension(1550, 925));
 
-        roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        roundPanel2.setBackground(new java.awt.Color(51, 51, 51));
         roundPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         roundPanel2.setForeground(new java.awt.Color(51, 255, 51));
         roundPanel2.setPreferredSize(new java.awt.Dimension(1080, 600));
@@ -233,25 +233,31 @@ void filltoForm(){
         jScrollPane1.setViewportView(tbSanPham);
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tên Sản Phẩm");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Số Lượng Tồn Kho");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("GIá Bán");
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Cái");
 
         jLabel5.setText("VND");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Năm Sản Xuất");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Mô Tả");
 
         txtmoTa.setColumns(20);
@@ -291,9 +297,11 @@ void filltoForm(){
         });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Nhà Sản Xuất");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Dòng Sản Phẩm ");
 
         cbxNhaSx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -307,6 +315,7 @@ void filltoForm(){
         });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Năm BH");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -384,7 +393,7 @@ void filltoForm(){
                                                             .addComponent(txtgiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                             .addComponent(jLabel11)
                                                             .addComponent(cbxDongSP, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addGap(0, 12, Short.MAX_VALUE)))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel5)))
                                 .addGap(138, 138, 138)))))
@@ -463,7 +472,7 @@ void filltoForm(){
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 937, Short.MAX_VALUE)
+            .addComponent(roundPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
