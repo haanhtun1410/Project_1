@@ -68,5 +68,9 @@ public class SerialsResponsitoryImpl implements SerialsResponsitory {
         }
         return imeis;
     }
+//    public static void main(String[] args) {
+//        List<Serial> list = new SerialsResponsitoryImpl().getImei('8C8B3A13-DD2B-47E6-BABF-1B471545031E');
+//        
+//    }
   
 }

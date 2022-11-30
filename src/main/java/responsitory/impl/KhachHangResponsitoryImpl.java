@@ -11,8 +11,10 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.CriteriaQuery;
 import responsitory.KhachHangResponsitory;
 import untilities.HibernateUtil;
 
@@ -119,11 +121,27 @@ public class KhachHangResponsitoryImpl implements KhachHangResponsitory {
 
         }
     }
+    
+    public double getTien(String id) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session ss = factory.openSession();
+        double tien = 0;
+        try {
+            String sql = "select sum(TongTien) from KhachHang k join HoaDon h on k.Id = h.IdKH where k.Id = :id";
+            SQLQuery createSQLQuery = ss.createSQLQuery(sql);
+            createSQLQuery.setParameter("id", id);
+            tien = (double) createSQLQuery.uniqueResult();
+            //System.out.println("độ dài :" + imeis.size());
 
-//    public static void main(String[] args) {
-//        List<KhachHang> list = new KhachHangResponsitoryImpl().getByTen("h");
-//        for (KhachHang x : list) {
-//            System.out.println(x.getTTKhachHang());
-//        }
-//    }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return tien;
+    }
+
+    public static void main(String[] args) {
+        double list = new KhachHangResponsitoryImpl().getTien("KH01");
+        System.out.println(list);
+    }
+    
 }
