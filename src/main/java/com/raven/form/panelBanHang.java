@@ -88,6 +88,7 @@ public class panelBanHang extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tbl_ChiTietHD = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         roundPanel2 = new com.raven.swing.RoundPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -179,6 +180,8 @@ public class panelBanHang extends javax.swing.JPanel {
         });
         jScrollPane6.setViewportView(tbl_ChiTietHD);
 
+        jButton3.setText("Xóa SP");
+
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
         roundPanel1Layout.setHorizontalGroup(
@@ -187,13 +190,16 @@ public class panelBanHang extends javax.swing.JPanel {
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
                         .addGap(488, 488, 488)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE))
                     .addGroup(roundPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(roundPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane6)))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         roundPanel1Layout.setVerticalGroup(
@@ -203,8 +209,13 @@ public class panelBanHang extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton3)))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
@@ -901,6 +912,7 @@ public class panelBanHang extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbo_kh;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox2;
