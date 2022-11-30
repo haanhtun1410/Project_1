@@ -27,12 +27,6 @@ public class ThongKeDoanhThuReImpl implements ThongKeDoanhThuRepository {
         return doanhThu;
     }
 
-    public static void main(String[] args) {
-        Double doanhThu = new ThongKeDoanhThuReImpl().DoanhThuThang(11, 2022);
-        System.out.println(doanhThu / 1000000);
-
-    }
-
     @Override
     public Double soLuongSanPhamDaBan(int thang, int nam) {
         String query = "SELECT SUM(cthd.soluong)\n"

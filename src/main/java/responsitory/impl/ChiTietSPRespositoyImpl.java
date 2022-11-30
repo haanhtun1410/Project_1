@@ -71,6 +71,7 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
             ss.save(chiTietSp);
             ss.getTransaction().commit();
         } catch (Exception e) {
+            ss.getTransaction().rollback();
             System.out.println(e);
             return false;
         }
