@@ -40,21 +40,17 @@ public class HDRespositoryImpl implements HDRespository {
     public boolean addTempHD() {
         Session ss = HibernateUtil.getSessionFactory().openSession();
         try {
-            String sql = "SELECT top 1 id FROM HoaDon ORDER BY id DESC ";
-            SQLQuery createSQLQuery = ss.createSQLQuery(sql);
-            String id = (String) createSQLQuery.uniqueResult();
-            if (id == null) {
+            String numberSQL = "select top 1 CONVERT(int, SUBSTRING(id,3,DATALENGTH(id))) as number from HoaDon order by number desc";
+            SQLQuery createNumber = ss.createSQLQuery(numberSQL);
+            Integer number = (int) createNumber.uniqueResult();
+            System.out.println(number);
+            String id;
+            if (number == null) {
                 id = "HD1";
             } else {
-                int co = id.length();
-                String txt = id.substring(0, 2);
-                String num = id.substring(2, co);
-                int n = Integer.parseInt(num);
-                n++;
-                String snum = Integer.toString(n);
-                id = txt + snum;
+                number++;
+                id = "HD" + number;
             }
-            System.out.println(id);
             ss.beginTransaction();
             HoaDon hoaDon = new HoaDon(id, new Date(System.currentTimeMillis()));
             ss.save(hoaDon);

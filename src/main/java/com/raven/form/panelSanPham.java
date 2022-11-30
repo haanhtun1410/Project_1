@@ -8,6 +8,7 @@ package com.raven.form;
 import domainmodels.ChiTietSp;
 import domainmodels.DongSp;
 import domainmodels.Nsx;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -20,8 +21,10 @@ import utilsHuy.MsgBox;
  * @author longv
  */
 public class panelSanPham extends javax.swing.JPanel {
-  private  ChiTietSpService chiTietSpService = new ChiTietSpServiceImpl();
-   int index = 0; 
+
+    private ChiTietSpService chiTietSpService = new ChiTietSpServiceImpl();
+    int index = 0;
+
     /**
      * Creates new form panelSanPham
      */
@@ -32,128 +35,133 @@ public class panelSanPham extends javax.swing.JPanel {
         fillComboBoxDongSP();
         fillTable();
     }
-void fillTable(){
-    DefaultTableModel model = (DefaultTableModel) tbSanPham.getModel();
-    model.setRowCount(0);
-    List<ChiTietSp> list = chiTietSpService.getAllCT();
-    for (ChiTietSp x : list) {
-        model.addRow(new Object[]{
-            x.getId(),x.getTenSp(),x.getNsx(),x.getDongSp(),x.getNamSx(),x.getNamBh(),x.getSoLuongTon(),x.getGiaBan(),x.getMoTa()
-        });
-    }
-}
-void load(){
-    DefaultTableModel model = (DefaultTableModel) tbSanPham.getModel();
-    model.setRowCount(0);
-    try {
-        String key = txtTimKiem.getText().trim();
-        System.out.println(key);
-        List<ChiTietSp> list = chiTietSpService.getByten(key);
+
+    void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) tbSanPham.getModel();
+        model.setRowCount(0);
+        List<ChiTietSp> list = chiTietSpService.getAllCT();
         for (ChiTietSp x : list) {
-           model.addRow(new Object[]{
-               x.getId(),x.getTenSp(),x.getNsx(),x.getDongSp(),x.getNamSx(),x.getNamBh(),x.getSoLuongTon(),x.getGiaBan(),x.getMoTa()
-           });
+            model.addRow(new Object[]{
+                x.getId(), x.getTenSp(), x.getNsx(), x.getDongSp(), x.getNamSx(), x.getNamBh(), x.getSoLuongTon(), x.getGiaBan(), x.getMoTa()
+            });
         }
-    } catch (Exception e) {
-        MsgBox.alert(this, "Lỗi truy vấn dữ liệu");
     }
-}
-void fillComBoxNSX(){
-    DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) cbxNhaSx.getModel();
-    comboBoxModel.removeAllElements();
-    List<Nsx > list = chiTietSpService.getAllNSX();
-    for (Nsx x : list) {
-        comboBoxModel.addElement(x.getTen());
-    }
-    
-}
 
-void fillComboBoxDongSP(){
-    DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) cbxDongSP.getModel();
-    comboBoxModel.removeAllElements();
-    List<DongSp> list = chiTietSpService.getAllDongSp();
-    for (DongSp x : list) {
-        comboBoxModel.addElement(x.getTen());
+    void load() {
+        DefaultTableModel model = (DefaultTableModel) tbSanPham.getModel();
+        model.setRowCount(0);
+        try {
+            String key = txtTimKiem.getText().trim();
+            System.out.println(key);
+            List<ChiTietSp> list = chiTietSpService.getByten(key);
+            for (ChiTietSp x : list) {
+                model.addRow(new Object[]{
+                    x.getId(), x.getTenSp(), x.getNsx(), x.getDongSp(), x.getNamSx(), x.getNamBh(), x.getSoLuongTon(), x.getGiaBan(), x.getMoTa()
+                });
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu");
+        }
     }
-}
 
-ChiTietSp getModel(){
-    String id = txt_id.getText();
-    String ten = txtTenSp.getText();
-    String nsx = (String) cbxNhaSx.getSelectedItem();
-    String dongSp = (String) cbxDongSP.getSelectedItem();
-    String namSX = txtnamSX.getText();
-    String namBh = txtnamBh.getText();
-    String SLTon = txtsoLuong.getText();
-    String giaBan = txtgiaBan.getText();
-    String moTa = txtmoTa.getText();
-    boolean check = true;
-    if (id.isEmpty()||ten.isEmpty()||namSX.isEmpty()||namBh.isEmpty()||SLTon.isEmpty()||giaBan.isEmpty()||moTa.isEmpty()) {
-        MsgBox.alert(this, "Vui Lòng nhập đủ thông tin");
+    void fillComBoxNSX() {
+        DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) cbxNhaSx.getModel();
+        comboBoxModel.removeAllElements();
+        List<Nsx> list = chiTietSpService.getAllNSX();
+        for (Nsx x : list) {
+            comboBoxModel.addElement(x);
+        }
+
+    }
+
+    void fillComboBoxDongSP() {
+        DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) cbxDongSP.getModel();
+        comboBoxModel.removeAllElements();
+        List<DongSp> list = chiTietSpService.getAllDongSp();
+        for (DongSp x : list) {
+            comboBoxModel.addElement(x);
+        }
+    }
+
+    ChiTietSp getModel() {
+        String id = txt_id.getText();
+        String ten = txtTenSp.getText();
+        Nsx nsx = (Nsx) cbxNhaSx.getSelectedItem();
+        DongSp dongSp = (DongSp) cbxDongSP.getSelectedItem();
+        int namSX = Integer.valueOf(txtnamSX.getText());
+        int namBh = Integer.valueOf(txtnamBh.getText());
+        int SLTon = Integer.valueOf(txtsoLuong.getText());
+        double giaBan = Double.valueOf(txtgiaBan.getText());
+        String moTa = txtmoTa.getText();
+        boolean check = true;
+
+        if (check) {
+            return new ChiTietSp(id, dongSp, nsx, ten, namSX, namBh, moTa, SLTon, BigDecimal.valueOf(giaBan));
+        }
         return null;
-        
     }
-    if (check) {
-       return new ChiTietSp();
+
+    void setModel() {
+        txt_id.setText("");
+        txtTenSp.setText("");
+        cbxNhaSx.setSelectedIndex(0);
+        cbxDongSP.setSelectedIndex(0);
+        txtnamSX.setText("");
+        txtnamBh.setText("");
+        txtsoLuong.setText("");
+        txtgiaBan.setText("");
+        txtmoTa.setText("");
     }
-      return null;
-}
-void setModel(){
-    txt_id.setText("");
-    txtTenSp.setText("");
-    cbxNhaSx.setSelectedIndex(0);
-    cbxDongSP.setSelectedIndex(0);
-    txtnamSX.setText("");
-    txtnamBh.setText("");
-    txtsoLuong.setText("");
-    txtgiaBan.setText("");
-    txtmoTa.setText("");
-}
-void insert(){
-    ChiTietSp chiTietSp = getModel();
-    if (chiTietSp != null) {
-        chiTietSpService.add(chiTietSp);
-        fillTable();
-        setModel();
-        MsgBox.alert(this, "Thêm Thành Công");
-    }else{
-        MsgBox.alert(this, "Thêm Thât Bại");
-    }
-}
-void update(){
-    ChiTietSp chiTietSp = getModel();
-    if (chiTietSp != null) {
-        chiTietSpService.update("id", chiTietSp);
-        fillTable();
-        setModel();
-        MsgBox.alert(this, "Sửa thành công");
-    }else{
-        MsgBox.alert(this, "Sửa thất bại");
-    }
-}
-void delete(){
-    String id = txt_id.getText();
-    try {
-        chiTietSpService.delete(id);
-        setModel();
-        MsgBox.alert(this, "Xóa Thành công");
-    } catch (Exception e) {
-        MsgBox.alert(this, "Xóa thất bại");
-    }
-}
-void filltoForm(){
-    try {
-        String id = (String) tbSanPham.getValueAt(index, 0);
-        ChiTietSp chiTietSp = (ChiTietSp) chiTietSpService.getByten(id);
+
+    void insert() {
+        ChiTietSp chiTietSp = getModel();
         if (chiTietSp != null) {
+            chiTietSpService.add(chiTietSp);
+            fillTable();
             setModel();
-            cbxDongSP.setSelectedItem(chiTietSp.getDongSp().getTen());
-            cbxNhaSx.setSelectedItem(chiTietSp.getNsx().getTen());
+            MsgBox.alert(this, "Thêm Thành Công");
+        } else {
+            MsgBox.alert(this, "Thêm Thât Bại");
         }
-    } catch (Exception e) {
-        MsgBox.alert(this, "Lỗi Truy Vấn");
     }
-}
+
+    void update() {
+        ChiTietSp chiTietSp = getModel();
+        if (chiTietSp != null) {
+            chiTietSpService.update("id", chiTietSp);
+            fillTable();
+            setModel();
+            MsgBox.alert(this, "Sửa thành công");
+        } else {
+            MsgBox.alert(this, "Sửa thất bại");
+        }
+    }
+
+    void delete() {
+        String id = txt_id.getText();
+        try {
+            chiTietSpService.delete(id);
+            setModel();
+            MsgBox.alert(this, "Xóa Thành công");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Xóa thất bại");
+        }
+    }
+
+    void filltoForm() {
+        try {
+            String id = (String) tbSanPham.getValueAt(index, 0);
+            ChiTietSp chiTietSp = (ChiTietSp) chiTietSpService.getByten(id);
+            if (chiTietSp != null) {
+                setModel();
+                cbxDongSP.setSelectedItem(chiTietSp.getDongSp().getTen());
+                cbxNhaSx.setSelectedItem(chiTietSp.getNsx().getTen());
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi Truy Vấn");
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
