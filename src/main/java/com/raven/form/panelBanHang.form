@@ -33,7 +33,7 @@
                   <Component id="roundPanel1" pref="1052" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="roundPanel3" pref="510" max="32767" attributes="0"/>
+              <Component id="roundPanel3" pref="492" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -141,11 +141,16 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tbl_ChiTietHD">
               <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="0">
                     <Column editable="true" title="STT" type="java.lang.Object"/>
-                    <Column editable="true" title="M&#xe3; SP" type="java.lang.Object"/>
-                    <Column editable="true" title="T&#xea;n SP" type="java.lang.Object"/>
+                    <Column editable="false" title="M&#xe3; SP" type="java.lang.Object"/>
+                    <Column editable="false" title="T&#xea;n SP" type="java.lang.Object"/>
                     <Column editable="true" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Integer"/>
                     <Column editable="true" title="&#x110;&#x1a1;n Gi&#xe1;" type="java.lang.Double"/>
                     <Column editable="true" title="Th&#xe0;nh Ti&#x1ec1;n" type="java.lang.Double"/>
@@ -278,14 +283,19 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tbl_chiTietSP">
               <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="8" rowCount="0">
-                    <Column editable="true" title="STT" type="java.lang.Object"/>
-                    <Column editable="true" title="M&#xe3; SP" type="java.lang.Object"/>
+                    <Column editable="false" title="STT" type="java.lang.Object"/>
+                    <Column editable="false" title="M&#xe3; SP" type="java.lang.Object"/>
                     <Column editable="true" title="T&#xea;n SP" type="java.lang.Object"/>
-                    <Column editable="true" title="N&#x103;m S&#x1ea3;n Xu&#x1ea5;t" type="java.lang.Object"/>
-                    <Column editable="true" title="M&#xf4; T&#x1ea3;" type="java.lang.Object"/>
-                    <Column editable="true" title="N&#x103;m BH" type="java.lang.Object"/>
+                    <Column editable="false" title="N&#x103;m S&#x1ea3;n Xu&#x1ea5;t" type="java.lang.Object"/>
+                    <Column editable="false" title="M&#xf4; T&#x1ea3;" type="java.lang.Object"/>
+                    <Column editable="false" title="N&#x103;m BH" type="java.lang.Object"/>
                     <Column editable="true" title="SL SP" type="java.lang.Integer"/>
                     <Column editable="true" title="Gi&#xe1; B&#xe1;n" type="java.lang.Double"/>
                   </Table>
@@ -334,6 +344,7 @@
                     </Column>
                   </TableColumnModel>
                 </Property>
+                <Property name="rowHeight" type="int" value="32"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
@@ -419,10 +430,6 @@
               </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -454,7 +461,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="cbo_kh" min="-2" pref="211" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButton2" pref="56" max="32767" attributes="0"/>
+                                  <Component id="jButton2" pref="38" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -492,8 +499,12 @@
                           <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lbl_tongtien" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
@@ -524,10 +535,12 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbo_kh" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jButton2" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbo_kh" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -620,6 +633,11 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tbl_hdc">
               <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="1" rowCount="0">
                     <Column editable="true" title="H&#xf3;a &#x110;&#x1a1;n Ch&#x1edd;" type="java.lang.Object"/>
@@ -641,7 +659,9 @@
                 </Property>
               </Properties>
               <Events>
+                <EventHandler event="mouseWheelMoved" listener="java.awt.event.MouseWheelListener" parameters="java.awt.event.MouseWheelEvent" handler="tbl_hdcMouseWheelMoved"/>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_hdcMouseClicked"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbl_hdcKeyTyped"/>
               </Events>
             </Component>
           </SubComponents>
@@ -709,7 +729,6 @@
                 <EmptyBorder/>
               </Border>
             </Property>
-            <Property name="label" type="java.lang.String" value=""/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>

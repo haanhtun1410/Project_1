@@ -74,6 +74,7 @@ public class panelHoaDon extends javax.swing.JPanel {
         jLabel6.setText("HÓA ĐƠN");
         jLabel6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
 
+        tbl_hoaDon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tbl_hoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -90,6 +91,8 @@ public class panelHoaDon extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tbl_hoaDon.setDragEnabled(true);
+        tbl_hoaDon.setRowHeight(30);
         tbl_hoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_hoaDonMouseClicked(evt);
@@ -108,9 +111,16 @@ public class panelHoaDon extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tbl_ChiTietHD.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -152,7 +162,7 @@ public class panelHoaDon extends javax.swing.JPanel {
                     .addComponent(jScrollPane1)
                     .addGroup(roundPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -168,7 +178,7 @@ public class panelHoaDon extends javax.swing.JPanel {
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -184,16 +194,19 @@ public class panelHoaDon extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_ChiTietHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ChiTietHDMouseClicked
+
         fillImei();
 
     }//GEN-LAST:event_tbl_ChiTietHDMouseClicked
 
     private void tbl_hoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_hoaDonMouseClicked
-        HoaDon hd = listHD.get(getSelectedHDRow());
-        fillHDCT(hd);
         if (getSelectedHDRow() < 0) {
             return;
         }
+        clear();
+        HoaDon hd = listHD.get(getSelectedHDRow());
+        fillHDCT(hd);
+
 
     }//GEN-LAST:event_tbl_hoaDonMouseClicked
 
@@ -215,9 +228,17 @@ public class panelHoaDon extends javax.swing.JPanel {
         listHD = sv.getAllHD();
         int i = 1;
         for (HoaDon x : listHD) {
+            String tinhTrang ="";
+            if( x.getTinhTrang() == 0){
+                tinhTrang = "Chưa fill";
+            }else if( x.getTinhTrang()== 1){
+                tinhTrang = "Đã thanh toán";
+            }else{
+                tinhTrang = "Chờ thanh toán";
+            }
             Object[] data = new Object[]{
                 x.getId(), x.getKhachHang(), x.getUser(),
-                x.getNgayTao(), x.getNgayThanhToan(), x.getVoucherHd(), x.getTongTien(), x.getTenNguoiNhan(), x.getDiaChi(), x.getTinhTrang()
+                x.getNgayTao(), x.getNgayThanhToan(), x.getVoucherHd(), x.getTongTien(), x.getTenNguoiNhan(), x.getDiaChi(),tinhTrang
             };
             dtm.addRow(data);
         }
@@ -240,7 +261,7 @@ public class panelHoaDon extends javax.swing.JPanel {
     }
 
     private void fillImei() {
-        
+
         listCthds = sv.getHDCTofHD(getHD());
         Cthd cthd = listCthds.get(tbl_ChiTietHD.getSelectedRow());
         System.out.println(cthd.getId());
@@ -253,5 +274,10 @@ public class panelHoaDon extends javax.swing.JPanel {
 
     private HoaDon getHD() {
         return listHD.get(getSelectedHDRow());
+    }
+
+    private void clear() {
+        DefaultTableModel dtm = (DefaultTableModel) tbl_imei.getModel();
+        dtm.setRowCount(0);
     }
 }
