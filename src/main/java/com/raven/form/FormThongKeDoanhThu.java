@@ -1,19 +1,31 @@
 package com.raven.form;
 
 import com.raven.chart.ModelChart;
+import com.raven.main.Main;
+import domainmodels.ThongKeNSX;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import services.DoanhThuService;
+import services.ThongKeNSXSe;
 import services.impl.DoanhThuSerImpl;
+import services.impl.ThongKeNSXSeImpl;
 
 public class FormThongKeDoanhThu extends javax.swing.JPanel {
 
     private DoanhThuService dtSe = new DoanhThuSerImpl();
+    private ThongKeNSXSe nsxSe = new ThongKeNSXSeImpl();
+    private List<ThongKeNSX> list = new ArrayList<>();
     
     public FormThongKeDoanhThu() {
         initComponents();
         setOpaque(false);
-//        int nam = 2022;
-//        init(nam);
+        list = nsxSe.getAll();
+        int nam = 2022;
+        //initNSX();
+        //init(nam);
+        
     }
     
     
@@ -51,6 +63,16 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
         lineChart.addData(new ModelChart("December", new double[]{dtSe.SLLaptopBan(12, nam)}));
         lineChart.start();
     }
+    private void initNSX(){
+        String name = "Thống kê số lượng Laptop của Nhà Sản Xuất đã bán";
+        chart4.addLegend(name,  new Color(255,182,193), new Color(255,182,193));
+        for (ThongKeNSX x : list) {
+            String sl = String.valueOf(x.getSoLuong());
+            Double a =Double.parseDouble(sl);
+            chart4.addData(new ModelChart(x.getTenNSX(), new double[]{a}));
+        }
+        chart4.start();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -65,8 +87,10 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
         btnXemDoanhThu = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         roundPanel2 = new com.raven.swing.RoundPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         chart = new com.raven.chart.Chart();
-        jLabel5 = new javax.swing.JLabel();
+        chart4 = new com.raven.chart.Chart();
+        jPanel1 = new javax.swing.JPanel();
         roundPanel3 = new com.raven.swing.RoundPanel();
         lineChart = new com.raven.chart.LineChart();
 
@@ -120,9 +144,31 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
 
         roundPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel5.setBackground(new java.awt.Color(193, 174, 66));
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Triệu đồng ");
+        jTabbedPane1.setBackground(new java.awt.Color(51, 51, 51));
+        jTabbedPane1.setForeground(new java.awt.Color(102, 102, 102));
+        jTabbedPane1.setAlignmentX(0.0F);
+        jTabbedPane1.setAlignmentY(0.0F);
+        jTabbedPane1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
+        jTabbedPane1.addTab("Thống kê doanh thu", chart);
+        jTabbedPane1.addTab("Thống kê NSX", chart4);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1147, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Thống kê top Laptop bán chạy", jPanel1);
 
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
@@ -130,21 +176,15 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         roundPanel2Layout.setVerticalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel5)
-                .addGap(23, 23, 23))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         roundPanel3.setBackground(new java.awt.Color(51, 51, 51));
@@ -188,22 +228,37 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnXemDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemDoanhThuActionPerformed
+       
         chart.clear();
         lineChart.clear();
-        int nam = Integer.parseInt(txtNam.getText());
+        String nam = txtNam.getText();
+        if (nam.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập năm");
+        }else if(!nam.matches("^\\d+$")){
+            JOptionPane.showMessageDialog(this, "Nhập đúng định dạng số");
+        }else{
+            int nam2 = Integer.parseInt(nam);
+            init(nam2);
+        }
         
-        init(nam);
     }//GEN-LAST:event_btnXemDoanhThuActionPerformed
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        chart4.clear();
+        initNSX();
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnXemDoanhThu;
     private com.raven.chart.Chart chart;
+    private com.raven.chart.Chart chart4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private com.raven.chart.LineChart lineChart;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel2;

@@ -176,6 +176,9 @@ public class Chart extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        blankPlotChart.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+
+        panelLegend.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         panelLegend.setOpaque(false);
         panelLegend.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
