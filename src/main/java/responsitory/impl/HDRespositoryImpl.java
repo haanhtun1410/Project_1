@@ -77,7 +77,6 @@ public class HDRespositoryImpl implements HDRespository {
             createQuery.setParameter("ntt", hoaDon.getNgayThanhToan());
             createQuery.setParameter("TinhTrang", hoaDon.getTinhTrang());
             createQuery.setParameter("DiaChi", hoaDon.getDiaChi());
-
             createQuery.setParameter("tongTien", hoaDon.getTongTien());
             createQuery.executeUpdate();
             transaction.commit();

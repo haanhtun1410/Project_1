@@ -177,6 +177,10 @@ public class User implements java.io.Serializable {
         this.hoaDons = hoaDons;
     }
 
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
+    }
+
     @Override
     public String toString() {
         return ten;

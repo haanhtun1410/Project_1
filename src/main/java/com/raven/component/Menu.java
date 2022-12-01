@@ -62,9 +62,11 @@ public class Menu extends javax.swing.JPanel {
     }
 
     public void setAvartar(User user) {
-        String url = "C:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\src\\Image\\Images NhanVien\\";
+
+        String url = "/Image/Images NhanVien/";
         url += user.getAnh();
-        ImageIcon imageIcon = new ImageIcon(url);
+        System.out.println(url);
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource(url));
         imageAvatar1.setIcon(imageIcon);
         txtCV.setText(user.getChucVu().getTen());
         txtNV.setText(user.getTen());
