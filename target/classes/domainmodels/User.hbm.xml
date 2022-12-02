@@ -35,6 +35,9 @@
         <property name="anh" type="string">
             <column name="Anh" />
         </property>
+        <property name="gmail" type="string">
+            <column name="Gmail" />
+        </property>
         
         <set name="hoaDons" table="HoaDon" inverse="true" lazy="true" fetch="select">
             <key>
