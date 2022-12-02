@@ -6,6 +6,7 @@
 package services.impl;
 
 import domainmodels.KhachHang;
+import java.math.BigDecimal;
 import java.util.List;
 import responsitory.KhachHangResponsitory;
 import responsitory.impl.KhachHangResponsitoryImpl;
@@ -49,5 +50,20 @@ public class KhachHangServiceImpl implements KhachHangService{
     public Boolean update(KhachHang kh) {
         
         return  khachHangResponsitory.update(kh);
+    }
+
+    @Override
+    public KhachHang getBySDT(String id) {
+        return khachHangResponsitory.getBySDT(id);
+    }
+
+    @Override
+    public List<KhachHang> getByLoaiKH(String ten) {
+        return khachHangResponsitory.getByLoaiKH(ten);
+    }
+
+    @Override
+    public BigDecimal getTien(String id) {
+        return  khachHangResponsitory.getTien(id);
     }
 }

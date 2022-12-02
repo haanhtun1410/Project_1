@@ -48,6 +48,8 @@ public class User implements java.io.Serializable {
     private int trangThai;
     @Column(name = "Anh")
     private String anh;
+    @Column(name = "Gmail")
+    private String gmail;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<HoaDon> hoaDons = new HashSet<HoaDon>(0);
 
@@ -71,6 +73,21 @@ public class User implements java.io.Serializable {
         this.anh = anh;
     }
 
+    public User(String id, ChucVu chucVu, String ten, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, int trangThai, String anh, String gmail) {
+        this.id = id;
+        this.chucVu = chucVu;
+        this.ten = ten;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.matKhau = matKhau;
+        this.trangThai = trangThai;
+        this.anh = anh;
+        this.gmail = gmail;
+    }
+    
+
     public User(String id, ChucVu chucVu, String ten, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, int trangThai) {
         this.id = id;
         this.chucVu = chucVu;
@@ -85,6 +102,14 @@ public class User implements java.io.Serializable {
 
     public String getId() {
         return this.id;
+    }
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
     }
 
     public void setId(String id) {
@@ -170,6 +195,7 @@ public class User implements java.io.Serializable {
     public void setHoaDons(Set<HoaDon> hoaDons) {
         this.hoaDons = hoaDons;
     }
+
 
     @Override
     public String toString() {

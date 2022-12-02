@@ -62,9 +62,11 @@ public class Menu extends javax.swing.JPanel {
     }
 
     public void setAvartar(User user) {
-        String url = "C:\\Users\\longv\\Documents\\NetBeansProjects\\PolyTechLab\\src\\Image\\Images NhanVien\\";
+
+        String url = "/Image/Images NhanVien/";
         url += user.getAnh();
-        ImageIcon imageIcon = new ImageIcon(url);
+        System.out.println(url);
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource(url));
         imageAvatar1.setIcon(imageIcon);
         txtCV.setText(user.getChucVu().getTen());
         txtNV.setText(user.getTen());
@@ -195,4 +197,8 @@ public class Menu extends javax.swing.JPanel {
     private javax.swing.JLabel txtCV;
     private javax.swing.JLabel txtNV;
     // End of variables declaration//GEN-END:variables
+
+    public void setAvartar(String cUserslongvDocumentsNetBeansProjectsPolyT) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

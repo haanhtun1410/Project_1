@@ -18,10 +18,11 @@ import untilities.HibernateUtil;
  * @author huyki
  */
 public class LoaiKHResponsitoryImpl implements LoaiKHResponsitory{
-    private Session session = HibernateUtil.getSessionFactory().openSession();
-    
+         
     @Override
     public List<LoaiKh> getAll(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
         Criteria criteria = session.createCriteria(LoaiKh.class);
         return criteria.list();
         
@@ -29,12 +30,16 @@ public class LoaiKHResponsitoryImpl implements LoaiKHResponsitory{
     
     @Override
     public LoaiKh getById(String id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
         LoaiKh loaiKh = (LoaiKh) session.get(LoaiKh.class, id);
         return loaiKh;
     }
 
     @Override
     public LoaiKh getByTen(String id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
         LoaiKh loaiKh = null;
         try {
             session.beginTransaction();

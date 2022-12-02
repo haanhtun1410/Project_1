@@ -184,7 +184,14 @@ public class login extends javax.swing.JFrame {
         String mk = txt_password.getText();
         String id = txt_usename.getText();
         user = loginServices.loginCheck(id, mk);
-        if (loginServices.loginCheck(id, mk) != null) {
+        
+        if (loginServices.loginCheck(id, mk) == null) {
+            JOptionPane.showMessageDialog(this, "Sai TK hoac MK");
+            
+            
+        }else if(user.getTrangThai() == 1){
+                JOptionPane.showMessageDialog(this, "Nhân viên đã nghỉ việc không có quyền truy cập");
+        }else {
             roundPanel3.show();
             roundPanel2.hide();
             new java.util.Timer().schedule(new TimerTask() {
@@ -194,8 +201,6 @@ public class login extends javax.swing.JFrame {
                     dispose();
                 }
             }, 1000 * 2);
-        } else {
-            JOptionPane.showMessageDialog(this, "Sai TK hoac MK");
         }
     }//GEN-LAST:event_btn_loginActionPerformed
 

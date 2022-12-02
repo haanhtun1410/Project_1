@@ -20,4 +20,8 @@ public interface NhanVienServices {
     Boolean update(User kh);
     Boolean delete(String id);
     List<User> getByTen(String ten);
+    User getBySDT(String id);
+    List<User> getByGioiTinh(String id);
+    
+    List<User> getByChucVu(String id);
 }
