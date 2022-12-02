@@ -6,6 +6,7 @@
 package responsitory;
 
 import domainmodels.KhachHang;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -20,4 +21,9 @@ public interface KhachHangResponsitory {
     Boolean update(KhachHang kh);
     Boolean delete(String id);
     List<KhachHang> getByTen(String ten);
+    KhachHang getBySDT(String id);
+    List<KhachHang> getByLoaiKH(String ten);
+    
+    BigDecimal getTien(String id);
+    
 }
