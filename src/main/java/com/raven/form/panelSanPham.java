@@ -521,12 +521,7 @@ void filltoForm(){
     }//GEN-LAST:event_txtTenSpActionPerformed
 
     private void lblHinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhMouseClicked
-        try {
-            // TODO add your handling code here:
-            selectImage();
-        } catch (IOException ex) {
-            Logger.getLogger(panelNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
     }//GEN-LAST:event_lblHinhMouseClicked
 
 
