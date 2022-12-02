@@ -482,6 +482,10 @@ public class panelBanHang extends javax.swing.JPanel {
         txt_diachi.setText("tại cửa hàng");
         jScrollPane5.setViewportView(txt_diachi);
 
+        txt_phiShip.setAlignmentX(0.0F);
+        txt_phiShip.setAlignmentY(0.0F);
+        txt_phiShip.setBorder(null);
+        txt_phiShip.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txt_phiShip.setEnabled(false);
         txt_phiShip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -680,7 +684,7 @@ public class panelBanHang extends javax.swing.JPanel {
                         .addGap(17, 17, 17)
                         .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(txt_phiShip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_phiShip, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
