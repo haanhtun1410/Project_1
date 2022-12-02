@@ -152,6 +152,10 @@ public class User implements java.io.Serializable {
         return this.diaChi;
     }
 
+    public String getGmail() {
+        return gmail;
+    }
+
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
@@ -194,6 +198,10 @@ public class User implements java.io.Serializable {
 
     public void setHoaDons(Set<HoaDon> hoaDons) {
         this.hoaDons = hoaDons;
+    }
+
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
     }
 
     @Override
