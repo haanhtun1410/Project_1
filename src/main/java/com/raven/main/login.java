@@ -189,7 +189,7 @@ public class login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Sai TK hoac MK");
             
             
-        }else if(user.getTrangThai() == 1){
+        }else if(user.getTrangThai() == 0){
                 JOptionPane.showMessageDialog(this, "Nhân viên đã nghỉ việc không có quyền truy cập");
         }else {
             roundPanel3.show();
