@@ -47,4 +47,19 @@ public class NhanVienServicesImpl implements NhanVienServices{
     public List<User> getByTen(String ten) {
         return userResponsitory.getByTen(ten);
     }
+
+    @Override
+    public User getBySDT(String id) {
+        return userResponsitory.getBySDT(id);
+    }
+
+    @Override
+    public List<User> getByGioiTinh(String id) {
+        return userResponsitory.getByGioiTinh(id);
+    }
+
+    @Override
+    public List<User> getByChucVu(String id) {
+        return userResponsitory.getByChucVu(id);
+    }
 }

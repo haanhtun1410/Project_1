@@ -21,7 +21,6 @@ public class LoaiKHServiceImpl implements LoaiKHService{
     public List<LoaiKh> getAll() {
         return loaiKHResponsitory.getAll();
     }
-
     @Override
     public LoaiKh getById(String id) {
         return loaiKHResponsitory.getById(id);

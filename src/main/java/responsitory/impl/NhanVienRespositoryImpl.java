@@ -119,10 +119,11 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
 
         return result == null ? null : result;
     }
-    private Session session = HibernateUtil.getSessionFactory().openSession();
+   
 
     @Override
     public List<User> getAll1() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         List<User> list = null;
         try {
             Criteria criteria = session.createCriteria(User.class);
@@ -142,6 +143,7 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
 
     @Override
     public User getById(String id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try {
 
             String hql = "from User where id = :id";
@@ -159,6 +161,7 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
 
     @Override
     public Boolean add(User kh) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         if (kh != null) {
             System.out.println("Da co du lieu");
         } else {
@@ -180,6 +183,7 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
 
     @Override
     public Boolean update(User kh) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             session.getTransaction().begin();
 
@@ -197,6 +201,7 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
 
     @Override
     public Boolean delete(String id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             session.getTransaction().begin();
             User us = (User) session.get(User.class, id);
@@ -214,6 +219,7 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
 
     @Override
     public List<User> getByTen(String ten) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         List<User> list = null;
         try {
             session.getTransaction().begin();
@@ -229,4 +235,68 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
         }
         return list;
     }
+    
+    @Override
+    public  User getBySDT(String sdt){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        User  us = null;
+        try {
+            session.getTransaction().begin();
+            String hql = "from User p where p.sdt = :sdt1";
+            Query query = session.createQuery(hql);
+            query.setParameter("sdt1",sdt);
+            us = (User) query.uniqueResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            session.getTransaction().rollback();
+            return null;
+        }
+        return us;
+    }
+    
+    @Override
+    public List<User> getByGioiTinh(String id) {
+        try {
+            SessionFactory sf = HibernateUtil.getSessionFactory();
+            Session ss = sf.openSession();
+            //p.ten là ten trong model
+            String hql = "from User WHERE GioiTinh = :id";
+            Query query = ss.createQuery(hql);
+            query.setParameter("id",id);
+            List<User> list = query.list();
+            return list;
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return null;
+
+        }
+    }
+    
+    @Override
+    public List<User> getByChucVu(String id) {
+        try {
+            SessionFactory sf = HibernateUtil.getSessionFactory();
+            Session ss = sf.openSession();
+            //p.ten là ten trong model
+            String hql = "from User WHERE IdCV = :id";
+            Query query = ss.createQuery(hql);
+            query.setParameter("id",id);
+            List<User> list = query.list();
+            return list;
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return null;
+
+        }
+    }
+//    public static void main(String[] args) {
+//        List<User> list = new NhanVienRespositoryImpl().getByChucVu("CV01");
+//        for(User x : list){
+//            System.out.println(x.toString());
+//        }
+//    }
+    
 }

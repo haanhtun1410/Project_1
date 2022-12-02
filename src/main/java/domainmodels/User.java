@@ -73,6 +73,21 @@ public class User implements java.io.Serializable {
         this.anh = anh;
     }
 
+    public User(String id, ChucVu chucVu, String ten, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, int trangThai, String anh, String gmail) {
+        this.id = id;
+        this.chucVu = chucVu;
+        this.ten = ten;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.matKhau = matKhau;
+        this.trangThai = trangThai;
+        this.anh = anh;
+        this.gmail = gmail;
+    }
+    
+
     public User(String id, ChucVu chucVu, String ten, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, int trangThai) {
         this.id = id;
         this.chucVu = chucVu;
