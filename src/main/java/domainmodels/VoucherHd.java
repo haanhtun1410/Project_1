@@ -33,6 +33,7 @@ public class VoucherHd  implements java.io.Serializable {
      private int phanTramGiam;
      private Date ngayApDung;
      private Date ngayKetThuc;
+     private int trangThai;
      private Set<HoaDon> hoaDons = new HashSet<HoaDon>(0);
 
     public VoucherHd() {
@@ -41,6 +42,14 @@ public class VoucherHd  implements java.io.Serializable {
 	
     public VoucherHd(String id) {
         this.id = id;
+    }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
     }
 
     public VoucherHd(String id, String moTa, BigDecimal tienGiam, int phanTramGiam, Date ngayApDung, Date ngayKetThuc) {

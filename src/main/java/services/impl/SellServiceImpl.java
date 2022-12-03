@@ -5,11 +5,12 @@
  */
 package services.impl;
 
-
 import domainmodels.ChiTietSp;
 import domainmodels.Cthd;
+import domainmodels.DongSp;
 import domainmodels.HoaDon;
 import domainmodels.KhachHang;
+import domainmodels.Nsx;
 import domainmodels.User;
 import java.util.List;
 import responsitory.ChiTietSPRespository;
@@ -25,7 +26,7 @@ public class SellServiceImpl implements services.SellService {
     private HDCTRespository chiTietHDRespository;
     private HDRespository hDRespository;
     private NhanVienRespository nhanVienRespository;
-    private KhachHangResponsitory khachHangResponsitory; 
+    private KhachHangResponsitory khachHangResponsitory;
     private SerialsResponsitory serialsResponsitory;
 
     public SellServiceImpl(ChiTietSPRespository chiTietSPRespository, HDCTRespository chiTietHDRespository, HDRespository hDRespository, NhanVienRespository nhanVienRespository) {
@@ -43,7 +44,6 @@ public class SellServiceImpl implements services.SellService {
         this.khachHangResponsitory = khachHangResponsitory;
         this.serialsResponsitory = serialsResponsitory;
     }
-    
 
     public SellServiceImpl(ChiTietSPRespository chiTietSPRespository, HDCTRespository chiTietHDRespository, HDRespository hDRespository, NhanVienRespository nhanVienRespository, KhachHangResponsitory khachHangResponsitory) {
         this.chiTietSPRespository = chiTietSPRespository;
@@ -100,7 +100,7 @@ public class SellServiceImpl implements services.SellService {
 
     @Override
     public boolean addHDCT(Cthd hdct) {
-       return chiTietHDRespository.add(hdct);
+        return chiTietHDRespository.add(hdct);
     }
 
     @Override
@@ -115,12 +115,12 @@ public class SellServiceImpl implements services.SellService {
 
     @Override
     public boolean updateSerials(Cthd cthd) {
-     return serialsResponsitory.updateSerials(cthd);
+        return serialsResponsitory.updateSerials(cthd);
     }
 
     @Override
     public boolean updateSLSP(String IdCTSP) {
-       return chiTietSPRespository.updateSLSP(IdCTSP);
+        return chiTietSPRespository.updateSLSP(IdCTSP);
     }
 
     @Override
@@ -130,8 +130,32 @@ public class SellServiceImpl implements services.SellService {
 
     @Override
     public boolean updateHDSave(HoaDon hoaDon) {
-       return hDRespository.updateHDSave(hoaDon);
+        return hDRespository.updateHDSave(hoaDon);
     }
 
- 
+    @Override
+    public boolean updateHDShip(HoaDon hoaDon) {
+        return hDRespository.updateHDShip(hoaDon);
+    }
+
+    @Override
+    public boolean updateHDShipDone(HoaDon hoaDon) {
+        return hDRespository.updateHDShipDone(hoaDon);
+    }
+
+    @Override
+    public List<ChiTietSp> getSPBy() {
+        return null;
+    }
+
+    @Override
+    public List<Nsx> getAllNSX() {
+       return chiTietSPRespository.getAllNSX();
+    }
+
+    @Override
+    public List<DongSp> getAllDSP() {
+      return chiTietSPRespository.getALLDongSP();
+    }
+
 }

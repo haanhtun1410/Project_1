@@ -74,7 +74,7 @@ public class login extends javax.swing.JFrame {
 
         btn_login.setBackground(new java.awt.Color(255, 255, 255));
         btn_login.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btn_login.setText("Login");
+        btn_login.setText("Đăng Nhập");
         btn_login.setAlignmentY(0.0F);
         btn_login.setBorder(null);
         btn_login.setBorderPainted(false);
@@ -117,7 +117,7 @@ public class login extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/nbook.png"))); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
-        roundPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 262, 246));
+        roundPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 262, 246));
 
         txt_password.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txt_password.setAlignmentY(0.0F);
@@ -128,7 +128,7 @@ public class login extends javax.swing.JFrame {
                 txt_passwordActionPerformed(evt);
             }
         });
-        roundPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 200, 30));
+        roundPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 200, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/logout.png"))); // NOI18N
         jButton1.setBorderPainted(false);
@@ -138,7 +138,7 @@ public class login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        roundPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(635, 13, -1, -1));
+        roundPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgsHuy/250x30.png"))); // NOI18N
         roundPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
@@ -181,7 +181,7 @@ public class login extends javax.swing.JFrame {
         roundPanel3Layout.setHorizontalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel3Layout.createSequentialGroup()
-                .addContainerGap(243, Short.MAX_VALUE)
+                .addContainerGap(314, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(257, 257, 257))
         );
@@ -190,7 +190,7 @@ public class login extends javax.swing.JFrame {
             .addGroup(roundPanel3Layout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         getContentPane().add(roundPanel3, "card2");

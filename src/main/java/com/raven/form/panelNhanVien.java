@@ -122,7 +122,7 @@ public class panelNhanVien extends javax.swing.JPanel {
         model2.setRowCount(0);
         try {
             for (User x : list) {
-                if (x.getTrangThai() == 0) {
+                if (x.getTrangThai() == 1) {
                     model.addRow(new Object[]{x.getId(), x.getTen(), x.getGioiTinh(), x.getNgaySinh(), x.getDiaChi(), x.getSdt(), x.getChucVu().getTen(), "Đang làm", x.getGmail()});
                 } else {
                     model2.addRow(new Object[]{x.getId(), x.getTen(), x.getGioiTinh(), x.getNgaySinh(), x.getDiaChi(), x.getSdt(), x.getChucVu().getTen(), "Đã nghỉ việc", x.getGmail()});
@@ -406,7 +406,7 @@ public class panelNhanVien extends javax.swing.JPanel {
             System.out.println(key);
             User x = userServices.getBySDT(key);
 
-            if (x.getTrangThai() == 0) {
+            if (x.getTrangThai() == 1) {
                 DefaultTableModel model = (DefaultTableModel) tblUser.getModel();
                 model.setRowCount(0);
                 model.addRow(new Object[]{x.getId(), x.getTen(), x.getGioiTinh(), x.getNgaySinh(), x.getDiaChi(), x.getSdt(), x.getChucVu().getTen(), "Đang làm", x.getGmail()});
@@ -427,7 +427,7 @@ public class panelNhanVien extends javax.swing.JPanel {
             System.out.println(key);
             User x = userServices.getBySDT(key);
 
-            if (x.getTrangThai() == 1) {
+            if (x.getTrangThai() == 0) {
                 DefaultTableModel model1 = (DefaultTableModel) tblUserNghiViec.getModel();
                 model1.setRowCount(0);
                 model1.addRow(new Object[]{x.getId(), x.getTen(), x.getGioiTinh(), x.getNgaySinh(), x.getDiaChi(), x.getSdt(), x.getChucVu().getTen(), "Đã nghỉ việc", x.getGmail()});

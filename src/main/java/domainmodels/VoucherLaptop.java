@@ -33,6 +33,7 @@ public class VoucherLaptop  implements java.io.Serializable {
      private int phanTramGiam;
      private Date ngayApDung;
      private Date ngayKetThuc;
+     private int trangThai;
      private Set<ChiTietSp> chiTietSps = new HashSet<ChiTietSp>(0);
 
     public VoucherLaptop() {
@@ -121,6 +122,14 @@ public class VoucherLaptop  implements java.io.Serializable {
     
     public void setChiTietSps(Set<ChiTietSp> chiTietSps) {
         this.chiTietSps = chiTietSps;
+    }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
     }
 
 

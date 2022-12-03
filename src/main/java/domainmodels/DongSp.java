@@ -73,7 +73,7 @@ public class DongSp  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return  ten ;
+        return ten ;
     }
 
 
