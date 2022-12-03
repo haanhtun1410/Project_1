@@ -3,6 +3,7 @@ package domainmodels;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +29,7 @@ public class VoucherLaptop  implements java.io.Serializable {
 
      private String id;
      private String moTa;
-     private double tienGiam;
+     private BigDecimal tienGiam;
      private int phanTramGiam;
      private Date ngayApDung;
      private Date ngayKetThuc;
@@ -41,7 +42,7 @@ public class VoucherLaptop  implements java.io.Serializable {
     public VoucherLaptop(String id) {
         this.id = id;
     }
-    public VoucherLaptop(String id, String moTa, double tienGiam, int phanTramGiam, Date ngayApDung, Date ngayKetThuc, Set<ChiTietSp> chiTietSps) {
+    public VoucherLaptop(String id, String moTa, BigDecimal tienGiam, int phanTramGiam, Date ngayApDung, Date ngayKetThuc, Set<ChiTietSp> chiTietSps) {
        this.id = id;
        this.moTa = moTa;
        this.tienGiam = tienGiam;
@@ -75,11 +76,11 @@ public class VoucherLaptop  implements java.io.Serializable {
 
     
     @Column(name="TienGiam", scale=4)
-    public double getTienGiam() {
+    public BigDecimal getTienGiam() {
         return this.tienGiam;
     }
     
-    public void setTienGiam(double tienGiam) {
+    public void setTienGiam(BigDecimal tienGiam) {
         this.tienGiam = tienGiam;
     }
 
