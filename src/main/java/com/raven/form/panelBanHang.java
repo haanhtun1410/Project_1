@@ -62,12 +62,13 @@ public class panelBanHang extends javax.swing.JPanel {
     static double thanhTien = 0;
     static long t = 0;
     List<HoaDon> listHDC = sv.getAllHDC();
-
+    List<Nsx> listNSX = sv.getAllNSX();
+    List<DongSp> listDSP = sv.getAllDSP();
     User user;
     private List<KhachHang> listKH = sv.getAllKH();
     List<ChiTietSp> listSP = sv.getAllSP();
-    static List<ChiTietSp> listSelectedSp = new ArrayList<>();
-    static List<ChiTietSp> listFind = new ArrayList<>();
+    static List<ChiTietSp> listSelectedSp = new ArrayList<>();;
+    List<ChiTietSp> listFind = new ArrayList<>();
     static HoaDon HDCnow;
 
     /**
@@ -79,9 +80,10 @@ public class panelBanHang extends javax.swing.JPanel {
         setOpaque(false);
         user = frame.User();
         panelBanHang.rollnumber = 1;
+        
         listSP.forEach(e -> sv.updateSLSP(e.getId()));
-
-        loadCBO();
+        loadNSX();
+        loadDSP();
         loadKH();
         fillSP(listSP = sv.getAllSP());
         fillHDC();
@@ -291,7 +293,7 @@ public class panelBanHang extends javax.swing.JPanel {
         jLabel19.setText("Tìm kiếm sản phẩm:");
         jLabel19.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
 
-        cbo_NSX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_NSX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả" }));
         cbo_NSX.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbo_NSXMouseClicked(evt);
@@ -318,7 +320,7 @@ public class panelBanHang extends javax.swing.JPanel {
         jLabel21.setText("Nhu Cầu");
         jLabel21.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
 
-        cbo_NhuCau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_NhuCau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả" }));
         cbo_NhuCau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbo_NhuCauActionPerformed(evt);
@@ -871,16 +873,17 @@ public class panelBanHang extends javax.swing.JPanel {
                     .addComponent(txt_trangthai1)
                     .addComponent(lbl_thieu))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_trangthai)
-                    .addComponent(txt_outputtrangthai, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_outputtrangthai, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_trangthai))
                 .addGap(34, 34, 34)
-                .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_thanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_excel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_giaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_GiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_GiaoHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_thanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_giaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(96, 96, 96))
         );
 
@@ -938,7 +941,7 @@ public class panelBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_chiTietSPMouseClicked
 
     private void cbo_NSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_NSXActionPerformed
-        productFind();
+            productFind();
     }//GEN-LAST:event_cbo_NSXActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1218,7 +1221,7 @@ public class panelBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_tbl_hdcMouseWheelMoved
 
     private void cbo_NhuCauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_NhuCauActionPerformed
-                 productFind();
+            productFind();
     }//GEN-LAST:event_cbo_NhuCauActionPerformed
 
     private void cbo_NhuCau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_NhuCau1ActionPerformed
@@ -1417,7 +1420,6 @@ public class panelBanHang extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "that bai");
         }
-
     }
 
     private String getTinhTrang(int tt) {
@@ -1439,42 +1441,12 @@ public class panelBanHang extends javax.swing.JPanel {
         return tinhTrang;
     }
 
-    private void loadCBO() {
-        cbo_NSX.removeAllItems();
-        cbo_NSX.addItem("Tất cả");
-        List<Nsx> listNSX = sv.getAllNSX();
-        listNSX.forEach(e -> cbo_NSX.addItem(e.getTen()));
-        cbo_NhuCau.removeAllItems();
-        cbo_NhuCau.addItem("Tất cả");
-        List<DongSp> listDSP = sv.getAllDSP();
-        listDSP.forEach(e -> cbo_NhuCau.addItem(e.getTen()));
 
-    }
-
-    private List<ChiTietSp> productSorter() {
-        listFind.clear();
-        String dongsp = (String) cbo_NhuCau.getModel().getSelectedItem();
-        String nsx = (String) cbo_NSX.getModel().getSelectedItem();
-        if (dongsp.isEmpty() && nsx.isEmpty()) {
-            return listSP;
-        } else {
-            for (ChiTietSp e : listSP) {
-                if (e.getNsx().getTen().equalsIgnoreCase(nsx)) {
-                    listFind.add(e);
-                }
-            }
-
-        }
-        return listFind;
-    }
 
     private void productFind() {
-
-        if (cbo_NSX.getItemCount() == 0) {
-            return;
-        }
         listSP = sv.getAllSP();
         listFind.clear();
+        System.out.println(listSP.size());
         String nsx = (String) cbo_NSX.getSelectedItem();
         String dongsp = (String) cbo_NhuCau.getSelectedItem();
         if (nsx.equalsIgnoreCase("Tất cả") && dongsp.equalsIgnoreCase("Tất cả")) {
@@ -1501,6 +1473,15 @@ public class panelBanHang extends javax.swing.JPanel {
         }
         listSP = listFind;
         fillSP(listFind);
+    }
+
+    private void loadNSX() {
+        listNSX.forEach(e -> cbo_NSX.addItem(e.getTen()));
+        
+    }
+
+    private void loadDSP() {
+        listDSP.forEach(e -> cbo_NhuCau.addItem(e.getTen())); 
     }
 
     class myRender implements TableCellRenderer {

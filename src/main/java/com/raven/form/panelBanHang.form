@@ -447,11 +447,8 @@
         <Component class="javax.swing.JComboBox" name="cbo_NSX">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="1">
+                <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -514,11 +511,8 @@
         <Component class="javax.swing.JComboBox" name="cbo_NhuCau">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="1">
+                <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -802,17 +796,19 @@
                       <Component id="lbl_thieu" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txt_trangthai" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txt_outputtrangthai" alignment="0" min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="txt_trangthai" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btn_thanhtoan" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
-                      <Component id="btn_save" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btn_excel" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                      <Component id="btn_giaoHang" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="btn_GiaoHang" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btn_thanhtoan" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                          <Component id="btn_save" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                          <Component id="btn_giaoHang" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
               </Group>
