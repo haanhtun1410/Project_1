@@ -311,6 +311,11 @@ void selectImage() throws Exception{
                 "ID", "Tên Sản Phẩm", "NSX", "Dòng SP", "Năm SX", "Năm BH", "Số Lượng Tồn", "Giá Bán", "Mô Tả", "Trạnh Thái"
             }
         ));
+        tbSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbSanPhamMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbSanPham);
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -516,9 +521,7 @@ void selectImage() throws Exception{
                                 .addGap(83, 83, 83))
                             .addGroup(roundPanel2Layout.createSequentialGroup()
                                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lblHinh, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblHinh, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(roundPanel2Layout.createSequentialGroup()
@@ -624,13 +627,14 @@ void selectImage() throws Exception{
                     .addComponent(btnLoc)
                     .addComponent(jLabel18))
                 .addGap(20, 20, 20)
-                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jLabel19))
+                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel15)
+                        .addComponent(jLabel16)
+                        .addComponent(jRadioButton1)
+                        .addComponent(jRadioButton2)
+                        .addComponent(jLabel19)))
                 .addGap(18, 18, 18)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel9)
@@ -703,6 +707,17 @@ void selectImage() throws Exception{
         // TODO add your handling code here:
         load();
     }//GEN-LAST:event_btntimKiemActionPerformed
+
+    private void tbSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSanPhamMouseClicked
+        // TODO add your handling code here:
+         if (evt.getClickCount() == 2) {
+            index = tbSanPham.rowAtPoint(evt.getPoint());
+            if (index >= 0) {
+                filltoForm();
+
+            }
+        }
+    }//GEN-LAST:event_tbSanPhamMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
