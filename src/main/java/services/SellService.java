@@ -7,8 +7,10 @@ package services;
 
 import domainmodels.ChiTietSp;
 import domainmodels.Cthd;
+import domainmodels.DongSp;
 import domainmodels.HoaDon;
 import domainmodels.KhachHang;
+import domainmodels.Nsx;
 import domainmodels.User;
 import java.util.List;
 
@@ -20,6 +22,8 @@ public interface SellService {
 
     List<ChiTietSp> getAllSP();
 
+    List<ChiTietSp> getSPBy(); 
+    
     List<HoaDon> getAllHDC();
 
     List<Cthd> getAllHDCT();
@@ -44,4 +48,11 @@ public interface SellService {
 
     boolean updateSLSP(String IdCTSP);
 
+    public boolean updateHDShip(HoaDon hoaDon);
+    
+    public boolean updateHDShipDone(HoaDon hoaDon);
+
+    public List<Nsx> getAllNSX();
+
+    public List<DongSp> getAllDSP();
 }

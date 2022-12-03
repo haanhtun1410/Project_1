@@ -25,5 +25,7 @@ public interface HDRespository {
 
     public boolean updateHDSave(HoaDon hoaDon);
     
+    public boolean updateHDShip(HoaDon hoaDon);
     
+    public boolean updateHDShipDone(HoaDon hoaDon);
 }

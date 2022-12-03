@@ -128,7 +128,7 @@ public class login extends javax.swing.JFrame {
                 txt_passwordActionPerformed(evt);
             }
         });
-        roundPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 200, 30));
+        roundPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 200, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/logout.png"))); // NOI18N
         jButton1.setBorderPainted(false);
