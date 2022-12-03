@@ -74,8 +74,14 @@ public final class panelKhachHang extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (KhachHang x : list) {
-            System.out.println(x.getLoaiKh().getTen());
-            model.addRow(new Object[]{x.getId(), x.getLoaiKh().getTen(), x.getTen(), x.getSdt(), x.getEmail(), x.getNgaySinh(), x.getDiaChi(), khachHangServices.getTien(x.getId())});
+            if (x.getTinhTrang() == 1) {
+                
+                if(x.getLoaiKh()==null){
+                    model.addRow(new Object[]{x.getId()," ", x.getTen(), x.getSdt(), x.getEmail(), x.getNgaySinh(), x.getDiaChi(), khachHangServices.getTien(x.getId())});
+                }else{
+                    model.addRow(new Object[]{x.getId(), x.getLoaiKh().getTen(), x.getTen(), x.getSdt(), x.getEmail(), x.getNgaySinh(), x.getDiaChi(), khachHangServices.getTien(x.getId())});
+                }
+            }
         }
     }
 
@@ -101,8 +107,10 @@ public final class panelKhachHang extends javax.swing.JPanel {
             KhachHang x = khachHangServices.getBySDT(key);
             // System.out.println("ok");
 
-            model.addRow(new Object[]{x.getId(), x.getLoaiKh().getTen(), x.getTen(), x.getSdt(), x.getEmail(), x.getNgaySinh(), x.getDiaChi(), khachHangServices.getTien(x.getId())});
+            if (x.getTinhTrang() == 1) {
+                model.addRow(new Object[]{x.getId(), x.getLoaiKh().getTen(), x.getTen(), x.getSdt(), x.getEmail(), x.getNgaySinh(), x.getDiaChi(), khachHangServices.getTien(x.getId())});
 
+            }
         } catch (Exception e) {
             MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
         }
@@ -180,7 +188,7 @@ public final class panelKhachHang extends javax.swing.JPanel {
         KhachHang kh = getModel();
         if (kh != null) {
             khachHangServices.add(kh);
-            fillTable(khachHangServices.getAll1());
+            fillTable(khachHangs);
             clear();
             MsgBox.alert(this, "Thêm thành công!");
         } else {
@@ -193,7 +201,9 @@ public final class panelKhachHang extends javax.swing.JPanel {
 
         if (kh != null) {
             khachHangServices.update(kh);
-            fillTable(khachHangServices.getAll1());
+            fillTable(khachHangs);
+            
+            
             clear();
             MsgBox.alert(this, "Sửa thành công!");
         } else {
@@ -203,8 +213,11 @@ public final class panelKhachHang extends javax.swing.JPanel {
 
     void delete() {
         String id = txtId.getText();
+        KhachHang kh = khachHangServices.getById(id);
+
         try {
-            khachHangServices.delete(id);
+            kh.setTinhTrang(0);
+            khachHangServices.update(kh);
             clear();
             fillTable(khachHangServices.getAll1());
             MsgBox.alert(this, "Xóa thành công! ");
@@ -755,7 +768,7 @@ public final class panelKhachHang extends javax.swing.JPanel {
 
     private void cboLoaiKhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiKhActionPerformed
         // TODO add your handling code here:
-      getCBXLoaiKH();
+        getCBXLoaiKH();
     }//GEN-LAST:event_cboLoaiKhActionPerformed
 
 
