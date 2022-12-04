@@ -17,5 +17,10 @@ public class DoanhThuSerImpl implements DoanhThuService{
     public Double SLLaptopBan(int thang, int nam) {
         return tkdt.soLuongSanPhamDaBan(thang, nam);
     }
+
+    @Override
+    public Double DoanhThuNgay(int day, int month, int years) {
+        return tkdt.DoanhThuNgay(day, month, years);
+    }
     
 }

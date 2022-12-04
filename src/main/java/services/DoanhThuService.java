@@ -12,4 +12,5 @@ package services;
 public interface DoanhThuService {
     Double DoanhThuThang(int thang, int nam);
     Double SLLaptopBan(int thang, int nam);
+    Double DoanhThuNgay(int day, int month, int years);
 }

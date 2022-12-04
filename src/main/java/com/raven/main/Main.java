@@ -63,14 +63,14 @@ public class Main extends javax.swing.JFrame {
         };
         menu1.initMenu(event);
         showForm(new FormHome());
-        menu1.setAvartar(nhanVien);
+        //menu1.setAvartar(nhanVien);
     }
 
     public void showHD() {
         showForm(new panelHoaDon());
     }
-    
-     public void showKH() {
+
+    public void showKH() {
         showForm(new panelKhachHang());
     }
 
@@ -102,8 +102,18 @@ public class Main extends javax.swing.JFrame {
         setUndecorated(true);
 
         roundPanel1.setBackground(new java.awt.Color(25, 25, 25));
+        roundPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                roundPanel1MouseClicked(evt);
+            }
+        });
 
         body.setOpaque(false);
+        body.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bodyMouseClicked(evt);
+            }
+        });
         body.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
@@ -143,6 +153,14 @@ public class Main extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bodyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bodyMouseClicked
+        showForm(new FormThongKeDoanhThu());
+    }//GEN-LAST:event_bodyMouseClicked
+
+    private void roundPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundPanel1MouseClicked
+        showForm(new FormThongKeDoanhThu());
+    }//GEN-LAST:event_roundPanel1MouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
