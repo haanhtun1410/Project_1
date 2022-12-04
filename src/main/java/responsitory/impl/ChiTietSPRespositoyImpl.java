@@ -120,7 +120,6 @@ public class ChiTietSPRespositoyImpl implements ChiTietSPRespository {
         try {
             Criteria cr = ss.createCriteria(DongSp.class);
             listdongsp = cr.list();
-
         } catch (HibernateException e) {
             System.out.println(e);
         }

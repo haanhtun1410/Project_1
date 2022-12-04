@@ -50,6 +50,8 @@ public class ChiTietSp implements java.io.Serializable {
     private BigDecimal giaBan;
     @Column(name = "Anh")
     private String anh;
+     @Column(name = "TrangThai")
+    private int trangThai;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "chiTietSp")
     private Set<Serial> serials = new HashSet<Serial>(0);
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "chiTietSp")
@@ -217,6 +219,14 @@ public class ChiTietSp implements java.io.Serializable {
 
     public void setAnh(String anh) {
         this.anh = anh;
+    }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
     }
 
    
