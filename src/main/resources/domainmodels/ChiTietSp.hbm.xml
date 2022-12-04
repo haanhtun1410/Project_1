@@ -38,6 +38,9 @@
         <property name="anh" type="string">
             <column name="Anh" />
         </property>
+         <property name="trangThai" type="int">
+            <column name="TrangThai" />
+        </property>
         <set name="serials" table="serial" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="IdCTSP" length="10" />

@@ -76,9 +76,6 @@ public class Nsx  implements java.io.Serializable {
         return ten ;
     }
 
-
-
-
 }
 
 
