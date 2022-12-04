@@ -715,7 +715,6 @@ void selectImage() throws Exception{
             if (index >= 0) {
                 filltoForm();
 
-<<<<<<< HEAD
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
         setModel();
@@ -728,11 +727,10 @@ void selectImage() throws Exception{
     private void lblHinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhMouseClicked
     
     }//GEN-LAST:event_lblHinhMouseClicked
-=======
             }
         }
     }//GEN-LAST:event_tbSanPhamMouseClicked
->>>>>>> 6bcfed3af45dafe0b82899c21b1085246e498199
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
