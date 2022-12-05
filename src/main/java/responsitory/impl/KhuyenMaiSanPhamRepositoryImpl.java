@@ -40,7 +40,8 @@ public class KhuyenMaiSanPhamRepositoryImpl implements KhuyenMaiSanPhamRepositor
     public boolean themVLT(VoucherLaptop lt) {
         try {
             session.getTransaction().begin();
-            session.save(lt);
+            lt.setTrangThai(1);
+            session.merge(lt);
             session.getTransaction().commit();
             return true;
         } catch (Exception e) {
@@ -54,6 +55,7 @@ public class KhuyenMaiSanPhamRepositoryImpl implements KhuyenMaiSanPhamRepositor
     public boolean suaVLT(VoucherLaptop lt) {
         try {
             session.getTransaction().begin();
+            lt.setTrangThai(1);
             session.merge(lt);
             session.getTransaction().commit();
             return true;
@@ -69,7 +71,8 @@ public class KhuyenMaiSanPhamRepositoryImpl implements KhuyenMaiSanPhamRepositor
         try {
             session.getTransaction().begin();
             VoucherLaptop lt = (VoucherLaptop) session.get(VoucherLaptop.class, id);
-            session.delete(lt);
+            lt.setTrangThai(0);
+            session.merge(lt);
             session.getTransaction().commit();
             return true;
         } catch (Exception e) {
