@@ -65,6 +65,7 @@ public class Menu extends javax.swing.JPanel {
 
         String url = "/Image/Images NhanVien/";
         url += user.getAnh();
+        System.out.println(url);
         ImageIcon imageIcon = new ImageIcon(getClass().getResource(url));
         imageAvatar1.setIcon(imageIcon);
         txtCV.setText(user.getChucVu().getTen());
