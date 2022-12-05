@@ -29,6 +29,8 @@ public class login extends javax.swing.JFrame {
         roundPanel3.hide();
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
         setLocationRelativeTo(null);
+        txt_password.setText("longvip");
+        txt_usename.setText("nv01");
     }
 
     /**
