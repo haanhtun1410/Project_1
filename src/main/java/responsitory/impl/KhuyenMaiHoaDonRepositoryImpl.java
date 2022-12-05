@@ -38,7 +38,8 @@ public class KhuyenMaiHoaDonRepositoryImpl implements KhuyenMaiHoaDonRepository{
     public boolean themVHD(VoucherHd hd) {
         try {
             session.getTransaction().begin();
-            session.save(hd);
+            hd.setTrangThai(1);
+            session.merge(hd);
             session.getTransaction().commit();
             return true;
         } catch (Exception e) {
@@ -52,6 +53,7 @@ public class KhuyenMaiHoaDonRepositoryImpl implements KhuyenMaiHoaDonRepository{
     public boolean suaVHD(VoucherHd hd) {
         try {
             session.getTransaction().begin();
+            hd.setTrangThai(1);
             session.merge(hd);
             session.getTransaction().commit();
             return true;
@@ -67,7 +69,8 @@ public class KhuyenMaiHoaDonRepositoryImpl implements KhuyenMaiHoaDonRepository{
         try {
             session.getTransaction().begin();
             VoucherHd hd = (VoucherHd) session.get(VoucherHd.class, id);
-            session.delete(hd);
+            hd.setTrangThai(0);
+            session.merge(hd);
             session.getTransaction().commit();
             return true;
         } catch (Exception e) {

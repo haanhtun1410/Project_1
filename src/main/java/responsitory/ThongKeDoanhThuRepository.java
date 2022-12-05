@@ -15,4 +15,6 @@ public interface ThongKeDoanhThuRepository {
     Double DoanhThuThang(int thang,int nam);
     
     Double soLuongSanPhamDaBan(int thang, int nam);
+    
+    Double DoanhThuNgay( int day, int month, int years);
 }

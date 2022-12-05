@@ -172,7 +172,7 @@ public class KhachHang  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return ten;
+        return ten +'-'+ sdt;
     }
    
     public String getTTKhachHang(){
