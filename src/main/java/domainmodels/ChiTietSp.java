@@ -100,7 +100,6 @@ public class ChiTietSp implements java.io.Serializable {
         this.giaBan = giaBan;
     }
 
-
     public ChiTietSp(String id, DongSp dongSp, Nsx nsx, VoucherLaptop voucherLaptop, String tenSp, int namSx, int namBh, String moTa, int soLuongTon, BigDecimal giaBan, String anh) {
         this.id = id;
         this.dongSp = dongSp;
