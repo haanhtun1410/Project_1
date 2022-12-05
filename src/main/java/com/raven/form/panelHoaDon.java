@@ -93,11 +93,11 @@ public class panelHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã HĐ", "Khách Hàng", "Nhân Viên", "Ngày tạo", "Ngày thanh toán", "Voucher", "Tổng tiền", "Tên người nhận", "Địa chỉ", "Trạng thái"
+                "Mã HĐ", "Khách Hàng", "Nhân Viên", "Ngày tạo", "Ngày thanh toán", "Địa chỉ", "Voucher", "Tổng tiền", "Tên người nhận", "SĐT", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -371,22 +371,35 @@ public class panelHoaDon extends javax.swing.JPanel {
         listHD = sv.getAllHD();
         int i = 1;
         for (HoaDon x : listHD) {
-            String tinhTrang ="";
-            if( x.getTinhTrang() == 0){
-                tinhTrang = "Chưa fill";
-            }else if( x.getTinhTrang()== 1){
-                tinhTrang = "Đã thanh toán";
-            }else{
-                tinhTrang = "Chờ thanh toán";
-            }
+           
             Object[] data = new Object[]{
                 x.getId(), x.getKhachHang(), x.getUser(),
-                x.getNgayTao(), x.getNgayThanhToan(), x.getVoucherHd(), x.getTongTien(), x.getTenNguoiNhan(), x.getDiaChi(),tinhTrang
+                x.getNgayTao(), x.getNgayThanhToan(),x.getDiaChi(), x.getVoucherHd(), x.getTongTien(), x.getTenNguoiNhan(),x.getSdt(), getTinhTrang(x.getTinhTrang())
             };
             dtm.addRow(data);
         }
     }
-
+     private String getTinhTrang(int tt) {
+        String tinhTrang;
+        switch (tt) {
+            case 0:
+                tinhTrang = "Trống";
+                break;
+             case 1:
+                tinhTrang = "Đã thanh toán";
+                break;
+            case 2:
+                tinhTrang = "Chờ thanh toán";
+                break;
+            case 3:
+                tinhTrang = "Chờ vận chuyển";
+                break;
+            default:
+                tinhTrang = "Đang vận chuyển";
+                break;
+        }
+        return tinhTrang;
+    }
     private int getSelectedHDRow() {
         return tbl_hoaDon.getSelectedRow();
     }
