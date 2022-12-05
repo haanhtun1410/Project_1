@@ -69,9 +69,10 @@ public class HDRespositoryImpl implements HDRespository {
         Session ss = factory.openSession();
         try {
             Transaction transaction = ss.beginTransaction();
-            String qry = "update HoaDon set TinhTrang = :TinhTrang ,Sdt = :sdt ,TenNguoiNhan =:nguoinhan, IdNV = :IdNV , IdKH = :IdKH , DiaChi = :DiaChi ,NgayThanhToan = :ntt ,TongTien = :tongTien where id = :id";
+            String qry = "update HoaDon set idVoucher = :idvc, TinhTrang = :TinhTrang ,Sdt = :sdt ,TenNguoiNhan =:nguoinhan, IdNV = :IdNV , IdKH = :IdKH , DiaChi = :DiaChi ,NgayThanhToan = :ntt ,TongTien = :tongTien where id = :id";
             Query createQuery = ss.createQuery(qry);
             createQuery.setParameter("id", hoaDon.getId());
+            createQuery.setParameter("idvc", hoaDon.getVoucherHd());
             createQuery.setParameter("sdt", hoaDon.getKhachHang().getSdt());
             createQuery.setParameter("nguoinhan", hoaDon.getKhachHang().getTen());
             createQuery.setParameter("IdNV", hoaDon.getUser().getId());
@@ -108,8 +109,8 @@ public class HDRespositoryImpl implements HDRespository {
     public boolean updateHDSave(HoaDon hoaDon) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session ss = factory.openSession();
+        Transaction transaction = ss.beginTransaction();
         try {
-            Transaction transaction = ss.beginTransaction();
             String qry = "update HoaDon set TinhTrang = :TinhTrang , IdNV = :IdNV , IdKH = :IdKH , DiaChi = :DiaChi where id = :id";
             Query createQuery = ss.createQuery(qry);
             createQuery.setParameter("id", hoaDon.getId());
@@ -121,6 +122,7 @@ public class HDRespositoryImpl implements HDRespository {
             transaction.commit();
         } catch (HibernateException e) {
             System.out.println(e);
+            transaction.rollback();
             return false;
         }
         return true;
@@ -132,10 +134,11 @@ public class HDRespositoryImpl implements HDRespository {
         Session ss = factory.openSession();
         try {
             Transaction transaction = ss.beginTransaction();
-            String qry = "update HoaDon set TinhTrang = :TinhTrang ,Sdt = :sdt,NgayShip =:ngayship,TenNguoiNhan =:nguoinhan,TongTien = :tongtien where id = :id";
+            String qry = "update HoaDon set idVoucher = :idvc,TinhTrang = :TinhTrang ,Sdt = :sdt,NgayShip =:ngayship,TenNguoiNhan =:nguoinhan,TongTien = :tongtien where id = :id";
             Query createQuery = ss.createQuery(qry);
             createQuery.setParameter("id", hoaDon.getId());
             createQuery.setParameter("sdt", hoaDon.getSdt());
+            createQuery.setParameter("idvc", hoaDon.getVoucherHd());
             createQuery.setParameter("ngayship", hoaDon.getNgayShip());
             createQuery.setParameter("TinhTrang", hoaDon.getTinhTrang());
             createQuery.setParameter("nguoinhan", hoaDon.getTenNguoiNhan());
