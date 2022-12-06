@@ -108,7 +108,7 @@ public class KhachHangResponsitoryImpl implements KhachHangResponsitory {
     public KhachHang getBySDT(String id) {
         try {
             Session session1 = HibernateUtil.getSessionFactory().openSession();
-        String hql = "from KhachHang p where p.sdt like :Ten1";
+        String hql = "from KhachHang p where p.sdt = :Ten1";
         Query query = session1.createQuery(hql);
             query.setParameter("Ten1",  id );
             
