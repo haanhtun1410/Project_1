@@ -453,7 +453,7 @@ public class panelNhanVien extends javax.swing.JPanel {
                     Message.RecipientType.TO,
                     InternetAddress.parse(to)
             );
-            message.setSubject("Poly Thông báo");
+            message.setSubject("PolyTechLap Thông báo");
             if (gioiTinh.equalsIgnoreCase("Nam")) {
                 message.setText("THONG BAO TRUNG TUYEN : vi tri " + chucVu
                         + "\n Kinh gui : Anh " + name
