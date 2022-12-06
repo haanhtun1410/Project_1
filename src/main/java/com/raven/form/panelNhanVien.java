@@ -320,9 +320,10 @@ public class panelNhanVien extends javax.swing.JPanel {
     void deleteN() {
         DefaultTableModel model = (DefaultTableModel) tblUser.getModel();
         int soLuong = model.getRowCount();
+        boolean check = false;
         try {
             for (int i = 0; i < soLuong; i++) {
-                boolean check = false;
+                
                 try {
                     check = (boolean) tblUser.getValueAt(i, 9);
 
@@ -340,6 +341,7 @@ public class panelNhanVien extends javax.swing.JPanel {
 
                 }
             }
+            
 
             MsgBox.alert(this, "Xóa thành công");
             fillTable(userServices.getAll1());
@@ -379,7 +381,7 @@ public class panelNhanVien extends javax.swing.JPanel {
                 }
                 int widght = lblHinh.getWidth();
                 int height = lblHinh.getHeight();
-                ImageIcon imageIcon = new ImageIcon("src/Image/Images NhanVien/" + model.getAnh());
+                ImageIcon imageIcon = new ImageIcon("src/Image/Images NhanVien/" + "NV1 - NhanVienBanHang.png");
 
                 Image image = imageIcon.getImage(); // transform it 
                 Image newimg = image.getScaledInstance(widght, height, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
@@ -740,12 +742,14 @@ public class panelNhanVien extends javax.swing.JPanel {
         btnTimKiem1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnPDF = new javax.swing.JButton();
+        jcbNhanVien = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblUserNghiViec = new javax.swing.JTable();
         txtTimKiem2 = new javax.swing.JTextField();
         btnTimKiem2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jcbNhanVienNghi = new javax.swing.JCheckBox();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         cboGioiTinh = new javax.swing.JComboBox<>();
@@ -1055,6 +1059,7 @@ public class panelNhanVien extends javax.swing.JPanel {
 
         txtTimKiem1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        btnTimKiem1.setBackground(new java.awt.Color(0, 153, 255));
         btnTimKiem1.setText("Tìm kiếm");
         btnTimKiem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1062,6 +1067,7 @@ public class panelNhanVien extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(102, 204, 255));
         jButton2.setText("Fill danh sach");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1069,10 +1075,24 @@ public class panelNhanVien extends javax.swing.JPanel {
             }
         });
 
+        btnPDF.setBackground(new java.awt.Color(102, 204, 255));
+        btnPDF.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnPDF.setText("PDF");
         btnPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPDFActionPerformed(evt);
+            }
+        });
+
+        jcbNhanVien.setText("Chọn tất cả");
+        jcbNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jcbNhanVienMouseClicked(evt);
+            }
+        });
+        jcbNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbNhanVienActionPerformed(evt);
             }
         });
 
@@ -1089,11 +1109,13 @@ public class panelNhanVien extends javax.swing.JPanel {
                 .addComponent(txtTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(btnTimKiem1)
-                .addGap(135, 135, 135)
+                .addGap(85, 85, 85)
                 .addComponent(btnPDF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addGap(95, 95, 95)
                 .addComponent(jButton2)
-                .addGap(145, 145, 145))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addComponent(jcbNhanVien)
+                .addGap(33, 33, 33))
         );
         pnlListLayout.setVerticalGroup(
             pnlListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1103,7 +1125,8 @@ public class panelNhanVien extends javax.swing.JPanel {
                     .addComponent(txtTimKiem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTimKiem1)
                     .addComponent(jButton2)
-                    .addComponent(btnPDF))
+                    .addComponent(btnPDF)
+                    .addComponent(jcbNhanVien))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(227, 227, 227))
@@ -1159,6 +1182,18 @@ public class panelNhanVien extends javax.swing.JPanel {
             }
         });
 
+        jcbNhanVienNghi.setText("Chọn tất cả");
+        jcbNhanVienNghi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jcbNhanVienNghiMouseClicked(evt);
+            }
+        });
+        jcbNhanVienNghi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbNhanVienNghiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1174,7 +1209,9 @@ public class panelNhanVien extends javax.swing.JPanel {
                 .addComponent(btnTimKiem2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(145, 145, 145))
+                .addGap(65, 65, 65)
+                .addComponent(jcbNhanVienNghi)
+                .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1183,7 +1220,8 @@ public class panelNhanVien extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTimKiem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTimKiem2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jcbNhanVienNghi))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(224, 224, 224))
@@ -1603,6 +1641,52 @@ public class panelNhanVien extends javax.swing.JPanel {
         get2CBX();
     }//GEN-LAST:event_btnLocActionPerformed
 
+    private void jcbNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbNhanVienActionPerformed
+        // TODO add your handling code here:
+        if (jcbNhanVien.isSelected() == true) {
+            int soLuong = tblUser.getRowCount();
+            for (int i = 0; i < soLuong; i++) {
+                tblUser.setValueAt(true, i, 9);
+            }
+        }else{
+            int soLuong = tblUser.getRowCount();
+            for (int i = 0; i < soLuong; i++) {
+                tblUser.setValueAt(false, i, 9);
+            }
+        }
+    }//GEN-LAST:event_jcbNhanVienActionPerformed
+
+    private void jcbNhanVienNghiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbNhanVienNghiActionPerformed
+        // TODO add your handling code here:
+        if (jcbNhanVienNghi.isSelected() == true) {
+            int soLuong = tblUserNghiViec.getRowCount();
+            for (int i = 0; i < soLuong; i++) {
+                tblUserNghiViec.setValueAt(true, i, 9);
+            }
+        }else{
+            int soLuong = tblUserNghiViec.getRowCount();
+            for (int i = 0; i < soLuong; i++) {
+                tblUserNghiViec.setValueAt(false, i, 9);
+            }
+        }
+    }//GEN-LAST:event_jcbNhanVienNghiActionPerformed
+
+    private void jcbNhanVienNghiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbNhanVienNghiMouseClicked
+        // TODO add your handling code here:
+        btnThemLaiNVNgihi.setEnabled(true);
+        btnThem.setEnabled(false);
+        btnSua.setEnabled(false);
+        btnXoa.setEnabled(false);
+    }//GEN-LAST:event_jcbNhanVienNghiMouseClicked
+
+    private void jcbNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbNhanVienMouseClicked
+        // TODO add your handling code here:
+        btnThemLaiNVNgihi.setEnabled(false);
+         btnThem.setEnabled(false);
+        btnSua.setEnabled(false);
+        btnXoa.setEnabled(true);
+    }//GEN-LAST:event_jcbNhanVienMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
@@ -1638,6 +1722,8 @@ public class panelNhanVien extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JCheckBox jcbNhanVien;
+    private javax.swing.JCheckBox jcbNhanVienNghi;
     private com.toedter.calendar.JDateChooser jdcNgaySinh;
     private javax.swing.JLabel lblHinh;
     private javax.swing.JLabel lblHoTen;

@@ -125,7 +125,7 @@ public final class panelKhachHang extends javax.swing.JPanel {
             System.out.println(key);
             KhachHang x = khachHangServices.getBySDT(key);
             System.out.println(x.toString());
-            
+
             if (x.getTinhTrang() == 1) {
 
                 if (x.getLoaiKh() == null) {
@@ -229,11 +229,9 @@ public final class panelKhachHang extends javax.swing.JPanel {
             if (tim) {
                 MsgBox.alert(this, "Id trùng");
             } else {
-                
+
                 khachHangServices.add(kh);
-                
-                
-                
+
                 clear();
                 MsgBox.alert(this, "Thêm thành công!");
                 fillTable(khachHangServices.getAll1());
@@ -282,10 +280,10 @@ public final class panelKhachHang extends javax.swing.JPanel {
                 }
             }
 
-            MsgBox.alert(this, "Xóa thành công");
+            MsgBox.alert(this, "Update thành công");
             fillTable(khachHangServices.getAll1());
         } catch (Exception e) {
-            MsgBox.alert(this, "Xóa thất bại");
+            MsgBox.alert(this, "Update thất bại");
         }
     }
 
@@ -446,11 +444,14 @@ public final class panelKhachHang extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKhachHang = new javax.swing.JTable();
+        jcbKHHD = new javax.swing.JCheckBox();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblKhachHangKHD = new javax.swing.JTable();
+        jcbKHKhongHD = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         btnPDF = new javax.swing.JButton();
+        btnThemLaiKHNghi = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         setPreferredSize(new java.awt.Dimension(1550, 925));
@@ -761,19 +762,37 @@ public final class panelKhachHang extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblKhachHang);
 
+        jcbKHHD.setText("Chọn tất cả");
+        jcbKHHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jcbKHHDMouseClicked(evt);
+            }
+        });
+        jcbKHHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbKHHDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jcbKHHD)
+                        .addGap(40, 40, 40))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 28, Short.MAX_VALUE)
+                .addComponent(jcbKHHD)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -810,6 +829,18 @@ public final class panelKhachHang extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblKhachHangKHD);
 
+        jcbKHKhongHD.setText("Chọn tất cả");
+        jcbKHKhongHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jcbKHKhongHDMouseClicked(evt);
+            }
+        });
+        jcbKHKhongHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbKHKhongHDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -818,16 +849,22 @@ public final class panelKhachHang extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1473, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jcbKHKhongHD)
+                .addGap(83, 83, 83))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 28, Short.MAX_VALUE)
+                .addComponent(jcbKHKhongHD)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         tabs.addTab("DANH SÁCH KHÁCH HÀNG KHÔNG HOẠT ĐỘNG", jPanel7);
 
+        jButton1.setBackground(new java.awt.Color(102, 204, 255));
         jButton1.setText("Fill danh sách");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -835,10 +872,20 @@ public final class panelKhachHang extends javax.swing.JPanel {
             }
         });
 
+        btnPDF.setBackground(new java.awt.Color(102, 204, 255));
+        btnPDF.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnPDF.setText("PDF");
         btnPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPDFActionPerformed(evt);
+            }
+        });
+
+        btnThemLaiKHNghi.setBackground(new java.awt.Color(102, 204, 255));
+        btnThemLaiKHNghi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgsHuy/Refresh.png"))); // NOI18N
+        btnThemLaiKHNghi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemLaiKHNghiActionPerformed(evt);
             }
         });
 
@@ -850,13 +897,15 @@ public final class panelKhachHang extends javax.swing.JPanel {
                 .addGap(85, 85, 85)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addGap(90, 90, 90)
+                .addGap(47, 47, 47)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(39, 39, 39)
                 .addComponent(btnPDF)
+                .addGap(95, 95, 95)
+                .addComponent(btnThemLaiKHNghi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(135, 135, 135))
@@ -880,7 +929,8 @@ public final class panelKhachHang extends javax.swing.JPanel {
                                 .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButton2)
                                 .addComponent(jButton1)
-                                .addComponent(btnPDF))
+                                .addComponent(btnPDF)
+                                .addComponent(btnThemLaiKHNghi))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(tabs)
@@ -913,7 +963,7 @@ public final class panelKhachHang extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -999,6 +1049,7 @@ public final class panelKhachHang extends javax.swing.JPanel {
             }
         }
         setStatus(false);
+        btnThemLaiKHNghi.setEnabled(false);
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1013,6 +1064,10 @@ public final class panelKhachHang extends javax.swing.JPanel {
 
     private void tblKhachHangKHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangKHDMouseClicked
         // TODO add your handling code here:
+        btnThem.setEnabled(false);
+        btnSua.setEnabled(false);
+        btnXoa.setEnabled(false);
+        btnThemLaiKHNghi.setEnabled(true);
         if (evt.getClickCount() == 2) {
             index = tblKhachHangKHD.rowAtPoint(evt.getPoint());
             if (index >= 0) {
@@ -1085,6 +1140,58 @@ public final class panelKhachHang extends javax.swing.JPanel {
         doc.close();
     }//GEN-LAST:event_btnPDFActionPerformed
 
+    private void btnThemLaiKHNghiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemLaiKHNghiActionPerformed
+        // TODO add your handling code here:
+        updateN();
+        tabs.setSelectedIndex(0);
+    }//GEN-LAST:event_btnThemLaiKHNghiActionPerformed
+
+    private void jcbKHHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbKHHDActionPerformed
+        // TODO add your handling code here:
+        if (jcbKHHD.isSelected() == true) {
+            int soLuong = tblKhachHang.getRowCount();
+            for (int i = 0; i < soLuong; i++) {
+                tblKhachHang.setValueAt(true, i, 8);
+            }
+        }else{
+            int soLuong = tblKhachHang.getRowCount();
+            for (int i = 0; i < soLuong; i++) {
+                tblKhachHang.setValueAt(false, i, 8);
+            }
+        }
+    }//GEN-LAST:event_jcbKHHDActionPerformed
+
+    private void jcbKHKhongHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbKHKhongHDActionPerformed
+        // TODO add your handling code here:
+        if (jcbKHKhongHD.isSelected() == true) {
+            int soLuong = tblKhachHangKHD.getRowCount();
+            for (int i = 0; i < soLuong; i++) {
+                tblKhachHangKHD.setValueAt(true, i, 8);
+            }
+        }else{
+            int soLuong = tblKhachHangKHD.getRowCount();
+            for (int i = 0; i < soLuong; i++) {
+                tblKhachHangKHD.setValueAt(false, i, 8);
+            }
+        }
+    }//GEN-LAST:event_jcbKHKhongHDActionPerformed
+
+    private void jcbKHKhongHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbKHKhongHDMouseClicked
+        // TODO add your handling code here:
+        btnThemLaiKHNghi.setEnabled(true);
+        btnThem.setEnabled(false);
+        btnSua.setEnabled(false);
+        btnXoa.setEnabled(false);
+    }//GEN-LAST:event_jcbKHKhongHDMouseClicked
+
+    private void jcbKHHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbKHHDMouseClicked
+        // TODO add your handling code here:
+        btnThemLaiKHNghi.setEnabled(false);
+        btnThem.setEnabled(false);
+        btnSua.setEnabled(false);
+        btnXoa.setEnabled(true);
+    }//GEN-LAST:event_jcbKHHDMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
@@ -1095,6 +1202,7 @@ public final class panelKhachHang extends javax.swing.JPanel {
     private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnThemLaiKHNghi;
     private javax.swing.JButton btnXoa;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cboLoaiKh;
@@ -1119,6 +1227,8 @@ public final class panelKhachHang extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JCheckBox jcbKHHD;
+    private javax.swing.JCheckBox jcbKHKhongHD;
     private com.toedter.calendar.JDateChooser jdcNgaySinh;
     private com.raven.swing.RoundPanel roundPanel2;
     private javax.swing.JTabbedPane tabs;
