@@ -82,6 +82,18 @@ public class Menu extends javax.swing.JPanel {
         menu.setSelected(true);
     }
 
+    public void setSelectedHD() {
+        for (Component com : panelMenu.getComponents()) {
+            if (com instanceof ButtonMenu) {
+                ButtonMenu b = (ButtonMenu) com;
+                b.setSelected(false);
+                if (b.getLabel().contains("Hóa")) {
+                    b.setSelected(true);
+                }
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -198,5 +210,4 @@ public class Menu extends javax.swing.JPanel {
     private javax.swing.JLabel txtNV;
     // End of variables declaration//GEN-END:variables
 
-    
 }

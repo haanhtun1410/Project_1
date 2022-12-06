@@ -134,9 +134,10 @@ public class HDRespositoryImpl implements HDRespository {
         Session ss = factory.openSession();
         try {
             Transaction transaction = ss.beginTransaction();
-            String qry = "update HoaDon set idVoucher = :idvc,TinhTrang = :TinhTrang ,Sdt = :sdt,NgayShip =:ngayship,TenNguoiNhan =:nguoinhan,TongTien = :tongtien where id = :id";
+            String qry = "update HoaDon set DiaChi = :dc, idVoucher = :idvc,TinhTrang = :TinhTrang ,Sdt = :sdt,NgayShip =:ngayship,TenNguoiNhan =:nguoinhan,TongTien = :tongtien where id = :id";
             Query createQuery = ss.createQuery(qry);
             createQuery.setParameter("id", hoaDon.getId());
+            createQuery.setParameter("dc", hoaDon.getDiaChi());
             createQuery.setParameter("sdt", hoaDon.getSdt());
             createQuery.setParameter("idvc", hoaDon.getVoucherHd());
             createQuery.setParameter("ngayship", hoaDon.getNgayShip());

@@ -20,4 +20,6 @@ public interface SerialsResponsitory {
     
     List<Serial> getImei(String idCTDHD);
     
+    boolean DoiTra(String imei) ;
+    
 }

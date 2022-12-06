@@ -55,4 +55,9 @@ public class HoaDonServicesImpl implements HoaDonServices {
        return serialsResponsitory.getImei(idCTHD);
     }
 
+    @Override
+    public boolean DoiTra(String imei) {
+        return serialsResponsitory.DoiTra(imei);
+    }
+
 }

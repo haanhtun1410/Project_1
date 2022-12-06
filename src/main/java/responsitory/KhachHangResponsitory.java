@@ -14,16 +14,27 @@ import java.util.List;
  * @author longv
  */
 public interface KhachHangResponsitory {
-       List<KhachHang> getAll();
-       List<KhachHang> getAll1();
+
+    List<KhachHang> getAll();
+
+    List<KhachHang> getAll1();
+
     KhachHang getById(String id);
+
     Boolean add(KhachHang kh);
+
     Boolean update(KhachHang kh);
+
     Boolean delete(String id);
+
     List<KhachHang> getByTen(String ten);
+
     KhachHang getBySDT(String id);
+
     List<KhachHang> getByLoaiKH(String ten);
-    
+
+   boolean updateLoaiKh(String idKh);
+
     BigDecimal getTien(String id);
-    
+
 }
