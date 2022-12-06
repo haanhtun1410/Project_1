@@ -112,7 +112,6 @@ public class KhachHangResponsitoryImpl implements KhachHangResponsitory {
             String hql = "from KhachHang p where p.sdt like :Ten1";
             Query query = session1.createQuery(hql);
             query.setParameter("Ten1", id);
-
             return (KhachHang) query.list().get(0);
         } catch (Exception e) {
             return null;
