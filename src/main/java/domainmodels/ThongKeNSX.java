@@ -10,10 +10,16 @@ package domainmodels;
  * @author nhanp
  */
 public class ThongKeNSX {
+    private String idNSX;
     private String tenNSX;
     private int soLuong;
 
     public ThongKeNSX() {
+    }
+
+    public ThongKeNSX(String idNSX, String tenNSX) {
+        this.idNSX = idNSX;
+        this.tenNSX = tenNSX;
     }
 
     public ThongKeNSX(String tenNSX, int soLuong) {
@@ -37,9 +43,19 @@ public class ThongKeNSX {
         this.soLuong = soLuong;
     }
 
+    public String getIdNSX() {
+        return idNSX;
+    }
+
+    public void setIdNSX(String idNSX) {
+        this.idNSX = idNSX;
+    }
+
     @Override
     public String toString() {
-        return "ThongKeNSX{" + "tenNSX=" + tenNSX + ", soLuong=" + soLuong + '}';
+        return "ThongKeNSX{" + "idNSX=" + idNSX + ", tenNSX=" + tenNSX + ", soLuong=" + soLuong + '}';
     }
+
+    
     
 }

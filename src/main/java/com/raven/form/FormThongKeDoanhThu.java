@@ -238,7 +238,6 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
         chooseYears.setAlignmentX(0.0F);
         chooseYears.setAlignmentY(0.0F);
         chooseYears.setDoubleBuffered(false);
-        chooseYears.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         roundPanel1.add(chooseYears, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 80, 35));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgsHuy/1text100x35.png"))); // NOI18N
@@ -276,7 +275,7 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
         dateStart.setBackground(new java.awt.Color(255, 255, 255));
         dateStart.setAlignmentX(0.0F);
         dateStart.setAlignmentY(0.0F);
-        roundPanel1.add(dateStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 200, 30));
+        roundPanel1.add(dateStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 180, 30));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));

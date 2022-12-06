@@ -2,6 +2,7 @@ package com.raven.main;
 
 import com.raven.event.EventMenu;
 import com.raven.form.FormHome;
+import com.raven.form.FormSanPham;
 import com.raven.form.FormThongKeDoanhThu;
 
 import com.raven.form.panelBanHang;
@@ -36,7 +37,7 @@ public class Main extends javax.swing.JFrame {
                     showForm(new panelBanHang(Main.this,menu1));
                     System.out.println(index);
                 } else if (index == 2) {
-                    showForm(new panelSanPham());
+                    showForm(new FormSanPham());
                     System.out.println(index);
                 } else if (index == 3) {
                     showForm(new panelHoaDon());
@@ -63,7 +64,7 @@ public class Main extends javax.swing.JFrame {
         };
         menu1.initMenu(event);
         showForm(new FormHome());
-        menu1.setAvartar(nhanVien);
+        //menu1.setAvartar(nhanVien);
     }
 
     public void showHD() {
@@ -155,11 +156,11 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bodyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bodyMouseClicked
-        showForm(new FormThongKeDoanhThu());
+        //showForm(new FormThongKeDoanhThu());
     }//GEN-LAST:event_bodyMouseClicked
 
     private void roundPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundPanel1MouseClicked
-        showForm(new FormThongKeDoanhThu());
+       // showForm(new FormThongKeDoanhThu());
     }//GEN-LAST:event_roundPanel1MouseClicked
 
     public static void main(String args[]) {
