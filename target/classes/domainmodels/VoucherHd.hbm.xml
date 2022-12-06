@@ -23,6 +23,9 @@
         <property name="ngayKetThuc" type="date">
             <column name="NgayKetThuc" length="10" />
         </property>
+        <property name="trangThai" type="int">
+            <column name="TrangThai" />
+        </property>
         <set name="hoaDons" table="HoaDon" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idVoucher" length="10" />
