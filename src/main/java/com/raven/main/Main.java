@@ -33,7 +33,7 @@ public class Main extends javax.swing.JFrame {
                 if (index == 0) {
                     showForm(new FormHome());
                 } else if (index == 1) {
-                    showForm(new panelBanHang(Main.this));
+                    showForm(new panelBanHang(Main.this,menu1));
                     System.out.println(index);
                 } else if (index == 2) {
                     showForm(new panelSanPham());

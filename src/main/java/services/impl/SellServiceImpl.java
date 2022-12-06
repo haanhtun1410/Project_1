@@ -158,4 +158,9 @@ public class SellServiceImpl implements services.SellService {
       return chiTietSPRespository.getALLDongSP();
     }
 
+    @Override
+    public boolean updateLoaiKH(String idkh) {
+     return khachHangResponsitory.updateLoaiKh(idkh);
+    }
+
 }

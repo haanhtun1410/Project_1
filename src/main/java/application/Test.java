@@ -24,7 +24,7 @@ public class Test {
         String snum = String.valueOf(n);
         System.out.println("");
         id = txt + snum;
-        System.out.println(id);
+        System.out.println("tại cửa hàng");
 
     }
 }
