@@ -1118,9 +1118,7 @@ public final class panelKhachHang extends javax.swing.JPanel {
                 String email = tblKhachHang.getValueAt(i, 4).toString();
                 String ngaySinh = tblKhachHang.getValueAt(i, 5).toString();
                 String diaChi = tblKhachHang.getValueAt(i, 6).toString();
-
                 String tongTien = tblKhachHang.getValueAt(i, 7).toString();
-
                 tbl.addCell(Id);
                 tbl.addCell(loaiKH);
                 tbl.addCell(ten);
