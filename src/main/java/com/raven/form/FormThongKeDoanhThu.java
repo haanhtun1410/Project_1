@@ -23,6 +23,7 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
         initComponents();
         setOpaque(false);
         list = nsxSe.getAll();
+        initThongKeTheoNam(2022);
     }
 
     private void date15TKDT() {

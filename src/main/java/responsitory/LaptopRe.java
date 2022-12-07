@@ -17,6 +17,8 @@ import java.util.List;
 public interface LaptopRe {
 
     List<Laptop> getAll();
+    
+    List<Laptop> getOnt();
 
     boolean insert(Laptop lt);
 

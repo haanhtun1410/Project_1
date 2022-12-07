@@ -36,7 +36,8 @@ public class LaptopReImpl implements LaptopRe {
                 + "      ,[GiaBan]\n"
                 + "      ,[Anh]\n"
                 + "      ,[TrangThai]\n"
-                + "  FROM [dbo].[ChiTietSP]";
+                + "  FROM [dbo].[ChiTietSP]"
+                + "where trangthai = 1";
         List<Laptop> list = new ArrayList<>();
         try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
@@ -539,17 +540,7 @@ public class LaptopReImpl implements LaptopRe {
     @Override
     public boolean delete(String idLapTop) {
         String query = "UPDATE [dbo].[ChiTietSP]\n"
-                + "   SET [tenSP] = null\n"
-                + "      ,[IdNsx] = null\n"
-                + "      ,[IdDongSP] = null\n"
-                + "      ,[IdVoucherSP] = null\n"
-                + "      ,[NamSX] = null\n"
-                + "      ,[NamBH] = null\n"
-                + "      ,[MoTa] = null\n"
-                + "      ,[SoLuongTon] = null\n"
-                + "      ,[GiaBan] = null\n"
-                + "      ,[Anh] = null\n"
-                + "      ,[TrangThai] = 0\n"
+                + "   SET [TrangThai] = 0\n"
                 + " WHERE id =?";
         int check = 0;
         try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
@@ -559,5 +550,35 @@ public class LaptopReImpl implements LaptopRe {
             e.printStackTrace(System.out);
         }
         return check > 0;
+    }
+
+    @Override
+    public List<Laptop> getOnt() {
+       String query = "SELECT [Id]\n"
+                + "      ,[tenSP]\n"
+                + "      ,[IdNsx]\n"
+                + "      ,[IdDongSP]\n"
+                + "      ,[IdVoucherSP]\n"
+                + "      ,[NamSX]\n"
+                + "      ,[NamBH]\n"
+                + "      ,[MoTa]\n"
+                + "      ,[SoLuongTon]\n"
+                + "      ,[GiaBan]\n"
+                + "      ,[Anh]\n"
+                + "      ,[TrangThai]\n"
+                + "  FROM [dbo].[ChiTietSP]"
+                + "where trangthai = 0";
+        List<Laptop> list = new ArrayList<>();
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getDouble(10), rs.getString(11), rs.getInt(12)));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
     }
 }

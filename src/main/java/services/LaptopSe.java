@@ -18,6 +18,8 @@ public interface LaptopSe {
 
     List<Laptop> getAll();
 
+    
+    List<Laptop> getOne();
     String insert(Laptop lt);
 
     String update(String idLapTop, Laptop lt);

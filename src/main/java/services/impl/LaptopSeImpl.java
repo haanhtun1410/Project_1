@@ -143,6 +143,12 @@ public class LaptopSeImpl implements LaptopSe{
         }
     }
 
+    @Override
+    public List<Laptop> getOne() {
+        return LTRe.getOnt();
+                
+    }
+
     
     
 }
