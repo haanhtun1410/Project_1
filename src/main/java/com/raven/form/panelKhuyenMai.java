@@ -1105,6 +1105,10 @@ public class panelKhuyenMai extends javax.swing.JPanel {
             else if(x.getNgayKetThuc().compareTo(new Date())<0){
                 x.setTrangThai(0);
                 srVHD.xoaHD(x.getId());
+                
+            }
+            
+            if(x.getTrangThai()==0){
                 bangKetThuc.addRow(new Object[]{x.getId(),x.getMoTa(),x.getTienGiam(),x.getPhanTramGiam(),x.getNgayApDung(),x.getNgayKetThuc(),"Giảm theo hóa đơn"});
             }
         }
@@ -1124,10 +1128,10 @@ public class panelKhuyenMai extends javax.swing.JPanel {
                     bangDangDienRa.addRow(new Object[]{x.getId(),x.getMoTa(),x.getTienGiam(),x.getPhanTramGiam(),x.getNgayApDung(),x.getNgayKetThuc(),"Giảm theo sản phẩm"});
                 }
             }
-            else{
+            else if(x.getNgayKetThuc().compareTo(new Date())<0){
                 x.setTrangThai(0);
                 srVSP.xoa(x.getId());
-                bangKetThuc.addRow(new Object[]{x.getId(),x.getMoTa(),x.getTienGiam(),x.getPhanTramGiam(),x.getNgayApDung(),x.getNgayKetThuc(),"Giảm theo sản phẩm"});
+                
                 
                 //List<ChiTietSp> lt = srVSP.getAllCT();
                 
@@ -1141,6 +1145,10 @@ public class panelKhuyenMai extends javax.swing.JPanel {
                     } catch (Exception e) {
                     }
                 }
+            }
+            
+            if(x.getTrangThai()==0){
+                bangKetThuc.addRow(new Object[]{x.getId(),x.getMoTa(),x.getTienGiam(),x.getPhanTramGiam(),x.getNgayApDung(),x.getNgayKetThuc(),"Giảm theo sản phẩm"});
             }
         }
     }
