@@ -22,6 +22,7 @@ public interface NhanVienServices {
     List<User> getByTen(String ten);
     User getBySDT(String id);
     List<User> getByGioiTinh(String id);
+    Boolean addKhTheoTen(User kh);
     
     List<User> getByChucVu(String id);
 }

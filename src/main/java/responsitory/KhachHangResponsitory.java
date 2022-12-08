@@ -35,6 +35,7 @@ public interface KhachHangResponsitory {
 
    boolean updateLoaiKh(String idKh);
 
-    BigDecimal getTien(String id);
+    BigDecimal getTien(String id); 
 
+    Boolean addTheoTen(KhachHang kh);
 }

@@ -23,6 +23,8 @@ public interface NhanVienRespository {
     User getById(String id);
 
     Boolean add(User kh);
+    
+    Boolean addKhTheoTen(User kh);
 
     Boolean update(User kh);
 
