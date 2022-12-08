@@ -23,6 +23,7 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
         initComponents();
         setOpaque(false);
         list = nsxSe.getAll();
+        initThongKeTheoNam(2022);
     }
 
     private void date15TKDT() {
@@ -151,6 +152,15 @@ public class FormThongKeDoanhThu extends javax.swing.JPanel {
 
     private void initThongKeTheoNam(int nam) {
 
+        
+        String name1 = "Thống kê doanh thu hàng tháng " + nam;
+        chart.addLegend(name1, new Color(12, 84, 175), new Color(0, 108, 247));
+
+        String name2 = "Thống kê số lượng sản phẩm bán ra hàng tháng năm  " + nam;
+        lineChart.addLegend(name2, new Color(186, 37, 37), new Color(241, 100, 120));
+
+        chart.clear();
+        lineChart.clear();
         chart.addData(new ModelChart("January", new double[]{dtSe.DoanhThuThang(1, nam) / 1000000}));
         chart.addData(new ModelChart("February", new double[]{dtSe.DoanhThuThang(2, nam) / 1000000}));
         chart.addData(new ModelChart("March", new double[]{dtSe.DoanhThuThang(3, nam) / 1000000}));

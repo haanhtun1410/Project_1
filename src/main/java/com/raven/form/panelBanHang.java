@@ -1809,6 +1809,7 @@ public class panelBanHang extends javax.swing.JPanel {
         tbl_chiTietSP.getSelectionModel().clearSelection();
         txt_nguoiNhan.setText("");
         txt_sdtnguoiNhan.setText("");
+        txt_diachi.setText("");
         txt_giamGia.setText("");
         txt_maHD.setText("chưa chọn hóa đơn");
         txt_outputtrangthai.setText("chưa chọn hóa đơn");

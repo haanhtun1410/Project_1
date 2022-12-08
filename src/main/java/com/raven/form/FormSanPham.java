@@ -43,11 +43,20 @@ public class FormSanPham extends javax.swing.JPanel {
         showDataTable();
         fillCBBLoctenNSX();
         fillCBBLoctenDongLT();
+        showDataTable2();
+        fillTable1();
     }
 
     private void fillTable() {
         tblLaptop.setModel(dtm);
-        String header[] = {"STT", "ID Laptop","TÊN LAPTOP", "Tên NSX", "Tên DòngLT",
+        String header[] = {"STT", "ID Laptop", "TÊN LAPTOP", "Tên NSX", "Tên DòngLT",
+            "Tên Voucher", "Năm SX", "Năm BH", "Mô tả", "SL Tồn", "Giá Bán", "Ảnh", "Trạng Thái"};
+        dtm.setColumnIdentifiers(header);
+    }
+
+    private void fillTable1() {
+        tblLaptop2.setModel(dtm);
+        String header[] = {"STT", "ID Laptop", "TÊN LAPTOP", "Tên NSX", "Tên DòngLT",
             "Tên Voucher", "Năm SX", "Năm BH", "Mô tả", "SL Tồn", "Giá Bán", "Ảnh", "Trạng Thái"};
         dtm.setColumnIdentifiers(header);
     }
@@ -103,7 +112,21 @@ public class FormSanPham extends javax.swing.JPanel {
         int i = 1;
         for (Laptop x : listLaptop) {
             dtm.addRow(new Object[]{
-                i++, x.getIdLaptop(),x.getTenLaptop(), lapTopSe.getNameNSXByID(x.getIdNSX()), lapTopSe.getNameDongLTByID(x.getIdDongSP()),
+                i++, x.getIdLaptop(), x.getTenLaptop(), lapTopSe.getNameNSXByID(x.getIdNSX()), lapTopSe.getNameDongLTByID(x.getIdDongSP()),
+                lapTopSe.getNameVoucherByID(x.getIdVoucher()), x.getNamSX(), x.getNamBH(), x.getMoTa(), x.getSoLuongTon(),
+                x.getGiaBan(), x.getAnh(), x.getTrangThai()
+            });
+        }
+    }
+
+    private void showDataTable2() {
+        listLaptop = lapTopSe.getOne();
+        dtm = (DefaultTableModel) tblLaptop2.getModel();
+        dtm.setRowCount(0);
+        int i = 1;
+        for (Laptop x : listLaptop) {
+            dtm.addRow(new Object[]{
+                i++, x.getIdLaptop(), x.getTenLaptop(), lapTopSe.getNameNSXByID(x.getIdNSX()), lapTopSe.getNameDongLTByID(x.getIdDongSP()),
                 lapTopSe.getNameVoucherByID(x.getIdVoucher()), x.getNamSX(), x.getNamBH(), x.getMoTa(), x.getSoLuongTon(),
                 x.getGiaBan(), x.getAnh(), x.getTrangThai()
             });
@@ -116,7 +139,7 @@ public class FormSanPham extends javax.swing.JPanel {
         txtID.setText(null);
         txtMoTa.setText(null);
         txtSLTon.setText(null);
-        txtSearch.setText(null);
+        txtSearchr.setText(null);
         txtTenLapTop.setText(null);
         namBH.setYear(2022);
         namSX.setYear(2022);
@@ -182,14 +205,18 @@ public class FormSanPham extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        txtSearch = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
+        txtSearchr = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLaptop = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblLaptop2 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblLaptop1 = new javax.swing.JTable();
@@ -269,8 +296,14 @@ public class FormSanPham extends javax.swing.JPanel {
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgsHuy/250x30.png"))); // NOI18N
-        jPanel3.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+        txtSearch.setAlignmentX(0.0F);
+        txtSearch.setAlignmentY(0.0F);
+        txtSearch.setAutoscrolls(false);
+        txtSearch.setBorder(null);
+        jPanel3.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 230, 35));
+
+        txtSearchr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgsHuy/250x30.png"))); // NOI18N
+        jPanel3.add(txtSearchr, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
         btnSearch.setBackground(new java.awt.Color(51, 51, 51));
         btnSearch.setForeground(new java.awt.Color(51, 51, 51));
@@ -304,6 +337,9 @@ public class FormSanPham extends javax.swing.JPanel {
         jLabel30.setText("Danh sách Laptop :");
         jPanel4.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
+        jTabbedPane2.setBackground(new java.awt.Color(51, 51, 51));
+
+        tblLaptop.setAutoCreateRowSorter(true);
         tblLaptop.setBackground(new java.awt.Color(51, 51, 51));
         tblLaptop.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         tblLaptop.setForeground(new java.awt.Color(255, 255, 255));
@@ -353,7 +389,61 @@ public class FormSanPham extends javax.swing.JPanel {
             tblLaptop.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1110, 440));
+        jTabbedPane2.addTab("Sản phẩm đang hoạt động", jScrollPane1);
+
+        tblLaptop2.setAutoCreateRowSorter(true);
+        tblLaptop2.setBackground(new java.awt.Color(51, 51, 51));
+        tblLaptop2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        tblLaptop2.setForeground(new java.awt.Color(255, 255, 255));
+        tblLaptop2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "null", "null", "Title 7", "Title 8"
+            }
+        ));
+        tblLaptop2.setGridColor(new java.awt.Color(0, 0, 0));
+        tblLaptop2.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tblLaptop2.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        tblLaptop2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblLaptop2MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblLaptop2);
+        if (tblLaptop2.getColumnModel().getColumnCount() > 0) {
+            tblLaptop2.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        jTabbedPane2.addTab("Sản Phẩm không hoạt động", jScrollPane3);
+
+        jPanel4.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 1110, 430));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -876,12 +966,12 @@ public class FormSanPham extends javax.swing.JPanel {
                     voucherLaptop, namSX, namBH, moTa, sl, giaBan, urlImage(), trangThai);
             JOptionPane.showMessageDialog(this, lapTopSe.insert(lt));
             listLaptop = lapTopSe.getAll();
+            showDataTable();
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         clearData();
-        JOptionPane.showMessageDialog(this, "An DB an C");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void cbbLocDongLaptopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbLocDongLaptopActionPerformed
@@ -933,10 +1023,14 @@ public class FormSanPham extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 
         String IdLaptop = txtID.getText();
-        Laptop lt = new Laptop();
-        JOptionPane.showMessageDialog(this, lapTopSe.delete(IdLaptop));
-        listLaptop = lapTopSe.getAll();
-        showDataTable();
+        if (IdLaptop.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Trống id Laptop rồi kìa bạn !");
+        } else {
+            Laptop lt = new Laptop();
+            JOptionPane.showMessageDialog(this, lapTopSe.delete(IdLaptop));
+            listLaptop = lapTopSe.getAll();
+            showDataTable();
+        }
 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -952,11 +1046,7 @@ public class FormSanPham extends javax.swing.JPanel {
         String voucherLaptop = null;
         int trangThai = 1;
         String moTa = txtMoTa.getText();
-        if (IdLaptop.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Không được để trống ID Laptop bạn ơi !");
-        } else if (checkTrungID(IdLaptop)) {
-            JOptionPane.showMessageDialog(this, "Đã có ID Laptop rùi nhé ^^");
-        } else if (tenLaptop.isEmpty()) {
+        if (tenLaptop.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Để trống tên Laptop kìa bạn !");
         } else if (SLTon.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Sao lại để trống số lượng thế này ToT");
@@ -983,28 +1073,64 @@ public class FormSanPham extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnUPdateActionPerformed
 
-    private void tblLaptopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLaptopMouseClicked
-        int row = tblLaptop.getSelectedRow();
-        Laptop a = listLaptop.get(row);
-        txtID.setText(a.getIdLaptop());
-        txtGiaBan.setText(String.valueOf(a.getGiaBan()));
-        txtMoTa.setText(a.getMoTa());
-        txtSLTon.setText(String.valueOf(a.getSoLuongTon()));
-        txtTenLapTop.setText(a.getTenLaptop());
-        cbbDongLT.setSelectedItem(lapTopSe.getNameDongLTByID(a.getIdDongSP()));
-        cbbNSX.setSelectedItem(lapTopSe.getNameNSXByID(a.getIdNSX()));
-        namBH.setYear(a.getNamBH());
-        namSX.setYear(a.getNamSX());
-        cbbVoucherLT.setSelectedItem(lapTopSe.getNameVoucherByID(a.getIdLaptop()));
-        int tt = a.getTrangThai();
-        if (tt == 1) {
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String tenLaptop = txtSearch.getText();
+        listLaptop = lapTopSe.searchByName(tenLaptop);
+        showDataTable();
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void tblLaptop2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLaptop2MouseClicked
+      int row = tblLaptop2.getSelectedRow();
+        Laptop x = listLaptop.get(row);
+        txtGiaBan.setText(String.valueOf(x.getGiaBan()));
+        txtID.setText(x.getIdLaptop());
+        txtMoTa.setText(x.getMoTa());
+        txtSLTon.setText(String.valueOf(x.getSoLuongTon()));
+        txtTenLapTop.setText(x.getTenLaptop());
+        cbbDongLT.setSelectedItem(lapTopSe.getNameDongLTByID(x.getIdDongSP()));
+        cbbNSX.setSelectedItem(lapTopSe.getNameNSXByID(x.getIdNSX()));
+        cbbVoucherLT.setSelectedIndex(0);
+        int b = x.getTrangThai();
+        if (b ==1) {
             radioConHang.setSelected(true);
-        } else {
+        }else{
             radioHetHang.setSelected(true);
         }
-        String url = a.getAnh()+".png";
-        System.out.println(url);
-        ImageIcon img = new ImageIcon("src/Image/Image Laptops/" + url);
+        String a = x.getAnh()+".png";
+        ImageIcon img = new ImageIcon("src/Image/Image Laptops/" + a);
+        int widght = fillAnhLaptop.getWidth();
+        int height = fillAnhLaptop.getHeight();
+        Image image = img.getImage(); // transform it 
+        Image newimg = image.getScaledInstance(widght, height, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        img = new ImageIcon(newimg);
+        fillAnhLaptop.setIcon(img);
+    }//GEN-LAST:event_tblLaptop2MouseClicked
+
+    private void tblLaptopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLaptopMouseClicked
+        int row = tblLaptop.getSelectedRow();
+        if(row< 0){
+            return;
+        }
+        listLaptop = lapTopSe.getAll();
+        System.out.println(listLaptop.size());
+        Laptop x = listLaptop.get(row);
+        txtGiaBan.setText(String.valueOf(x.getGiaBan()));
+        txtID.setText(x.getIdLaptop());
+        txtMoTa.setText(x.getMoTa());
+        txtSLTon.setText(String.valueOf(x.getSoLuongTon()));
+        txtTenLapTop.setText(x.getTenLaptop());
+        cbbDongLT.setSelectedItem(lapTopSe.getNameDongLTByID(x.getIdDongSP()));
+        cbbNSX.setSelectedItem(lapTopSe.getNameNSXByID(x.getIdNSX()));
+        cbbVoucherLT.setSelectedIndex(0);
+        int b = x.getTrangThai();
+        if (b ==1) {
+            radioConHang.setSelected(true);
+        }else{
+            radioHetHang.setSelected(true);
+        }
+        
+        String a = "/Image/Image Laptops/"+ x.getAnh();
+        ImageIcon img = new ImageIcon(getClass().getResource(a));
         int widght = fillAnhLaptop.getWidth();
         int height = fillAnhLaptop.getHeight();
         Image image = img.getImage(); // transform it 
@@ -1012,12 +1138,6 @@ public class FormSanPham extends javax.swing.JPanel {
         img = new ImageIcon(newimg);
         fillAnhLaptop.setIcon(img);
     }//GEN-LAST:event_tblLaptopMouseClicked
-
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-       String tenLaptop = txtSearch.getText();
-       listLaptop = lapTopSe.searchByName(tenLaptop);
-       showDataTable();
-    }//GEN-LAST:event_btnSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1077,8 +1197,10 @@ public class FormSanPham extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JComboBox<String> locGia;
     private com.toedter.calendar.JYearChooser namBH;
     private com.toedter.calendar.JYearChooser namSX;
@@ -1087,13 +1209,15 @@ public class FormSanPham extends javax.swing.JPanel {
     private com.raven.swing.RoundPanel roundPanel2;
     private javax.swing.JTable tblLaptop;
     private javax.swing.JTable tblLaptop1;
+    private javax.swing.JTable tblLaptop2;
     private javax.swing.JTextField txtGiaBan;
     private javax.swing.JTextField txtGiaMax;
     private javax.swing.JTextField txtGiaMin;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextArea txtMoTa;
     private javax.swing.JTextField txtSLTon;
-    private javax.swing.JLabel txtSearch;
+    private javax.swing.JTextField txtSearch;
+    private javax.swing.JLabel txtSearchr;
     private javax.swing.JTextField txtTenLapTop;
     private com.toedter.calendar.JYearChooser year;
     // End of variables declaration//GEN-END:variables
