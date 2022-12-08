@@ -100,6 +100,14 @@ public class User implements java.io.Serializable {
         this.trangThai = trangThai;
     }
 
+    public User(String id, String ten, String diaChi, String anh) {
+        this.id = id;
+        this.ten = ten;
+        this.diaChi = diaChi;
+        this.anh = anh;
+    }
+    
+
     public String getId() {
         return this.id;
     }
