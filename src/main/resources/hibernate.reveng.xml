@@ -40,19 +40,23 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="ProjectOne" match-schema="dbo"/>
-  <table-filter match-name="ChucVu"/>
-  <table-filter match-name="LoaiKH"/>
-  <table-filter match-name="serial"/>
-  <table-filter match-name="CTHD"/>
-  <table-filter match-name="PhieuBaoHanh"/>
-  <table-filter match-name="ChiTietSP"/>
-  <table-filter match-name="HoaDon"/>
-  <table-filter match-name="User"/>
-  <table-filter match-name="VoucherLaptop"/>
-  <table-filter match-name="KhachHang"/>
-  <table-filter match-name="DongSP"/>
-  <table-filter match-name="sysdiagrams"/>
-  <table-filter match-name="VoucherHD"/>
-  <table-filter match-name="NSX"/>
+    <schema-selection match-catalog="ProjectOne" match-schema="dbo"/>
+    <table-filter match-name="ChucVu"/>
+    <table-filter match-name="LoaiKH"/>
+    <table-filter match-name="serial"/>
+    <table-filter match-name="CTHD"/>
+    <table-filter match-name="PhieuBaoHanh"/>
+    <table-filter match-name="ChiTietSP"/>
+    <table-filter match-name="HoaDon"/>
+    <table-filter match-name="User"/>
+    <table-filter match-name="VoucherLaptop"/>
+    <table-filter match-name="KhachHang"/>
+    <table-filter match-name="DongSP"/>
+    <table-filter match-name="sysdiagrams"/>
+    <table-filter match-name="VoucherHD"/>
+    <table-filter match-name="NSX"/>
+    <table-filter match-name="VGA"/>
+    <table-filter match-name="CPU"/>
+    <table-filter match-name="ManHinh"/>
+    <table-filter match-name="RamAndRom"/>
 </hibernate-reverse-engineering>

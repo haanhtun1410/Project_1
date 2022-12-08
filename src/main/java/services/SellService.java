@@ -55,4 +55,7 @@ public interface SellService {
     public List<Nsx> getAllNSX();
 
     public List<DongSp> getAllDSP();
+    
+     public boolean updateLoaiKH(String idkh);
+    
 }

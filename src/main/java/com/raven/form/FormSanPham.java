@@ -1108,6 +1108,11 @@ public class FormSanPham extends javax.swing.JPanel {
 
     private void tblLaptopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLaptopMouseClicked
         int row = tblLaptop.getSelectedRow();
+        if(row< 0){
+            return;
+        }
+        listLaptop = lapTopSe.getAll();
+        System.out.println(listLaptop.size());
         Laptop x = listLaptop.get(row);
         txtGiaBan.setText(String.valueOf(x.getGiaBan()));
         txtID.setText(x.getIdLaptop());
@@ -1124,8 +1129,8 @@ public class FormSanPham extends javax.swing.JPanel {
             radioHetHang.setSelected(true);
         }
         
-        String a = x.getAnh()+".png";
-        ImageIcon img = new ImageIcon("src/Image/Image Laptops/" + a);
+        String a = "/Image/Image Laptops/"+ x.getAnh();
+        ImageIcon img = new ImageIcon(getClass().getResource(a));
         int widght = fillAnhLaptop.getWidth();
         int height = fillAnhLaptop.getHeight();
         Image image = img.getImage(); // transform it 

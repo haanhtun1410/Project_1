@@ -27,6 +27,8 @@ public interface HoaDonServices {
     
     List<Serial> getImeis(String idCTHD);
     
+    boolean DoiTra(String imei);
+    
     
 
 }
