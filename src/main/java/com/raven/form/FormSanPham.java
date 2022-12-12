@@ -1186,12 +1186,15 @@ public class FormSanPham extends javax.swing.JPanel {
         String sl = txtSLTon.getText();
         int namSX = this.namSX.getYear();
         int namBH = this.namBH.getYear();
-        String voucher = lapTopSe.getIDVCLTbyName((String) cbbVoucher.getSelectedItem());
         String nsx = lapTopSe.getIDNSXbyName((String) ccbNSX.getSelectedItem());
         String vga = lk.getIDVGA((String) cbbAVG.getSelectedItem());
         String cpu = lk.getIDCPU((String) cbbCPU.getSelectedItem());
         String rr = lk.getIDNRAMROM((String) cbbRamRom.getSelectedItem());
         String mh = lk.getIDMH((String) cbbMH.getSelectedItem());
+        String vc = null;
+        if (cbbVoucher.getSelectedIndex()!=0) {
+            vc = lapTopSe.getIDVCLTbyName((String) cbbVoucher.getSelectedItem());
+        }
         int a = 0;
         if (radioConHang.isSelected()) {
             a = 1;
@@ -1217,7 +1220,7 @@ public class FormSanPham extends javax.swing.JPanel {
         } else {
             int slTon = Integer.parseInt(sl);
             double gia = Double.parseDouble(giaBan);
-            Laptop lt = new Laptop(ten, nsx, voucher, vga, cpu, mh, rr, namSX, namBH, moTa, slTon, gia, urlImage(), a);
+            Laptop lt = new Laptop(ten, nsx, vc, vga, cpu, mh, rr, namSX, namBH, moTa, slTon, gia, urlImage(), a);
             JOptionPane.showMessageDialog(this, lapTopSe.update(id, lt));
             JOptionPane.showMessageDialog(this, lapTopSe.insertImei(id, slTon));
             listLaptop = lapTopSe.getAll();
@@ -1234,7 +1237,10 @@ public class FormSanPham extends javax.swing.JPanel {
         String sl = txtSLTon.getText();
         int namSX = this.namSX.getYear();
         int namBH = this.namBH.getYear();
-        String voucher = lapTopSe.getIDVCLTbyName((String) cbbVoucher.getSelectedItem());
+        String vc = null;
+        if (cbbVoucher.getSelectedIndex()!=0) {
+            vc = lapTopSe.getIDVCLTbyName((String) cbbVoucher.getSelectedItem());
+        }
         String nsx = lapTopSe.getIDNSXbyName((String) ccbNSX.getSelectedItem());
         String vga = lk.getIDVGA((String) cbbAVG.getSelectedItem());
         String cpu = lk.getIDCPU((String) cbbCPU.getSelectedItem());
@@ -1266,7 +1272,7 @@ public class FormSanPham extends javax.swing.JPanel {
         } else {
             int slTon = Integer.parseInt(sl);
             double gia = Double.parseDouble(giaBan);
-            Laptop lt = new Laptop(id, ten, nsx, dongLT, voucher, vga, cpu, mh, rr, namSX, namBH, moTa, slTon, gia, urlImage(), a);
+            Laptop lt = new Laptop(id, ten, nsx, dongLT, vc, vga, cpu, mh, rr, namSX, namBH, moTa, slTon, gia, urlImage(), a);
             JOptionPane.showMessageDialog(this, lapTopSe.insert(lt));
             JOptionPane.showMessageDialog(this, lapTopSe.insertImei(id, slTon));
             listLaptop = lapTopSe.getAll();
@@ -1397,7 +1403,7 @@ public class FormSanPham extends javax.swing.JPanel {
         Laptop lt = listLaptop.get(i);
         txtID.setText(lt.getIdLaptop());
         txtMoTa.setText(lt.getMoTa());
-        txtGiaBan.setText(String.valueOf(lt.getGiaBan()));
+        txtGiaBan.setText(String.valueOf(lt.getGiaBan()/1000000)+".000.000");
         txtSLTon.setText(String.valueOf(lt.getSoLuongTon()));
         txtTenLapTop.setText(lt.getTenLaptop());
         radioConHang.setSelected(true);
@@ -1427,7 +1433,7 @@ public class FormSanPham extends javax.swing.JPanel {
         Laptop lt = listLaptop.get(i);
         txtID.setText(lt.getIdLaptop());
         txtMoTa.setText(lt.getMoTa());
-        txtGiaBan.setText(String.valueOf(lt.getGiaBan()));
+        txtGiaBan.setText(String.valueOf(lt.getGiaBan()/1000000)+".000.000");
         txtSLTon.setText(String.valueOf(lt.getSoLuongTon()));
         txtTenLapTop.setText(lt.getTenLaptop());
         radioHetHang.setSelected(true);

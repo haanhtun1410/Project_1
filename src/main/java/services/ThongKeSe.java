@@ -17,7 +17,8 @@ import java.util.List;
  * @author nhanp
  */
 public interface ThongKeSe {
-     List<TKSP> getAll();
+
+    List<TKSP> getAll();
 
     List<RamRomNhan> getAllRR();
 
@@ -26,12 +27,24 @@ public interface ThongKeSe {
     List<DisplayNhan> getAllMH();
 
     List<CPUNhan> getAllCPU();
-    
+
     Double tongTien();
-    
+
     Integer soHD();
-    
+
     Integer soSP();
-    
+
     Integer soKH();
+
+    Double TongTienHomNay();
+
+    String top1SP();
+
+    Integer tongSPHN();
+
+    List<TKSP> tkspAll();
+
+    String tenNV(String idNV);
+
+    String tenKH(String idKH);
 }

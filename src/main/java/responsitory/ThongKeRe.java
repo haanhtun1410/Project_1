@@ -10,6 +10,7 @@ import domainmodels.DisplayNhan;
 import domainmodels.RamRomNhan;
 import domainmodels.TKSP;
 import domainmodels.VGANhan;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,13 +28,25 @@ public interface ThongKeRe {
     List<DisplayNhan> getAllMH();
 
     List<CPUNhan> getAllCPU();
-    
+
     Double tongTien();
-    
+
     Integer soHD();
-    
+
     Integer soSP();
-    
+
     Integer soKH();
+
+    Double TongTienHomNay();
+
+    String top1SP();
+
+    Integer TongLTHomNay();
+
+    List<TKSP> tkspAll();
+
+    String tenNV(String idNV);
+
+    String tenKH(String idKH);
 
 }

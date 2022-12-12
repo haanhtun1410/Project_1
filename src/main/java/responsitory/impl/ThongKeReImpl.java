@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import responsitory.ThongKeRe;
 import utilsNhan.Connect;
@@ -24,7 +25,7 @@ import utilsNhan.Connect;
  * @author nhanp
  */
 public class ThongKeReImpl implements ThongKeRe {
-    
+
     @Override
     public List<TKSP> getAll() {
         String query = "select ChiTietSP.tenSP, sum(soluong), ChiTietSP.Anh\n"
@@ -45,7 +46,6 @@ public class ThongKeReImpl implements ThongKeRe {
         return null;
     }
 
-    
     @Override
     public List<RamRomNhan> getAllRR() {
         String query = "select RamAndRom.Ten, sum(soluong)\n"
@@ -66,7 +66,7 @@ public class ThongKeReImpl implements ThongKeRe {
         }
         return null;
     }
-    
+
     @Override
     public List<VGANhan> getAllVGA() {
         String query = "select VGA.Ten, sum(soluong)\n"
@@ -87,7 +87,7 @@ public class ThongKeReImpl implements ThongKeRe {
         }
         return null;
     }
-    
+
     @Override
     public List<DisplayNhan> getAllMH() {
         String query = "select ManHinh.Chip, sum(soluong)\n"
@@ -108,7 +108,7 @@ public class ThongKeReImpl implements ThongKeRe {
         }
         return null;
     }
-    
+
     @Override
     public List<CPUNhan> getAllCPU() {
         String query = "select CPU.Ten, sum(soluong)\n"
@@ -145,10 +145,6 @@ public class ThongKeReImpl implements ThongKeRe {
         }
         return null;
     }
-    
-    public static void main(String[] args) {
-        System.out.println(new ThongKeReImpl().tongTien());
-    }
 
     @Override
     public Integer soHD() {
@@ -168,7 +164,7 @@ public class ThongKeReImpl implements ThongKeRe {
 
     @Override
     public Integer soSP() {
-       String query = "select SUM(SOLUONG)  from CTHD";
+        String query = "select SUM(SOLUONG)  from CTHD";
         int sum = 0;
         try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
@@ -197,4 +193,119 @@ public class ThongKeReImpl implements ThongKeRe {
         }
         return null;
     }
+
+    @Override
+    public Double TongTienHomNay() {
+        String query = "select sum(TongTien) from HoaDon\n"
+                + "where NgayThanhToan =  GETDATE()";
+        double sum = 0;
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                sum = rs.getDouble(1);
+            }
+            return sum;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public String top1SP() {
+        String query = "select top 1 ChiTietSP.tenSP\n"
+                + "                           from ChiTietSP\n"
+                + "                                left join CTHD on ChiTietSP.Id = cthd.IdCTSP\n"
+                + "                               group by ChiTietSP.tenSP\n"
+                + "                		   order by sum(soluong) desc";
+        String sum = "";
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                sum = rs.getString(1);
+            }
+            return sum;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public Integer TongLTHomNay() {
+        String query = "select sum(cthd.soLuong) from HoaDon hd , CTHD cthd\n"
+                + "where hd.Id = cthd.IdHD and hd.NgayThanhToan = GETDATE()";
+        int sum = 0;
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                sum = rs.getInt(1);
+            }
+            return sum;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public List<TKSP> tkspAll() {
+        String query = "SELECT  b.NgayThanhToan, b.IdNV, b.IdKH, b.TongTien, SUM(a.soluong)\n"
+                + "FROM HoaDon b\n"
+                + "left join CTHD a on b.Id = a.IdHD \n"
+                + "group by b.NgayThanhToan, b.IdNV, b.IdKH, b.IdKH, b.TongTien";
+        List<TKSP> list = new ArrayList<>();
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new TKSP(rs.getDate(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5)));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new ThongKeReImpl().tenKH("KH01"));
+    }
+
+    @Override
+    public String tenNV(String idNV) {
+        String query = "select Ten from [dbo].[User] where ID = ?";
+        String sum = "";
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ps.setObject(1, idNV);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                sum = rs.getString(1);
+            }
+            return sum;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public String tenKH(String idKH) {
+        String query = "select ten from KhachHang where Id = ?";
+        String sum = "";
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+
+            ps.setObject(1, idKH);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                sum = rs.getString(1);
+            }
+            return sum;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
 }

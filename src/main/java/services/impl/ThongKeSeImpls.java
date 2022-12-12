@@ -67,5 +67,35 @@ public class ThongKeSeImpls implements ThongKeSe{
     public Integer soKH() {
         return tkRe.soKH();
     }
+
+    @Override
+    public Double TongTienHomNay() {
+        return tkRe.TongTienHomNay();
+    }
+
+    @Override
+    public String top1SP() {
+        return tkRe.top1SP();
+    }
+
+    @Override
+    public Integer tongSPHN() {
+        return tkRe.TongLTHomNay();
+    }
+
+    @Override
+    public List<TKSP> tkspAll() {
+        return tkRe.tkspAll();
+    }
+
+    @Override
+    public String tenNV(String idNV) {
+        return tkRe.tenNV(idNV);
+    }
+
+    @Override
+    public String tenKH(String idKH) {
+        return tkRe.tenKH(idKH);
+    }
     
 }

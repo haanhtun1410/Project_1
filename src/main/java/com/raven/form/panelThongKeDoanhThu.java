@@ -43,6 +43,7 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
     private DefaultTableModel dtmRR = new DefaultTableModel();
     private DefaultTableModel dtmNV = new DefaultTableModel();
     private DefaultTableModel dtmKH = new DefaultTableModel();
+    private DefaultTableModel dtmTKDT = new DefaultTableModel();
     private List<CPUNhan> listCPU = new ArrayList<>();
     private List<VGANhan> listVGA = new ArrayList<>();
     private List<DisplayNhan> listMH = new ArrayList<>();
@@ -66,7 +67,7 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
         listVGA = tkSe.getAllVGA();
         listMH = tkSe.getAllMH();
         listKH = tkNVKH.getListKH();
-        listNV= tkNVKH.getListNV();
+        listNV = tkNVKH.getListNV();
 
         fillDataTableCPU();
         fillDataTableLapTop();
@@ -75,8 +76,9 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
         fillDataTableVGA();
         fillDataTableKH();
         fillDataTableNV();
+        fillDataTableTKDT();
         fillSum();
-        
+
         showDataTableCPU();
         showDataTableLT();
         showDataTableMH();
@@ -84,36 +86,78 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
         showDataTableVGA();
         showDataTableKH();
         showDataTableNV();
+        showDataTableTKDT();
 
     }
 
-    private void fillSum(){
+    private void fillSum() {
+        
         double sum = tkSe.tongTien();
         String ga = String.valueOf(sum);
-        String a ="";
+        String a = "";
         if (ga.contains("E8")) {
-            a = sum/1000000+"00.000";
+            a = sum / 1000000 + "00.000";
         }
+
         fillTongTien1.setText(a);
         fillHD.setText(String.valueOf(tkSe.soHD()));
         fillTongLT.setText(String.valueOf(tkSe.soSP()));
         fillSoKH.setText(String.valueOf(tkSe.soKH()));
+        
+        double summ = tkSe.TongTienHomNay();
+        if (summ == 0) {
+            fillTongTienhHomNay.setText("0");
+        } else {
+            String gaa = String.valueOf(summ);
+            String b = "";
+            if (gaa.contains("E8")) {
+                b = summ / 1000000 + "00.000";
+            }
+            fillTongTienhHomNay.setText(b);
+        }
+        
+        fillLTBanChayNhat.setText(tkSe.top1SP());
+        
+        int summm = tkSe.tongSPHN();
+        if (summ == 0) {
+            fillTongLThn.setText("0");
+        } else {
+          
+            fillTongLThn.setText(String.valueOf(summm));
+        }
     }
+    private void fillDataTableTKDT() {
+        tblTKDT.setModel(dtmTKDT);
+        String header[] = {"STT", "NGÀY THANH TOÁN", "TÊN NHÂN VIÊN", "TÊN KHÁCH HÀNG", "TỔNG TIỀN (TRIỆU ĐỒNG)", "SỐ LƯỢNG"};
+        dtmTKDT.setColumnIdentifiers(header);
+    }
+    private void showDataTableTKDT() {
+        listSP = tkSe.tkspAll();
+        dtmTKDT = (DefaultTableModel) tblTKDT.getModel();
+        dtmTKDT.setRowCount(0);
+        int i = 1;
+        for (TKSP x : listSP) {
+            dtmTKDT.addRow(new Object[]{
+                i++, x.getNgayThanhToan(), tkSe.tenNV(x.getIdNV()), tkSe.tenKH(x.getIdKH()), x.getTongTien()/1000000, x.getTongSP()
+            });
+        }
+    }
+
     private void fillDataTableLapTop() {
         tblLT.setModel(dtmLT);
         String header[] = {"STT", "TÊN LAPTOP", "ANH", "SL ĐÃ BÁN"};
         dtmLT.setColumnIdentifiers(header);
     }
-    
+
     private void fillDataTableKH() {
         tblKH.setModel(dtmKH);
         String header[] = {"STT", "MÃ KHÁCH HÀNG", "TÊN KHÁCH HÀNG", "SDT", "TỔNG SỐ LAPTO ĐÃ MUA", "TỔNG TIỀN (Triệu VND)"};
         dtmKH.setColumnIdentifiers(header);
     }
-    
+
     private void fillDataTableNV() {
         tblNV.setModel(dtmNV);
-        String header[] = {"STT", "MÃ NHÂN VIÊN", "TÊN NHÂN VIÊN", "SDT", "TỔNG TIỀN (Triệu VND)","TỔNG SỐ LAPTOP ĐÃ BÁN"};
+        String header[] = {"STT", "MÃ NHÂN VIÊN", "TÊN NHÂN VIÊN", "SDT", "TỔNG TIỀN (Triệu VND)", "TỔNG SỐ LAPTOP ĐÃ BÁN"};
         dtmNV.setColumnIdentifiers(header);
     }
 
@@ -195,24 +239,25 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
             });
         }
     }
-    
-     private void showDataTableNV() {
+
+    private void showDataTableNV() {
         dtmNV = (DefaultTableModel) tblNV.getModel();
         dtmNV.setRowCount(0);
         int i = 1;
         for (ThongKeNV x : listNV) {
             dtmNV.addRow(new Object[]{
-                i++, x.getIdNV(), x.getTenNV(), x.getSdtNV(), x.getTongTien()/1000000, x.getSl()
+                i++, x.getIdNV(), x.getTenNV(), x.getSdtNV(), x.getTongTien() / 1000000, x.getSl()
             });
         }
     }
-     private void showDataTableKH() {
+
+    private void showDataTableKH() {
         dtmKH = (DefaultTableModel) tblKH.getModel();
         dtmKH.setRowCount(0);
         int i = 1;
         for (ThongKeKH x : listKH) {
             dtmKH.addRow(new Object[]{
-                i++, x.getIdNV(), x.getTenNV(), x.getSdtNV(), x.getSoLuong(), x.getTongTien()/1000000
+                i++, x.getIdNV(), x.getTenNV(), x.getSdtNV(), x.getSoLuong(), x.getTongTien() / 1000000
             });
         }
     }
@@ -224,6 +269,9 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
 
         String name2 = "Thống kê số lượng sản phẩm bán ra  ";
         lineChartTKSP.addLegend(name2, new Color(186, 37, 37), new Color(241, 100, 120));
+
+        String name = "Thống kê số lượng Laptop của Nhà Sản Xuất đã bán";
+        chartNSX.addLegend(name, new Color(255, 182, 193), new Color(255, 182, 193));
 
     }
 
@@ -394,20 +442,23 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
         jLabel30 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        dateStartHD = new com.toedter.calendar.JDateChooser();
-        dateEndHD = new com.toedter.calendar.JDateChooser();
-        btnShowHD = new javax.swing.JButton();
+        tblTKDT = new javax.swing.JTable();
         fillTongTien1 = new javax.swing.JLabel();
         fillTongTien = new javax.swing.JLabel();
+        fillTongTienhHomNay = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
         fillHD = new javax.swing.JLabel();
+        fillTongTien3 = new javax.swing.JLabel();
         fillTongLT = new javax.swing.JLabel();
+        fillTongLThn = new javax.swing.JLabel();
+        fillLTBanChayNhat = new javax.swing.JLabel();
         fillSoKH = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -492,7 +543,7 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("THÔNG TIN HÓA ĐƠN ĐÃ BÁN");
-        roundPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 480, -1, -1));
+        roundPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, -1, -1));
 
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgsHuy/1 laptop 1.png"))); // NOI18N
         roundPanel3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 110, -1, -1));
@@ -502,8 +553,12 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
         jLabel25.setText("TỔNG DOANH THU");
         roundPanel3.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTKDT.setBackground(new java.awt.Color(0, 0, 0));
+        tblTKDT.setForeground(new java.awt.Color(255, 255, 255));
+        tblTKDT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -513,34 +568,11 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane8.setViewportView(jTable1);
+        tblTKDT.setGridColor(new java.awt.Color(0, 0, 0));
+        tblTKDT.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane8.setViewportView(tblTKDT);
 
-        roundPanel3.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, 1540, 320));
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel27.setText("Ngày bắt đầu :");
-        roundPanel3.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 469, -1, 30));
-
-        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel28.setText("Ngày kết thúc :");
-        roundPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, 30));
-
-        dateStartHD.setBackground(new java.awt.Color(51, 51, 51));
-        dateStartHD.setAlignmentX(0.0F);
-        roundPanel3.add(dateStartHD, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 170, 30));
-
-        dateEndHD.setBackground(new java.awt.Color(255, 255, 255));
-        dateEndHD.setAlignmentX(0.0F);
-        dateEndHD.setAlignmentY(0.0F);
-        roundPanel3.add(dateEndHD, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, 170, 30));
-
-        btnShowHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgsHuy/1 table 1.png"))); // NOI18N
-        btnShowHD.setBorder(null);
-        btnShowHD.setBorderPainted(false);
-        btnShowHD.setContentAreaFilled(false);
-        roundPanel3.add(btnShowHD, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 490, -1, -1));
+        roundPanel3.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 1540, 360));
 
         fillTongTien1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         fillTongTien1.setForeground(new java.awt.Color(0, 255, 51));
@@ -549,19 +581,51 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
         fillTongTien.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         fillTongTien.setForeground(new java.awt.Color(255, 255, 255));
         fillTongTien.setText("VND");
-        roundPanel3.add(fillTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 60, 40));
+        roundPanel3.add(fillTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, 60, 40));
+
+        fillTongTienhHomNay.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        fillTongTienhHomNay.setForeground(new java.awt.Color(0, 255, 51));
+        roundPanel3.add(fillTongTienhHomNay, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 120, 40));
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("TỔNG SỐ LAPTOP ĐÃ BÁN :");
+        roundPanel3.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 200, -1, 40));
 
         fillHD.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         fillHD.setForeground(new java.awt.Color(0, 255, 0));
         roundPanel3.add(fillHD, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 140, 40));
 
+        fillTongTien3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        fillTongTien3.setForeground(new java.awt.Color(255, 255, 255));
+        fillTongTien3.setText("VND");
+        roundPanel3.add(fillTongTien3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 60, 40));
+
         fillTongLT.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         fillTongLT.setForeground(new java.awt.Color(0, 255, 0));
-        roundPanel3.add(fillTongLT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 200, 40, 40));
+        roundPanel3.add(fillTongLT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 200, 40, 40));
+
+        fillTongLThn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        fillTongLThn.setForeground(new java.awt.Color(0, 255, 0));
+        roundPanel3.add(fillTongLThn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 260, 40, 40));
+
+        fillLTBanChayNhat.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        fillLTBanChayNhat.setForeground(new java.awt.Color(0, 255, 51));
+        roundPanel3.add(fillLTBanChayNhat, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 320, 280, 40));
 
         fillSoKH.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         fillSoKH.setForeground(new java.awt.Color(0, 255, 0));
         roundPanel3.add(fillSoKH, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 90, 40));
+
+        jLabel38.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("MÁY");
+        roundPanel3.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 200, -1, 40));
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setText("SỐ TIỀN HÔM NAY ĐÃ BÁN :");
+        roundPanel3.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, 40));
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
@@ -570,13 +634,18 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel31.setText("TỔNG SỐ LAPTOP ĐÃ BÁN :");
-        roundPanel3.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 200, -1, 40));
+        jLabel31.setText("LAPTOP BÁN CHẠY NHẤT :");
+        roundPanel3.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 320, -1, 40));
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setText("TỔNG SỐ TIỀN ĐÃ BÁN :");
         roundPanel3.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, 40));
+
+        jLabel39.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel39.setText("HÔM NAY ĐÃ BÁN :");
+        roundPanel3.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 260, -1, 40));
 
         jLabel32.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
@@ -589,7 +658,7 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setText("MÁY");
-        roundPanel3.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 200, -1, 40));
+        roundPanel3.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 260, -1, 40));
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgsHuy/1 a 0.png"))); // NOI18N
         roundPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
@@ -1063,8 +1132,7 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNgayActionPerformed
 
     private void btnNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNSXActionPerformed
-        String name = "Thống kê số lượng Laptop của Nhà Sản Xuất đã bán";
-        chartNSX.addLegend(name, new Color(255, 182, 193), new Color(255, 182, 193));
+        chartNSX.clear();
         for (ThongKeNSX x : list) {
             String sl = String.valueOf(x.getSoLuong());
             Double a = Double.parseDouble(sl);
@@ -1106,7 +1174,7 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         listKH = tkNVKH.getListKH();
-        listNV= tkNVKH.getListNV();
+        listNV = tkNVKH.getListNV();
         showDataTableKH();
         showDataTableNV();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -1116,20 +1184,21 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
     private javax.swing.JButton btnNSX;
     private javax.swing.JButton btnNam;
     private javax.swing.JButton btnNgay;
-    private javax.swing.JButton btnShowHD;
     private com.raven.chart.Chart chartNSX;
     private com.raven.chart.Chart chartTKDT;
     private com.toedter.calendar.JYearChooser chooseYears;
     private com.toedter.calendar.JDateChooser dateEnd;
-    private com.toedter.calendar.JDateChooser dateEndHD;
     private com.toedter.calendar.JDateChooser dateStart;
-    private com.toedter.calendar.JDateChooser dateStartHD;
     private javax.swing.JLabel fillHD;
     private javax.swing.JLabel fillImage;
+    private javax.swing.JLabel fillLTBanChayNhat;
     private javax.swing.JLabel fillSoKH;
     private javax.swing.JLabel fillTongLT;
+    private javax.swing.JLabel fillTongLThn;
     private javax.swing.JLabel fillTongTien;
     private javax.swing.JLabel fillTongTien1;
+    private javax.swing.JLabel fillTongTien3;
+    private javax.swing.JLabel fillTongTienhHomNay;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -1151,8 +1220,6 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -1161,6 +1228,10 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1180,7 +1251,6 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
     private com.raven.chart.LineChart lineChartTKSP;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel2;
@@ -1192,6 +1262,7 @@ public class panelThongKeDoanhThu extends javax.swing.JPanel {
     private javax.swing.JTable tblMH;
     private javax.swing.JTable tblNV;
     private javax.swing.JTable tblRR;
+    private javax.swing.JTable tblTKDT;
     private javax.swing.JTable tblVGA;
     // End of variables declaration//GEN-END:variables
 
