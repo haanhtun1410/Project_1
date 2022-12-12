@@ -1151,10 +1151,10 @@ public final class panelKhachHang extends javax.swing.JPanel {
                 String email = tblKhachHang.getValueAt(i, 4).toString();
                 String ngaySinh = tblKhachHang.getValueAt(i, 5).toString();
                 String diaChi = tblKhachHang.getValueAt(i, 6).toString();
-                String tongTien = tblKhachHang.getValueAt(i, 7).toString();
+                
                 
                 String fe = tblKhachHang.getValueAt(i, 7).toString();
-                String tongTien;
+                String tongTien ;
                 if (fe != null) {
                     tongTien = fe;
                     //break;
