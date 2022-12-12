@@ -67,6 +67,37 @@ public class KhachHangResponsitoryImpl implements KhachHangResponsitory {
     }
 
     @Override
+    public Boolean addTheoTen(KhachHang kh) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+            String numberSQL = "SELECT TOP 1 CONVERT(INT,SUBSTRING(Id,6,DATALENGTH(Id))) AS number FROM KhachHang WHERE Id LIKE :ten1 ORDER BY number DESC";
+            SQLQuery createNumber = session.createSQLQuery(numberSQL);
+            createNumber.setParameter("ten1", "%" + kh.getId() + "%");
+
+        //System.out.println("Ket qua " + createNumber.uniqueResult());
+        String id;
+        if (createNumber.uniqueResult() == null) {
+            id = kh.getId() + "1";
+        } else {
+            Integer number = (int) createNumber.uniqueResult();
+            System.out.println(number);
+            number++;
+            id = kh.getId() + number;
+        }
+        kh.setId(id);
+        try {
+            session.getTransaction().begin();
+            session.saveOrUpdate(kh);
+            session.getTransaction().commit();
+
+        } catch (Exception e) {
+            System.out.println(e);
+            session.getTransaction().rollback();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public Boolean update(KhachHang kh) {
 
         try {
@@ -217,8 +248,9 @@ public class KhachHangResponsitoryImpl implements KhachHangResponsitory {
     }
 
     public static void main(String[] args) {
-//        KhachHang x = new KhachHangResponsitoryImpl().getBySDT("09899878799");
-//        System.out.println(x.toString());
+        KhachHang kh = new KhachHang("ab");
+        boolean x = new KhachHangResponsitoryImpl().addTheoTen(kh);
+        
 
         // List<KhachHang> list = new KhachHangResponsitoryImpl().getByLoaiKH();
         // for(KhachHang t : list){

@@ -58,6 +58,7 @@ public final class panelKhachHang extends javax.swing.JPanel {
         fillComboBoxLoaiKH();
         System.out.println("ok");
         fillTable(khachHangs);
+        txtId.setEditable(false);
 
     }
 
@@ -151,12 +152,41 @@ public final class panelKhachHang extends javax.swing.JPanel {
     }
 
     KhachHang getModel() {
-        String id = txtId.getText();
+        String id ;
         String ten = txtTen.getText();
         Date ngaySinh = jdcNgaySinh.getDate();
         String sdt = txtSdt.getText();
         String diaChi = txtDiaChi.getText();
         String email = txtEmail.getText();
+        
+        //Tách phần id 
+        String s1=new String();
+        String s = ten;
+        s=s.trim();// Tac dung la de loai bo hai dau cach dau va cuoi Ten
+        int k;
+        for(k=s.length()-1;k>=0;k--)
+        {
+            s1=s.substring(k,k+1);
+            if(s1.equals(" ")) break;
+        }
+        System.out.println("Ten: "+ s.substring(k+1));
+        int i;
+        for(i=0;i<=s.length();i++)
+        {
+           s1=s.substring(i,i+1);
+            if(s1.equals(" ")) break;
+        }
+        System.out.println("Ho: "+ s.substring(0,i));
+        String ho = s.substring(0,i);
+        int j = 0;
+    
+        if(j>i&&j<k)
+        {
+            s1=s.substring(j,j+1);
+        }
+        System.out.println("Ten Dem: "+s.substring(i+1,k));
+        String dem = s.substring(i+1,k);
+        id = s.substring(k+1)+ho.substring(0,1)+dem.substring(0,1);
 
         LoaiKh loaiKh = loaiKHService.getById("LKH00");
         boolean check = true;
@@ -226,16 +256,17 @@ public final class panelKhachHang extends javax.swing.JPanel {
             }
         }
         if (kh != null) {
-            if (tim) {
-                MsgBox.alert(this, "Id trùng");
-            } else {
+//            if (tim) {
+//                MsgBox.alert(this, "Id trùng");
+//            } 
+           // else {
 
-                khachHangServices.add(kh);
+                khachHangServices.addTheoTen(kh);
 
                 clear();
                 MsgBox.alert(this, "Thêm thành công!");
                 fillTable(khachHangServices.getAll1());
-            }
+           // }
 
         } else {
             MsgBox.alert(this, "Thêm thât bại!");
@@ -554,6 +585,8 @@ public final class panelKhachHang extends javax.swing.JPanel {
                 .addComponent(btnMoi)
                 .addContainerGap())
         );
+
+        txtId.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1095,7 +1128,7 @@ public final class panelKhachHang extends javax.swing.JPanel {
 
         Document doc = new Document();
         try {
-            PdfWriter.getInstance(doc, new FileOutputStream(path + " abc123.pdf"));
+            PdfWriter.getInstance(doc, new FileOutputStream(path + " khachHang.pdf"));
             doc.open();
 
             PdfPTable tbl = new PdfPTable(8);
@@ -1119,6 +1152,16 @@ public final class panelKhachHang extends javax.swing.JPanel {
                 String ngaySinh = tblKhachHang.getValueAt(i, 5).toString();
                 String diaChi = tblKhachHang.getValueAt(i, 6).toString();
                 String tongTien = tblKhachHang.getValueAt(i, 7).toString();
+                
+                String fe = tblKhachHang.getValueAt(i, 7).toString();
+                String tongTien;
+                if (fe != null) {
+                    tongTien = fe;
+                    //break;
+                } else {
+                    tongTien = "0";
+                    //f  break;
+                }
                 tbl.addCell(Id);
                 tbl.addCell(loaiKH);
                 tbl.addCell(ten);
@@ -1151,7 +1194,7 @@ public final class panelKhachHang extends javax.swing.JPanel {
             for (int i = 0; i < soLuong; i++) {
                 tblKhachHang.setValueAt(true, i, 8);
             }
-        }else{
+        } else {
             int soLuong = tblKhachHang.getRowCount();
             for (int i = 0; i < soLuong; i++) {
                 tblKhachHang.setValueAt(false, i, 8);
@@ -1166,7 +1209,7 @@ public final class panelKhachHang extends javax.swing.JPanel {
             for (int i = 0; i < soLuong; i++) {
                 tblKhachHangKHD.setValueAt(true, i, 8);
             }
-        }else{
+        } else {
             int soLuong = tblKhachHangKHD.getRowCount();
             for (int i = 0; i < soLuong; i++) {
                 tblKhachHangKHD.setValueAt(false, i, 8);

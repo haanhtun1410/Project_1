@@ -66,4 +66,9 @@ public class KhachHangServiceImpl implements KhachHangService{
     public BigDecimal getTien(String id) {
         return  khachHangResponsitory.getTien(id);
     }
+
+    @Override
+    public Boolean addTheoTen(KhachHang kh) {
+        return  khachHangResponsitory.addTheoTen(kh);
+    }
 }
