@@ -23,4 +23,5 @@ public interface KhachHangService {
     KhachHang getBySDT(String id);
     List<KhachHang> getByLoaiKH(String ten);
     BigDecimal getTien(String id);
+    Boolean addTheoTen(KhachHang kh);
 }

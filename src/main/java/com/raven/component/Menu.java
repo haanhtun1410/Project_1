@@ -93,6 +93,18 @@ public class Menu extends javax.swing.JPanel {
             }
         }
     }
+    
+     public void setSelectedKH() {
+        for (Component com : panelMenu.getComponents()) {
+            if (com instanceof ButtonMenu) {
+                ButtonMenu b = (ButtonMenu) com;
+                b.setSelected(false);
+                if (b.getLabel().contains("Khách")) {
+                    b.setSelected(true);
+                }
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -85,6 +85,7 @@ public class panelNhanVien extends javax.swing.JPanel {
         DrawTable(tblUserNghiViec);
         DrawTable(tblUser);
         btnThemLaiNVNgihi.setEnabled(false);
+        txtId.setEditable(false);
     }
 
     void DrawTable(JTable tblGridView) {
@@ -193,7 +194,7 @@ public class panelNhanVien extends javax.swing.JPanel {
         }
         String url = path;
         System.out.println(url);
-        String id = txtId.getText();
+        String id ;
         String hoTen = txtHoTen.getText();
 
         Date ngaysinh = jdcNgaySinh.getDate();
@@ -201,8 +202,39 @@ public class panelNhanVien extends javax.swing.JPanel {
         String sdt = txtSdt.getText();
         String mk = String.valueOf(txtMatKhau.getPassword());
         String email = txtEmail.getText();
-
-        if (id.isEmpty() || hoTen.isEmpty() || diaChi.isEmpty() || sdt.isEmpty() || mk.isEmpty() || email.isEmpty()) {
+        //Tách phần id 
+        String s1=new String();
+        String s = hoTen;
+        s=s.trim();// Tac dung la de loai bo hai dau cach dau va cuoi Ten
+        int k;
+        for(k=s.length()-1;k>=0;k--)
+        {
+            s1=s.substring(k,k+1);
+            if(s1.equals(" ")) break;
+        }
+        System.out.println("Ten: "+ s.substring(k+1));
+        int i;
+        for(i=0;i<=s.length();i++)
+        {
+           s1=s.substring(i,i+1);
+            if(s1.equals(" ")) break;
+        }
+        System.out.println("Ho: "+ s.substring(0,i));
+        String ho = s.substring(0,i);
+        int j = 0;
+    
+        if(j>i&&j<k)
+        {
+            s1=s.substring(j,j+1);
+        }
+        System.out.println("Ten Dem: "+s.substring(i+1,k));
+        String dem = s.substring(i+1,k);
+        id = s.substring(k+1)+ho.substring(0,1)+dem.substring(0,1);
+        
+        
+        
+        
+        if ( hoTen.isEmpty() || diaChi.isEmpty() || sdt.isEmpty() || mk.isEmpty() || email.isEmpty()) {
             MsgBox.alert(this, "Nhập đầy đủ thông tin!");
 
             return null;
@@ -774,6 +806,8 @@ public class panelNhanVien extends javax.swing.JPanel {
         lblMaNV.setBackground(new java.awt.Color(51, 51, 51));
         lblMaNV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblMaNV.setText("Id nhân viên");
+
+        txtId.setBackground(new java.awt.Color(204, 204, 204));
 
         txtHoTen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1438,24 +1472,24 @@ public class panelNhanVien extends javax.swing.JPanel {
             }
         }
         if (model != null) {
-            if (tim) {
-                MsgBox.alert(this, "Id trùng");
-            } else if (check) {
-                MsgBox.alert(this, "Id trùng với nhân viên đã nghỉ!");
-            } else {
+//            if (tim) {
+//                MsgBox.alert(this, "Id trùng");
+//            } else if (check) {
+//                MsgBox.alert(this, "Id trùng với nhân viên đã nghỉ!");
+//            } else {
 
-                userServices.add(model);
+                userServices.addKhTheoTen(model);
                 fillTable(userServices.getAll1());
                 guiMail(txtEmail.getText(), model.getId(), model.getTen(), model.getGioiTinh(), model.getMatKhau(), model.getChucVu().getTen());
                 tabs.setSelectedIndex(0);
                 clear();
                 MsgBox.alert(this, "Thêm thành công! ");
-            }
+           // }
         } else {
             MsgBox.alert(this, "Thêm thất bại!");
         }
 
-        System.out.println(model.getTen());
+        //System.out.println(model.getTen());
 
         // new BangKhachHang().setVisible(true);
     }//GEN-LAST:event_btnThemActionPerformed

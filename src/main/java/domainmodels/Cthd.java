@@ -58,6 +58,17 @@ public class Cthd implements java.io.Serializable {
         this.thanhTien = thanhTien;
     }
 
+    public Cthd(String id, ChiTietSp chiTietSp, HoaDon hoaDon, int soLuong, BigDecimal donGia, BigDecimal donGiaKhiGiam, BigDecimal thanhTien) {
+        this.id = id;
+        this.chiTietSp = chiTietSp;
+        this.hoaDon = hoaDon;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
+        this.donGiaKhiGiam = donGiaKhiGiam;
+        this.thanhTien = thanhTien;
+    }
+    
+
     public Cthd(String id) {
         this.id = id;
     }

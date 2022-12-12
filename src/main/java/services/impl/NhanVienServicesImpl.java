@@ -62,4 +62,9 @@ public class NhanVienServicesImpl implements NhanVienServices{
     public List<User> getByChucVu(String id) {
         return userResponsitory.getByChucVu(id);
     }
+
+    @Override
+    public Boolean addKhTheoTen(User kh) {
+        return userResponsitory.addKhTheoTen(kh);
+    }
 }

@@ -180,6 +180,37 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
         }
         return true;
     }
+    
+    @Override
+    public Boolean addKhTheoTen(User kh) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String numberSQL = "SELECT TOP 1 CONVERT(INT,SUBSTRING(Id,6,DATALENGTH(Id))) AS number FROM dbo.[User] WHERE Id LIKE :ten1 ORDER BY number DESC";
+        SQLQuery createNumber = session.createSQLQuery(numberSQL);
+        createNumber.setParameter("ten1", "%" + kh.getId() + "%");
+            System.out.println("Ket qua " + createNumber.uniqueResult());
+            String id;
+            if (createNumber.uniqueResult() == null) {
+                id = kh.getId()+"1";
+            } else {
+                Integer number = (int) createNumber.uniqueResult();
+                System.out.println(number);
+                number++;
+                id = kh.getId() + number;
+            }   
+            kh.setId(id);
+
+        try {
+            session.getTransaction().begin();
+            session.save(kh);
+            session.getTransaction().commit();
+
+        } catch (Exception e) {
+            System.out.println(e);
+
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public Boolean update(User kh) {
@@ -293,10 +324,13 @@ public class NhanVienRespositoryImpl implements NhanVienRespository {
         }
     }
 //    public static void main(String[] args) {
-//        List<User> list = new NhanVienRespositoryImpl().getByChucVu("CV01");
-//        for(User x : list){
-//            System.out.println(x.toString());
-//        }
+////        List<User> list = new NhanVienRespositoryImpl().getByChucVu("CV01");
+////        for(User x : list){
+////            System.out.println(x.toString());
+////        }
+//        User us = new User("nv", "HUY", "dhsuad", "dsajha");
+//    boolean check = new NhanVienRespositoryImpl().addKhTheoTen(us);
+//    
 //    }
     
 }

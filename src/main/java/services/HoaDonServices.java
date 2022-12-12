@@ -28,7 +28,10 @@ public interface HoaDonServices {
     List<Serial> getImeis(String idCTHD);
     
     boolean DoiTra(String imei);
-    
-    
 
+    boolean xoaHDtrong(String idhd);
+    
+    boolean xoaHDCho(String idhd);
+    
+    boolean capNhatVanChuyen(String idhd);
 }

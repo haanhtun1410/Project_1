@@ -60,4 +60,19 @@ public class HoaDonServicesImpl implements HoaDonServices {
         return serialsResponsitory.DoiTra(imei);
     }
 
+    @Override
+    public boolean xoaHDtrong(String idhd) {
+        return hDRespository.xoaHDtrong(idhd);
+    }
+
+    @Override
+    public boolean xoaHDCho(String idhd) {
+        return hDRespository.xoaHDCho(idhd);
+    }
+
+    @Override
+    public boolean capNhatVanChuyen(String idhd) {
+       return hDRespository.capNhatVanChuyen(idhd);
+    }
+
 }
