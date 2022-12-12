@@ -3,14 +3,13 @@ package com.raven.main;
 import com.raven.event.EventMenu;
 import com.raven.form.FormHome;
 import com.raven.form.FormSanPham;
-import com.raven.form.FormThongKeDoanhThu;
-
 import com.raven.form.panelBanHang;
 import com.raven.form.panelHoaDon;
 import com.raven.form.panelKhachHang;
 import com.raven.form.panelKhuyenMai;
 import com.raven.form.panelNhanVien;
 import com.raven.form.panelSanPham;
+import com.raven.form.panelThongKeDoanhThu;
 import domainmodels.User;
 import java.awt.Color;
 import java.awt.Component;
@@ -52,7 +51,7 @@ public class Main extends javax.swing.JFrame {
                     showForm(new panelKhachHang());
                     System.out.println(index);
                 } else if (index == 7) {
-                    showForm(new FormThongKeDoanhThu());
+                    showForm(new panelThongKeDoanhThu());
                     System.out.println(index);
                 } else if (index == 8) {
                     new login().setVisible(true);
@@ -64,7 +63,7 @@ public class Main extends javax.swing.JFrame {
         };
         menu1.initMenu(event);
         showForm(new FormHome());
-        menu1.setAvartar(nhanVien);
+        //menu1.setAvartar(nhanVien);
     }
 
     public void showHD() {
