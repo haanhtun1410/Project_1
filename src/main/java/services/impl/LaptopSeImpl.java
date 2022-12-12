@@ -38,15 +38,13 @@ public class LaptopSeImpl implements LaptopSe{
 
     @Override
     public String update(String idLapTop, Laptop lt) {
-        boolean update = LTRe.insert(lt);
+        boolean update = LTRe.update(idLapTop, lt);
         if (update) {
-            return "Thêm Laptop thành công ! ";
+            return "Thay đổi thông tin Laptop thành công ! ";
         }else{
-            return "Thêm laptop thất bại !";
+            return "Thay đổi thông tin laptop thất bại !";
         }
     }
-    
-    
 
     @Override
     public List<Laptop> getNamSX(int namSX) {
@@ -147,6 +145,46 @@ public class LaptopSeImpl implements LaptopSe{
     public List<Laptop> getOne() {
         return LTRe.getOnt();
                 
+    }
+
+    @Override
+    public List<Laptop> getCPU(String IDcpu) {
+       return LTRe.getCPU(IDcpu);
+    }
+
+    @Override
+    public List<Laptop> getAVG(String idAVG) {
+        return LTRe.getAVG(idAVG);
+    }
+
+    @Override
+    public List<Laptop> getMH(String IDmh) {
+        return LTRe.getMH(IDmh);
+    }
+
+    @Override
+    public List<Laptop> getRAMROM(String idRR) {
+        return LTRe.getRAMROM(idRR);
+    }
+
+    @Override
+    public String refreshTT(String id) {
+        boolean refresh = LTRe.refreshTT(id);
+        if (refresh) {
+            return "Sửa đỏi trạng thái thành công";
+        }else{
+            return "Sửa đổi trạng thái thất bại";
+        }
+    }
+
+    @Override
+    public String insertImei(String id, int sl) {
+        boolean insertImei = LTRe.insertImei(id, sl);
+        if (insertImei) {
+            return "Tạo " + sl + " Imei thành công" ;
+        }else{
+            return "Tạo Imei thất bại";
+        }
     }
 
     

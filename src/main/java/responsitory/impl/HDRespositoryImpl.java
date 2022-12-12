@@ -175,4 +175,64 @@ public class HDRespositoryImpl implements HDRespository {
         }
         return true;
     }
+
+    @Override
+    public boolean xoaHDtrong(String idhd) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session ss = factory.openSession();
+        Transaction transaction = ss.beginTransaction();
+        try {
+            SQLQuery createSQLQuery = ss.createSQLQuery("delete from HoaDon where Id = :id");
+            createSQLQuery.setParameter("id", idhd);
+            createSQLQuery.executeUpdate();
+            transaction.commit();
+        } catch (HibernateException e) {
+            System.out.println(e);
+            transaction.rollback();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean xoaHDCho(String idhd) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session ss = factory.openSession();
+        Transaction transaction = ss.beginTransaction();
+        try {
+            SQLQuery createSQLQuery1 = ss.createSQLQuery("update serial set trangthai = 0, IdCTHD = null where IMEI in (select IMEI from HoaDon h join CTHD c on h.Id = c.IdHD join serial s on s.IdCTHD = c.Id where h.id = :id)");
+            createSQLQuery1.setParameter("id", idhd);
+            SQLQuery createSQLQuery2 = ss.createSQLQuery("delete from CTHD where IdHD = :id");
+            createSQLQuery2.setParameter("id", idhd);
+            SQLQuery createSQLQuery3 = ss.createSQLQuery("delete from HoaDon where Id = :id");
+            createSQLQuery3.setParameter("id", idhd);
+            createSQLQuery1.executeUpdate();
+            createSQLQuery2.executeUpdate();
+            createSQLQuery3.executeUpdate();
+            transaction.commit();
+        } catch (HibernateException e) {
+            System.out.println(e);
+            transaction.rollback();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean capNhatVanChuyen(String idhd) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session ss = factory.openSession();
+        Transaction transaction = ss.beginTransaction();
+        try {
+            SQLQuery createSQLQuery = ss.createSQLQuery("update HoaDon set TinhTrang = 3, TongTien = null,Sdt = null,TenNguoiNhan = null ,NgayShip = null where id = :id");
+            createSQLQuery.setParameter("id", idhd);
+            createSQLQuery.executeUpdate();
+            transaction.commit();
+        } catch (HibernateException e) {
+            System.out.println(e);
+            transaction.rollback();
+            return false;
+        }
+        return true;
+    }
 }

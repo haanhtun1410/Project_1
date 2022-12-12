@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -20,8 +20,8 @@ public class ThongKeNSXReImpl implements ThongKeNSXRe {
     public List<ThongKeNSX> getAll() {
         String query = "select nsx.Ten, sum(soluong)\n"
                 + "from ChiTietSP\n"
-                + "join CTHD on ChiTietSP.Id = cthd.IdCTSP\n"
-                + "join NSX on nsx.Id = ChiTietSP.IdNsx\n"
+                + "left join CTHD on ChiTietSP.Id = cthd.IdCTSP\n"
+                + "left join NSX on nsx.Id = ChiTietSP.IdNsx\n"
                 + "group by nsx.Ten";
         List<ThongKeNSX> list = new ArrayList<>();
         try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {

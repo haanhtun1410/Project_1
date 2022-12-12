@@ -28,4 +28,10 @@ public interface HDRespository {
     public boolean updateHDShip(HoaDon hoaDon);
     
     public boolean updateHDShipDone(HoaDon hoaDon);
+
+    public boolean xoaHDtrong(String idhd);
+
+    public boolean xoaHDCho(String idhd);
+
+    public boolean capNhatVanChuyen(String idhd);
 }

@@ -18,8 +18,12 @@ public interface LaptopSe {
 
     List<Laptop> getAll();
 
-    
     List<Laptop> getOne();
+    
+    String insertImei(String id , int sl);
+
+    String refreshTT(String id);
+    
     String insert(Laptop lt);
 
     String update(String idLapTop, Laptop lt);
@@ -29,6 +33,14 @@ public interface LaptopSe {
     List<Laptop> getNamSX(int namSX);
 
     List<Laptop> getDongLT(String IDdongLT);
+
+    List<Laptop> getCPU(String IDcpu);
+
+    List<Laptop> getAVG(String idAVG);
+
+    List<Laptop> getMH(String IDmh);
+
+    List<Laptop> getRAMROM(String idRR);
 
     List<Laptop> getNSX(String idNSX);
 
@@ -47,13 +59,13 @@ public interface LaptopSe {
     List<VCLTandDong> getDongLT();
 
     List<ThongKeNSX> getNSX();
-    
+
     String getNameDongLTByID(String IDDongLT);
-    
+
     String getNameVoucherByID(String idVoucher);
-    
+
     String getNameNSXByID(String idNSX);
-    
+
     String getIDNSXbyName(String tenNSX);
 
     String getIDVCLTbyName(String tenVC);

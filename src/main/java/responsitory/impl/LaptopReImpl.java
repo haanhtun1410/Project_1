@@ -36,14 +36,19 @@ public class LaptopReImpl implements LaptopRe {
                 + "      ,[GiaBan]\n"
                 + "      ,[Anh]\n"
                 + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
                 + "  FROM [dbo].[ChiTietSP]"
                 + "where trangthai = 1";
         List<Laptop> list = new ArrayList<>();
         try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getDouble(10), rs.getString(11), rs.getInt(12)));
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
             }
             return list;
         } catch (Exception e) {
@@ -66,8 +71,12 @@ public class LaptopReImpl implements LaptopRe {
                 + "           ,[SoLuongTon]\n"
                 + "           ,[GiaBan]\n"
                 + "           ,[Anh]\n"
-                + "           ,[TrangThai])\n"
-                + "     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "           ,[TrangThai]\n"
+                + "           ,[IdVga]\n"
+                + "           ,[IdCpu]\n"
+                + "           ,[IdManHinh]\n"
+                + "           ,[IdRamRom])\n"
+                + "     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int check = 0;
         try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
             ps.setObject(1, lt.getIdLaptop());
@@ -82,6 +91,10 @@ public class LaptopReImpl implements LaptopRe {
             ps.setObject(10, lt.getGiaBan());
             ps.setObject(11, lt.getAnh());
             ps.setObject(12, lt.getTrangThai());
+            ps.setObject(13, lt.getIdVGA());
+            ps.setObject(14, lt.getIdCPU());
+            ps.setObject(15, lt.getIdMH());
+            ps.setObject(16, lt.getIdRR());
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -92,37 +105,50 @@ public class LaptopReImpl implements LaptopRe {
     @Override
     public boolean update(String idLapTop, Laptop lt) {
         String query = "UPDATE [dbo].[ChiTietSP]\n"
-                + "   SET [tenSP] = ?\n"
-                + "      ,[IdNsx] = ?\n"
-                + "      ,[IdDongSP] = ?\n"
-                + "      ,[IdVoucherSP] = ?n"
-                + "      ,[NamSX] = ?\n"
-                + "      ,[NamBH] =? \n"
-                + "      ,[MoTa] = ?\n"
-                + "      ,[SoLuongTon] = ?\n"
-                + "      ,[GiaBan] = ?\n"
-                + "      ,[Anh] = ?\n"
-                + "      ,[TrangThai] = ?\n"
-                + " WHERE id = ?";
+                + "       SET [tenSP] = ?\n"
+                + "           ,[IdNsx] = ?\n"
+                + "           ,[IdVoucherSP] = ?\n"
+                + "           ,[NamSX] = ?\n"
+                + "           ,[NamBH] = ?\n"
+                + "           ,[MoTa] = ?\n"
+                + "           ,[SoLuongTon] = ?\n"
+                + "           ,[GiaBan]= ?\n"
+                + "           ,[Anh] = ?\n"
+                + "           ,[TrangThai] = ?\n"
+                + "           ,[IdVga] = ?\n"
+                + "           ,[IdCpu] = ?\n"
+                + "           ,[IdManHinh] = ?\n"
+                + "           ,[IdRamRom] = ?\n"
+                + "                  WHERE ID =?";
         int check = 0;
         try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
             ps.setObject(1, lt.getTenLaptop());
             ps.setObject(2, lt.getIdNSX());
-            ps.setObject(3, lt.getIdDongSP());
-            ps.setObject(4, lt.getIdVoucher());
-            ps.setObject(5, lt.getNamSX());
-            ps.setObject(6, lt.getNamBH());
-            ps.setObject(7, lt.getMoTa());
-            ps.setObject(8, lt.getSoLuongTon());
-            ps.setObject(9, lt.getGiaBan());
-            ps.setObject(10, lt.getAnh());
-            ps.setObject(11, lt.getTrangThai());
-            ps.setObject(12, lt.getIdLaptop());
+            ps.setObject(3, lt.getIdVoucher());
+            ps.setObject(4, lt.getNamSX());
+            ps.setObject(5, lt.getNamBH());
+            ps.setObject(6, lt.getMoTa());
+            ps.setObject(7, lt.getSoLuongTon());
+            ps.setObject(8, lt.getGiaBan());
+            ps.setObject(9, lt.getAnh());
+            ps.setObject(10, lt.getTrangThai());
+            ps.setObject(11, lt.getIdVGA());
+            ps.setObject(12, lt.getIdCPU());
+            ps.setObject(13, lt.getIdMH());
+            ps.setObject(14, lt.getIdRR());
+            ps.setObject(15, idLapTop);
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
         return check > 0;
+    }
+
+    public static void main(String[] args) {
+        Laptop lt = new Laptop("bb", "NSX03", "Voucher01", "VGA01", "CPU01", "MH1", "RamRom1", 2022, 2023, "asjhdg", 123, 1241234.0, "@4124", 0);
+        String id = "Laptop03";
+        new LaptopReImpl().update(id, lt);
+
     }
 
     @Override
@@ -139,6 +165,10 @@ public class LaptopReImpl implements LaptopRe {
                 + "      ,[GiaBan]\n"
                 + "      ,[Anh]\n"
                 + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
                 + "  FROM [dbo].[ChiTietSP]"
                 + " Where namSX = ?";
         List<Laptop> list = new ArrayList<>();
@@ -146,8 +176,9 @@ public class LaptopReImpl implements LaptopRe {
             ps.setObject(1, namSX);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getDouble(10), rs.getString(11), rs.getInt(12)));
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
             }
             return list;
         } catch (Exception e) {
@@ -170,6 +201,10 @@ public class LaptopReImpl implements LaptopRe {
                 + "      ,[GiaBan]\n"
                 + "      ,[Anh]\n"
                 + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
                 + "  FROM [dbo].[ChiTietSP]"
                 + " Where idDongSP = ?";
         List<Laptop> list = new ArrayList<>();
@@ -177,8 +212,9 @@ public class LaptopReImpl implements LaptopRe {
             ps.setObject(1, IDdongLT);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getDouble(10), rs.getString(11), rs.getInt(12)));
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
             }
             return list;
         } catch (Exception e) {
@@ -201,6 +237,10 @@ public class LaptopReImpl implements LaptopRe {
                 + "      ,[GiaBan]\n"
                 + "      ,[Anh]\n"
                 + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
                 + "  FROM [dbo].[ChiTietSP]"
                 + " Where idNSX = ?";
         List<Laptop> list = new ArrayList<>();
@@ -208,8 +248,9 @@ public class LaptopReImpl implements LaptopRe {
             ps.setObject(1, idNSX);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getDouble(10), rs.getString(11), rs.getInt(12)));
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
             }
             return list;
         } catch (Exception e) {
@@ -232,6 +273,10 @@ public class LaptopReImpl implements LaptopRe {
                 + "      ,[GiaBan]\n"
                 + "      ,[Anh]\n"
                 + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
                 + "  FROM [dbo].[ChiTietSP]"
                 + " Where TrangThai = ?";
         List<Laptop> list = new ArrayList<>();
@@ -239,8 +284,9 @@ public class LaptopReImpl implements LaptopRe {
             ps.setObject(1, trangThai);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getDouble(10), rs.getString(11), rs.getInt(12)));
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
             }
             return list;
         } catch (Exception e) {
@@ -263,6 +309,10 @@ public class LaptopReImpl implements LaptopRe {
                 + "      ,[GiaBan]\n"
                 + "      ,[Anh]\n"
                 + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
                 + "  FROM [dbo].[ChiTietSP]"
                 + " Where tenSP = ?";
         List<Laptop> list = new ArrayList<>();
@@ -270,8 +320,9 @@ public class LaptopReImpl implements LaptopRe {
             ps.setObject(1, tenLaptop);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getDouble(10), rs.getString(11), rs.getInt(12)));
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
             }
             return list;
         } catch (Exception e) {
@@ -294,14 +345,19 @@ public class LaptopReImpl implements LaptopRe {
                 + "      ,[GiaBan]\n"
                 + "      ,[Anh]\n"
                 + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
                 + "  FROM [dbo].[ChiTietSP]"
                 + " order by GiaBan desc ";
         List<Laptop> list = new ArrayList<>();
         try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getDouble(10), rs.getString(11), rs.getInt(12)));
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
             }
             return list;
         } catch (Exception e) {
@@ -325,13 +381,16 @@ public class LaptopReImpl implements LaptopRe {
                 + "      ,[Anh]\n"
                 + "      ,[TrangThai]\n"
                 + "  FROM [dbo].[ChiTietSP]"
-                + "  where GiaBan between 10000000 and 18000000";
+                + "  where GiaBan between ? and ?";
         List<Laptop> list = new ArrayList<>();
         try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ps.setObject(1, giaMin);
+            ps.setObject(2, giaMax);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getDouble(10), rs.getString(11), rs.getInt(12)));
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
             }
             return list;
         } catch (Exception e) {
@@ -354,14 +413,19 @@ public class LaptopReImpl implements LaptopRe {
                 + "      ,[GiaBan]\n"
                 + "      ,[Anh]\n"
                 + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
                 + "  FROM [dbo].[ChiTietSP]"
                 + " order by GiaBan  ";
         List<Laptop> list = new ArrayList<>();
         try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getDouble(10), rs.getString(11), rs.getInt(12)));
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
             }
             return list;
         } catch (Exception e) {
@@ -533,10 +597,6 @@ public class LaptopReImpl implements LaptopRe {
         return tenNSX;
     }
 
-    public static void main(String[] args) {
-        new LaptopReImpl().getNameVoucherByID(null);
-    }
-
     @Override
     public boolean delete(String idLapTop) {
         String query = "UPDATE [dbo].[ChiTietSP]\n"
@@ -554,7 +614,7 @@ public class LaptopReImpl implements LaptopRe {
 
     @Override
     public List<Laptop> getOnt() {
-       String query = "SELECT [Id]\n"
+        String query = "SELECT [Id]\n"
                 + "      ,[tenSP]\n"
                 + "      ,[IdNsx]\n"
                 + "      ,[IdDongSP]\n"
@@ -566,14 +626,19 @@ public class LaptopReImpl implements LaptopRe {
                 + "      ,[GiaBan]\n"
                 + "      ,[Anh]\n"
                 + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
                 + "  FROM [dbo].[ChiTietSP]"
                 + "where trangthai = 0";
         List<Laptop> list = new ArrayList<>();
         try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getDouble(10), rs.getString(11), rs.getInt(12)));
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
             }
             return list;
         } catch (Exception e) {
@@ -581,4 +646,178 @@ public class LaptopReImpl implements LaptopRe {
         }
         return null;
     }
+
+    @Override
+    public List<Laptop> getCPU(String IDcpu) {
+        String query = "SELECT [Id]\n"
+                + "      ,[tenSP]\n"
+                + "      ,[IdNsx]\n"
+                + "      ,[IdDongSP]\n"
+                + "      ,[IdVoucherSP]\n"
+                + "      ,[NamSX]\n"
+                + "      ,[NamBH]\n"
+                + "      ,[MoTa]\n"
+                + "      ,[SoLuongTon]\n"
+                + "      ,[GiaBan]\n"
+                + "      ,[Anh]\n"
+                + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
+                + "  FROM [dbo].[ChiTietSP]"
+                + " Where idCpu = ?";
+        List<Laptop> list = new ArrayList<>();
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ps.setObject(1, IDcpu);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Laptop> getAVG(String idAVG) {
+        String query = "SELECT [Id]\n"
+                + "      ,[tenSP]\n"
+                + "      ,[IdNsx]\n"
+                + "      ,[IdDongSP]\n"
+                + "      ,[IdVoucherSP]\n"
+                + "      ,[NamSX]\n"
+                + "      ,[NamBH]\n"
+                + "      ,[MoTa]\n"
+                + "      ,[SoLuongTon]\n"
+                + "      ,[GiaBan]\n"
+                + "      ,[Anh]\n"
+                + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
+                + "  FROM [dbo].[ChiTietSP]"
+                + " Where idVga = ?";
+        List<Laptop> list = new ArrayList<>();
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ps.setObject(1, idAVG);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Laptop> getMH(String IDmh) {
+        String query = "SELECT [Id]\n"
+                + "      ,[tenSP]\n"
+                + "      ,[IdNsx]\n"
+                + "      ,[IdDongSP]\n"
+                + "      ,[IdVoucherSP]\n"
+                + "      ,[NamSX]\n"
+                + "      ,[NamBH]\n"
+                + "      ,[MoTa]\n"
+                + "      ,[SoLuongTon]\n"
+                + "      ,[GiaBan]\n"
+                + "      ,[Anh]\n"
+                + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
+                + "  FROM [dbo].[ChiTietSP]"
+                + " Where idManHinh = ?";
+        List<Laptop> list = new ArrayList<>();
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ps.setObject(1, IDmh);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Laptop> getRAMROM(String idRR) {
+        String query = "SELECT [Id]\n"
+                + "      ,[tenSP]\n"
+                + "      ,[IdNsx]\n"
+                + "      ,[IdDongSP]\n"
+                + "      ,[IdVoucherSP]\n"
+                + "      ,[NamSX]\n"
+                + "      ,[NamBH]\n"
+                + "      ,[MoTa]\n"
+                + "      ,[SoLuongTon]\n"
+                + "      ,[GiaBan]\n"
+                + "      ,[Anh]\n"
+                + "      ,[TrangThai]\n"
+                + "      ,[IdVga]\n"
+                + "      ,[IdCpu]\n"
+                + "      ,[IdManHinh]\n"
+                + "      ,[IdRamRom]\n"
+                + "  FROM [dbo].[ChiTietSP]"
+                + " Where idRamRom = ?";
+        List<Laptop> list = new ArrayList<>();
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ps.setObject(1, idRR);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Laptop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getInt(6), rs.getInt(7), rs.getString(8),
+                        rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getInt(12)));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean refreshTT(String id) {
+        String query = "UPDATE [dbo].[ChiTietSP]\n"
+                + "   SET [TrangThai] = 1\n"
+                + " WHERE id = ?";
+        int check = 0;
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ps.setObject(1, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+
+    @Override
+    public boolean insertImei(String id, int sl) {
+        String query = "EXEC createSerial ?, ?";
+        int check = 0;
+        try (Connection c = Connect.getConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ps.setObject(1, id);
+            ps.setObject(2, sl);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+
 }

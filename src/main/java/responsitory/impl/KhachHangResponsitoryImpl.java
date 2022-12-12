@@ -29,12 +29,12 @@ public class KhachHangResponsitoryImpl implements KhachHangResponsitory {
         try {
             Criteria cr = ss.createCriteria(KhachHang.class);
             listKH = cr.list();
-
         } catch (HibernateException e) {
             System.out.println(e);
         }
         return listKH;
     }
+    
     private Session session = HibernateUtil.getSessionFactory().openSession();
 
     @Override
