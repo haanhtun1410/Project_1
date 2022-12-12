@@ -19,6 +19,10 @@ public interface LaptopRe {
     List<Laptop> getAll();
     
     List<Laptop> getOnt();
+    
+    boolean insertImei(String id , int sl);
+    
+    boolean refreshTT(String id);
 
     boolean insert(Laptop lt);
 
@@ -34,6 +38,14 @@ public interface LaptopRe {
 
     List<Laptop> getTrangThai(int trangThai);
 
+    List<Laptop> getCPU(String IDcpu);
+
+    List<Laptop> getAVG(String idAVG);
+
+    List<Laptop> getMH(String IDmh);
+
+    List<Laptop> getRAMROM(String idRR);
+    
     List<Laptop> searchByName(String tenLaptop);
 
     List<Laptop> getGiathapCao();

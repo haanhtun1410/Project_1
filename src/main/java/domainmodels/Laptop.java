@@ -10,11 +10,16 @@ package domainmodels;
  * @author nhanp
  */
 public class Laptop {
+
     private String idLaptop;
     private String tenLaptop;
     private String idNSX;
     private String idDongSP;
     private String idVoucher;
+    private String idVGA;
+    private String idCPU;
+    private String idMH;
+    private String idRR;
     private int namSX;
     private int namBH;
     private String moTa;
@@ -26,11 +31,16 @@ public class Laptop {
     public Laptop() {
     }
 
-    public Laptop(String tenLaptop, String idNSX, String idDongSP, String idVoucher, int namSX, int namBH, String moTa, int soLuongTon, double giaBan, String anh, int trangThai) {
+    public Laptop(String idLaptop, String tenLaptop, String idNSX, String idDongSP, String idVoucher, String idVGA, String idCPU, String idMH, String idRR, int namSX, int namBH, String moTa, int soLuongTon, double giaBan, String anh, int trangThai) {
+        this.idLaptop = idLaptop;
         this.tenLaptop = tenLaptop;
         this.idNSX = idNSX;
         this.idDongSP = idDongSP;
         this.idVoucher = idVoucher;
+        this.idVGA = idVGA;
+        this.idCPU = idCPU;
+        this.idMH = idMH;
+        this.idRR = idRR;
         this.namSX = namSX;
         this.namBH = namBH;
         this.moTa = moTa;
@@ -39,15 +49,16 @@ public class Laptop {
         this.anh = anh;
         this.trangThai = trangThai;
     }
-    
-    
 
-    public Laptop(String idLaptop, String tenLaptop, String idNSX, String idDongSP, String idVoucher, int namSX, int namBH, String moTa, int soLuongTon, double giaBan, String anh, int trangThai) {
-        this.idLaptop = idLaptop;
+    public Laptop(String tenLaptop, String idNSX, String idDongSP, String idVoucher, String idVGA, String idCPU, String idMH, String idRR, int namSX, int namBH, String moTa, int soLuongTon, double giaBan, String anh, int trangThai) {
         this.tenLaptop = tenLaptop;
         this.idNSX = idNSX;
         this.idDongSP = idDongSP;
         this.idVoucher = idVoucher;
+        this.idVGA = idVGA;
+        this.idCPU = idCPU;
+        this.idMH = idMH;
+        this.idRR = idRR;
         this.namSX = namSX;
         this.namBH = namBH;
         this.moTa = moTa;
@@ -55,6 +66,64 @@ public class Laptop {
         this.giaBan = giaBan;
         this.anh = anh;
         this.trangThai = trangThai;
+    }
+
+    public Laptop(String tenLaptop, String idNSX, String idDongSP, String idVoucher) {
+        this.tenLaptop = tenLaptop;
+        this.idNSX = idNSX;
+        this.idDongSP = idDongSP;
+        this.idVoucher = idVoucher;
+    }
+
+    public Laptop(String tenLaptop, String idNSX, String idVoucher, String idVGA, String idCPU, String idMH, String idRR, int namSX, int namBH, String moTa, int soLuongTon, double giaBan, String anh, int trangThai) {
+        this.tenLaptop = tenLaptop;
+        this.idNSX = idNSX;
+        this.idVoucher = idVoucher;
+        this.idVGA = idVGA;
+        this.idCPU = idCPU;
+        this.idMH = idMH;
+        this.idRR = idRR;
+        this.namSX = namSX;
+        this.namBH = namBH;
+        this.moTa = moTa;
+        this.soLuongTon = soLuongTon;
+        this.giaBan = giaBan;
+        this.anh = anh;
+        this.trangThai = trangThai;
+    }
+
+    
+
+    public String getIdVGA() {
+        return idVGA;
+    }
+
+    public String getIdCPU() {
+        return idCPU;
+    }
+
+    public String getIdMH() {
+        return idMH;
+    }
+
+    public String getIdRR() {
+        return idRR;
+    }
+
+    public void setIdVGA(String idVGA) {
+        this.idVGA = idVGA;
+    }
+
+    public void setIdCPU(String idCPU) {
+        this.idCPU = idCPU;
+    }
+
+    public void setIdMH(String idMH) {
+        this.idMH = idMH;
+    }
+
+    public void setIdRR(String idRR) {
+        this.idRR = idRR;
     }
 
     public String getIdLaptop() {
@@ -157,7 +226,4 @@ public class Laptop {
     public String toString() {
         return "Laptop{" + "idLaptop=" + idLaptop + ", tenLaptop=" + tenLaptop + ", idNSX=" + idNSX + ", idDongSP=" + idDongSP + ", idVoucher=" + idVoucher + ", namSX=" + namSX + ", namBH=" + namBH + ", moTa=" + moTa + ", soLuongTon=" + soLuongTon + ", giaBan=" + giaBan + ", anh=" + anh + ", trangThai=" + trangThai + '}';
     }
-    
-    
-    
 }

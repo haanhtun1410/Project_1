@@ -10,9 +10,25 @@ package domainmodels;
  * @author nhanp
  */
 public class ThongKeNSX {
+
     private String idNSX;
     private String tenNSX;
-    private int soLuong;
+    private Integer soLuong;
+    private int trangThai;
+
+    public ThongKeNSX(String idNSX, String tenNSX, int trangThai) {
+        this.idNSX = idNSX;
+        this.tenNSX = tenNSX;
+        this.trangThai = trangThai;
+    }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
 
     public ThongKeNSX() {
     }
@@ -22,7 +38,7 @@ public class ThongKeNSX {
         this.tenNSX = tenNSX;
     }
 
-    public ThongKeNSX(String tenNSX, int soLuong) {
+    public ThongKeNSX(String tenNSX, Integer soLuong) {
         this.tenNSX = tenNSX;
         this.soLuong = soLuong;
     }
@@ -31,7 +47,7 @@ public class ThongKeNSX {
         return tenNSX;
     }
 
-    public int getSoLuong() {
+    public Integer getSoLuong() {
         return soLuong;
     }
 
@@ -39,7 +55,7 @@ public class ThongKeNSX {
         this.tenNSX = tenNSX;
     }
 
-    public void setSoLuong(int soLuong) {
+    public void setSoLuong(Integer soLuong) {
         this.soLuong = soLuong;
     }
 
@@ -53,9 +69,9 @@ public class ThongKeNSX {
 
     @Override
     public String toString() {
-        return "ThongKeNSX{" + "idNSX=" + idNSX + ", tenNSX=" + tenNSX + ", soLuong=" + soLuong + '}';
+        return "ThongKeNSX{" + "idNSX=" + idNSX + ", tenNSX=" + tenNSX + ", soLuong=" + soLuong + ", trangThai=" + trangThai + '}';
     }
 
     
-    
+
 }
